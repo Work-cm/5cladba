@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com'),
-  title: 'Privacy Policy | BuyResearchChems',
-  description: 'Read the BuyResearchChems Privacy Policy. Learn how we collect, use and protect your personal information when buying research chemicals online.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
+  title: 'Privacy Policy | K2PaperLiquid',
+  description: 'Read the K2PaperLiquid Privacy Policy. Learn how we collect, use and protect your personal information when ordering K2 paper, spray and powder online.',
   keywords: [
-    'privacy policy', 'BuyResearchChems privacy', 'research chemicals privacy',
+    'privacy policy', 'K2PaperLiquid privacy', 'k2 paper privacy',
     'personal information', 'data protection',
   ],
   alternates: { canonical: '/privacy' },
@@ -40,8 +40,8 @@ export default function PrivacyPolicyPage() {
 
         <section>
           <h2 className="text-2xl font-black tracking-tight mb-4">1. Introduction</h2>
-          <p className="mb-4">Welcome to BuyResearchChems. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
-          <p>By accessing or using BuyResearchChems, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our services.</p>
+          <p className="mb-4">Welcome to K2PaperLiquid. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+          <p>By accessing or using K2PaperLiquid, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our services.</p>
         </section>
 
         <section>
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-black tracking-tight mb-4">4. How We Share Your Information</h2>
           <h3 className="text-lg font-bold mb-3">Service Providers</h3>
           <ul className="space-y-2 ml-1 mb-6">
-            {[['Payment Processing','Bank transfer or cryptocurrency — no card data stored'],['Shipping Partners','Courier services for order delivery'],['Email Services','Postmark for transactional emails'],['Analytics','Google Analytics (anonymized data)'],['Customer Support','LiveChat for customer service']].map(([t,d])=><li key={t} className="flex gap-3"><Dot /><span><strong>{t}:</strong> {d}</span></li>)}
+            {[['Payment Processing','Bank transfer or cryptocurrency — no card data stored'],['Shipping Partners','Courier services for order delivery'],['Email Services','Postmark for transactional emails'],['Analytics','Google Analytics (anonymized data)'],['Customer Support','Email & WhatsApp for customer service']].map(([t,d])=><li key={t} className="flex gap-3"><Dot /><span><strong>{t}:</strong> {d}</span></li>)}
           </ul>
           <h3 className="text-lg font-bold mb-3">Legal Requirements</h3>
           <p className="mb-3">We may disclose your information if required by law, court order, or government request, or to:</p>
@@ -114,7 +114,7 @@ export default function PrivacyPolicyPage() {
           <ul className="space-y-2 ml-1 mb-4">
             {['Right to know what personal information is collected','Right to know if personal information is sold or disclosed','Right to opt-out of sale of personal information','Right to non-discrimination for exercising your rights'].map(i=><li key={i} className="flex gap-3"><Dot /><span>{i}</span></li>)}
           </ul>
-          <p>To exercise your rights, contact us at <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">order@researchchems.online</a></p>
+          <p>To exercise your rights, contact us on <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">WhatsApp</a> or <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">Telegram</a>.</p>
         </section>
 
         <section>
@@ -150,15 +150,15 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-black tracking-tight mb-4">13. Contact Us</h2>
           <p className="mb-5">Questions about this Privacy Policy? Contact us:</p>
           <div className="border border-gray-200 rounded-xl p-5 space-y-2 text-sm">
-            <p><strong>Email:</strong> <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">order@researchchems.online</a></p>
-            <p><strong>Website:</strong> <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">Email Us</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 906-261-3088</a></p>
+            <p><strong>Telegram:</strong> <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 910 227 9379</a></p>
             <p><strong>Response Time:</strong> We aim to respond within 48 hours</p>
           </div>
         </section>
 
         <section className="bg-gray-50 border border-gray-100 rounded-xl p-6 text-sm">
           <h2 className="text-lg font-black mb-3">Your Consent</h2>
-          <p>By using BuyResearchChems, you consent to our Privacy Policy and agree to its terms. If you do not agree, please discontinue use of our services immediately.</p>
+          <p>By using K2PaperLiquid, you consent to our Privacy Policy and agree to its terms. If you do not agree, please discontinue use of our services immediately.</p>
         </section>
       </article>
 

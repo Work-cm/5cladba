@@ -11,15 +11,14 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 export default function ProductDetailPage() {
-  const pricingTiers = [
+  const defaultTiers = [
     { quantity: 25, price: 250 },
     { quantity: 50, price: 400 },
     { quantity: 100, price: 650 },
     { quantity: 500, price: 1200 },
     { quantity: 1000, price: 2100 },
   ];
-  const [selectedGrams, setSelectedGrams] = useState(25);
-  const [selectedTier, setSelectedTier] = useState(pricingTiers[0]);
+  const [selectedTier, setSelectedTier] = useState(defaultTiers[0]);
 
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
@@ -44,8 +43,11 @@ export default function ProductDetailPage() {
         
         const { data } = await axios.get(endpoint);
         setProduct(data);
-        
-        // priceVariants not used on detail page â€” fixed tiers are used instead
+
+        // Select the cheapest variant tier by default when the product defines its own
+        if (Array.isArray(data.priceVariants) && data.priceVariants.length > 0) {
+          setSelectedTier(data.priceVariants[0]);
+        }
       } catch (err) {
         console.error('Error fetching product:', err);
         setError(err.response?.data?.message || 'Failed to load product');
@@ -60,13 +62,28 @@ export default function ProductDetailPage() {
     }
   }, [slug]);
 
+  const unitLabel = (product) => {
+    const cat = (product?.category || '').toLowerCase();
+    if (cat === 'k2-paper-sheets') return 'A4 sheet';
+    if (cat === 'k2-liquid-spray') return 'ml';
+    return 'g';
+  };
+
+  const formatUnit = (product, qty) => {
+    const unit = unitLabel(product);
+    if (unit === 'A4 sheet') return `${qty} ${qty === 1 ? 'A4 sheet' : 'A4 sheets'}`;
+    if (unit === 'g' && qty >= 1000) return `${qty / 1000}kg`;
+    return `${qty}${unit}`;
+  };
+
   const handleAddToCart = () => {
     if (product) {
-      const gramsVariant = {
+      const variant = {
         grams: selectedTier.quantity,
         price: selectedTier.price,
+        label: formatUnit(product, selectedTier.quantity),
       };
-      addToCart({ ...product }, quantity, gramsVariant);
+      addToCart({ ...product }, quantity, variant);
     }
   };
 
@@ -175,27 +192,27 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Gram selector â€” fixed pricing tiers */}
+            {/* Quantity selector — uses product's own price variants when defined */}
             <div className="mb-5">
               <p className="text-sm font-medium text-gray-900 mb-2">Select quantity</p>
               <div className="flex flex-wrap gap-2 mb-3">
-                {pricingTiers.map(tier => (
+                {(product.priceVariants?.length ? product.priceVariants : defaultTiers).map(tier => (
                   <button
                     key={tier.quantity}
-                    onClick={() => { setSelectedTier(tier); setSelectedGrams(tier.quantity); }}
+                    onClick={() => setSelectedTier(tier)}
                     className={`px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
-                      selectedGrams === tier.quantity
+                      selectedTier.quantity === tier.quantity
                         ? 'bg-sky-500 border-sky-500 text-white shadow-md shadow-sky-500/20'
                         : 'bg-white border-gray-200 text-gray-900 hover:border-sky-300'
                     }`}
                   >
-                    {tier.quantity}g
+                    {formatUnit(product, tier.quantity)}
                   </button>
                 ))}
               </div>
               <div className="text-2xl font-extrabold text-gray-900">
                 &euro;{Number(selectedTier.price).toFixed(2)}
-                <span className="ml-2 text-sm text-gray-900 font-normal">for {selectedGrams}g</span>
+                <span className="ml-2 text-sm text-gray-900 font-normal">for {formatUnit(product, selectedTier.quantity)}</span>
               </div>
             </div>
 
@@ -206,7 +223,7 @@ export default function ProductDetailPage() {
                   onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
                   disabled={quantity <= 1}
                   className="w-10 h-11 flex items-center justify-center text-gray-900 hover:bg-gray-100 disabled:opacity-40 transition-colors"
-                >âˆ’</button>
+                >&minus;</button>
                 <input
                   type="number" min="1" value={quantity}
                   onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}

@@ -4,78 +4,69 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { FaArrowRight, FaArrowLeft, FaShieldAlt, FaTruck, FaCheckCircle, FaFlask, FaCertificate, FaGlobeAmericas, FaLock, FaBoxOpen, FaHeadset, FaStar } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft, FaTruck, FaCheckCircle, FaFlask, FaGlobeAmericas, FaBoxOpen, FaStar, FaFileAlt, FaSprayCan, FaLeaf } from 'react-icons/fa';
 
 const slides = [
   {
     id: 0,
     image: '/images/Laboratory-Science.jpg',
     imagePos: 'object-center',
-    pill: { color: 'bg-sky-500/20 border-sky-400/30', dot: 'bg-sky-400', text: 'text-sky-300', label: 'Quality Promise' },
-    headline: 'Lab-Verified Purity.',
-    accent: 'Zero Compromise.',
+    pill: { color: 'bg-sky-500/20 border-sky-400/30', dot: 'bg-sky-400', text: 'text-sky-300', label: 'K2 Paper Sheets' },
+    headline: 'K2 Infused',
+    accent: 'Paper Sheets.',
     accentColor: 'from-sky-300 via-cyan-300 to-sky-400',
-    sub: "Don't risk your research on unverified sources. Every compound ships with an independent Certificate of Analysis, so you know exactly what you're getting — every single time.",
-    href: '/products',
-    cta: 'Shop Verified Compounds',
+    sub: 'Evenly coated A4 and letter-size K2 paper sheets. Strong, consistent and odourless — discreetly shipped in plain packaging worldwide.',
+    href: '/products?category=k2-paper-sheets',
+    cta: 'Shop K2 Paper Sheets',
     ctaStyle: 'bg-sky-500 hover:bg-sky-400 shadow-sky-900/40',
-    overlay: 'from-gray-900 via-gray-900/90 to-gray-900/60',
+    overlay: 'from-sky-900 via-sky-900/95 to-sky-900/60',
     stats: [
-      { Icon: FaCertificate, value: '99.9%', label: 'Avg. Purity' },
-      { Icon: FaCheckCircle, value: 'COA', label: 'Every Order' },
-      { Icon: FaFlask, value: 'Batch', label: 'Tested' },
+      { Icon: FaFileAlt, value: 'A4', label: 'Full Sheets' },
+      { Icon: FaCheckCircle, value: 'Even', label: 'Coating' },
+      { Icon: FaBoxOpen, value: 'Plain', label: 'Packaging' },
     ],
   },
   {
     id: 1,
     image: '/images/GettyImages-563374209.png',
     imagePos: 'object-top',
-    pill: { color: 'bg-sky-500/20 border-sky-400/30', dot: 'bg-sky-400', text: 'text-sky-300', label: 'Worldwide Delivery' },
-    headline: 'Delivered Fast.',
-    accent: 'Anywhere on Earth.',
+    pill: { color: 'bg-sky-500/20 border-sky-400/30', dot: 'bg-sky-400', text: 'text-sky-300', label: 'K2 Liquid Spray' },
+    headline: 'K2 Liquid',
+    accent: 'Spray.',
     accentColor: 'from-sky-300 via-cyan-300 to-sky-400',
-    sub: 'Your order dispatched within 48 hours, discreetly packaged and fully tracked to over 50 countries. No customs headaches, no delays — just reliable delivery you can count on.',
-    href: '/products',
-    cta: 'Start Your Order',
+    sub: 'High-strength K2 liquid spray in sealed bottles. Easy to apply on paper or herbs, long-lasting and reliably potent every time.',
+    href: '/products?category=k2-liquid-spray',
+    cta: 'Shop K2 Liquid Spray',
     ctaStyle: 'bg-sky-500 hover:bg-sky-400 shadow-sky-900/40',
-    overlay: 'from-gray-900 via-gray-900/90 to-gray-900/60',
+    overlay: 'from-sky-900 via-sky-900/95 to-sky-900/60',
     stats: [
+      { Icon: FaSprayCan, value: 'Sealed', label: 'Bottles' },
       { Icon: FaTruck, value: '48h', label: 'Dispatch' },
       { Icon: FaGlobeAmericas, value: '50+', label: 'Countries' },
-      { Icon: FaBoxOpen, value: 'Plain', label: 'Packaging' },
     ],
   },
   {
     id: 2,
     image: '/images/MA_0449a.webp',
     imagePos: 'object-center',
-    pill: { color: 'bg-sky-500/20 border-sky-400/30', dot: 'bg-sky-400', text: 'text-sky-300', label: 'Trusted Supplier' },
-    headline: '500+ Compounds.',
-    accent: 'One Trusted Source.',
+    pill: { color: 'bg-sky-500/20 border-sky-400/30', dot: 'bg-sky-400', text: 'text-sky-300', label: 'K2 Powder' },
+    headline: 'Cannabinoid',
+    accent: 'K2 Powder.',
     accentColor: 'from-sky-300 via-cyan-300 to-sky-400',
-    sub: 'Stop juggling multiple suppliers. From cannabinoids to novel research chemicals, get everything you need from one verified source — backed by 24/7 expert support whenever you need it.',
-    href: '/products',
-    cta: 'Explore Our Range',
+    sub: 'Pure cannabinoid K2 powder for making your own paper, spray or blends. Lab-tested purity, sold by the gram with fast discreet delivery.',
+    href: '/products?category=k2-powder',
+    cta: 'Shop K2 Powder',
     ctaStyle: 'bg-sky-500 hover:bg-sky-400 shadow-sky-900/40',
-    overlay: 'from-gray-900 via-gray-900/90 to-gray-900/60',
+    overlay: 'from-sky-900 via-sky-900/95 to-sky-900/60',
     stats: [
-      { Icon: FaFlask, value: '500+', label: 'Compounds' },
-      { Icon: FaStar, value: '10K+', label: 'Researchers' },
-      { Icon: FaHeadset, value: '24/7', label: 'Support' },
+      { Icon: FaLeaf, value: 'Pure', label: 'Cannabinoid' },
+      { Icon: FaFlask, value: 'Lab', label: 'Tested' },
+      { Icon: FaStar, value: '10K+', label: 'Customers' },
     ],
   },
 ];
 
 const DURATION = 7000;
-
-const STARS = Array.from({ length: 55 }, (_, i) => ({
-  id: i,
-  top:  `${(i * 41  + 7)  % 93}%`,
-  left: `${(i * 67  + 13) % 93}%`,
-  size: [1, 2, 1, 3, 2, 3, 1, 2, 4, 2][i % 10],
-  glow: i % 5 === 0,
-}));
 
 const containerVariants = {
   hidden: {},
@@ -106,7 +97,6 @@ export default function HeroCarousel() {
   const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
   const intervalRef = useRef(null);
-  const particlesRef = useRef(null);
 
   const goTo = useCallback((i) => { setCurrent(i); setProgress(0); }, []);
   const next = useCallback(() => goTo((current + 1) % slides.length), [current, goTo]);
@@ -119,42 +109,6 @@ export default function HeroCarousel() {
     }, 50);
     return () => clearInterval(intervalRef.current);
   }, [paused, next]);
-
-  useEffect(() => {
-    if (!particlesRef.current) return;
-    const vw = window.innerWidth;
-    const ctx = gsap.context(() => {
-
-      // Twinkle every star individually
-      gsap.utils.toArray('.hero-star', particlesRef.current).forEach((el) => {
-        gsap.to(el, {
-          opacity:  gsap.utils.random(0.15, 1.0),
-          scale:    gsap.utils.random(0.5,  2.6),
-          duration: gsap.utils.random(0.8,  3.0),
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: gsap.utils.random(0, 4),
-        });
-      });
-
-      // Slowly rotate dashed rings
-      gsap.to('.hero-ring-a', { rotation: 360,  duration: 28, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
-      gsap.to('.hero-ring-b', { rotation: -360, duration: 42, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
-      gsap.to('.hero-ring-c', { rotation: 360,  duration: 60, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
-
-      // Shooting stars
-      gsap.utils.toArray('.hero-shoot', particlesRef.current).forEach((el, i) => {
-        const tl = gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(7, 14), delay: i * 4 + 1 });
-        tl.fromTo(el,
-          { x: -220, opacity: 0 },
-          { x: vw + 220, opacity: 1, duration: 0.55, ease: 'power2.out' }
-        ).to(el, { opacity: 0, duration: 0.25, ease: 'power2.in' }, '-=0.25');
-      });
-
-    }, particlesRef);
-    return () => ctx.revert();
-  }, []);
 
   const slide = slides[current];
 
@@ -176,54 +130,20 @@ export default function HeroCarousel() {
         >
           <Image src={slide.image} alt="" fill className={`object-cover ${slide.imagePos}`} priority sizes="100vw" />
           <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay}`} />
-          <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-sky-900 via-sky-900/70 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
-      {/* GSAP star field: twinkling stars + rotating rings + shooting stars */}
-      <div ref={particlesRef} className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-
-        {/* Twinkling star dots */}
-        {STARS.map(s => (
-          <div
-            key={s.id}
-            className="hero-star absolute rounded-full bg-white"
-            style={{
-              top: s.top, left: s.left,
-              width: s.size, height: s.size,
-              opacity: 0.3,
-              boxShadow: s.glow ? `0 0 ${s.size + 4}px ${s.size + 2}px rgba(255,255,255,0.45)` : 'none',
-            }}
-          />
-        ))}
-
-        {/* Rotating dashed rings */}
-        <div className="hero-ring-a absolute rounded-full" style={{ width: 520, height: 520, top: '2%',  right: '-12%', border: '1px dashed rgba(255,255,255,0.18)' }} />
-        <div className="hero-ring-b absolute rounded-full" style={{ width: 360, height: 360, bottom: '-8%', left: '52%',  border: '1px dashed rgba(255,255,255,0.13)' }} />
-        <div className="hero-ring-c absolute rounded-full" style={{ width: 760, height: 760, top: '-25%', right: '-22%', border: '1px dashed rgba(255,255,255,0.08)' }} />
-
-        {/* Shooting stars */}
-        {[0, 1, 2].map(i => (
-          <div
-            key={i}
-            className="hero-shoot absolute"
-            style={{
-              top:    `${18 + i * 26}%`,
-              left:   0,
-              width:  130 + i * 35,
-              height: 1,
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), rgba(255,255,255,0.4), transparent)',
-              opacity: 0,
-              transform: 'rotate(-12deg)',
-              transformOrigin: 'left center',
-            }}
-          />
-        ))}
+      {/* Soft green glow orbs */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        <div className="absolute -top-32 -right-24 w-[34rem] h-[34rem] rounded-full bg-sky-500/20 blur-[120px]" />
+        <div className="absolute bottom-0 -left-32 w-[28rem] h-[28rem] rounded-full bg-cyan-300/[0.15] blur-[110px]" />
+        <div className="absolute top-1/3 left-1/2 w-[20rem] h-[20rem] rounded-full bg-sky-300/10 blur-[100px]" />
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end pt-20 pb-28">
-        <div className="max-w-2xl">
+      <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-center pt-20 pb-24">
+        <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={`content-${slide.id}`}
@@ -231,7 +151,7 @@ export default function HeroCarousel() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="flex flex-col"
+              className="flex flex-col bg-sky-900/40 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl"
             >
               {/* Category pill */}
               <motion.div variants={itemVariants} className={`inline-flex items-center gap-2 border backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 ${slide.pill.color}`}>
@@ -240,7 +160,7 @@ export default function HeroCarousel() {
               </motion.div>
 
               {/* Headline */}
-              <motion.h1 variants={headVariants} className="font-black text-white tracking-tighter leading-[0.9] mb-5" style={{ fontSize: 'clamp(2.2rem,5vw,4.4rem)' }}>
+              <motion.h1 variants={headVariants} className="font-black text-white tracking-tighter leading-[0.9] mb-5" style={{ fontSize: 'clamp(2.6rem,6.5vw,5.6rem)' }}>
                 {slide.headline}
                 <br />
                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${slide.accentColor}`}>
@@ -258,9 +178,9 @@ export default function HeroCarousel() {
                     key={label}
                     custom={i}
                     variants={statVariants}
-                    className="flex items-center gap-2.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-2.5 hover:border-white/25 transition-colors"
+                    className="flex items-center gap-2.5 bg-sky-900/40 backdrop-blur-md border border-sky-300/20 rounded-2xl px-4 py-2.5 hover:border-sky-300/40 transition-colors"
                   >
-                    <Icon className="text-white/50 text-sm shrink-0" />
+                    <Icon className="text-sky-300 text-sm shrink-0" />
                     <div>
                       <p className="text-white font-black text-sm leading-none">{value}</p>
                       <p className="text-gray-300 text-[10px] mt-0.5">{label}</p>
@@ -273,14 +193,16 @@ export default function HeroCarousel() {
               <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
                 <Link
                   href={slide.href}
-                  className={`group inline-flex items-center gap-2.5 ${slide.ctaStyle} text-white font-bold px-7 py-3.5 rounded-2xl transition-all shadow-xl hover:-translate-y-1 text-sm`}
+                  className={`group inline-flex items-center gap-2.5 ${slide.ctaStyle} text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-xl hover:-translate-y-1 text-base`}
                 >
                   {slide.cta}
                   <FaArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
                 </Link>
                 <a
-                  href="mailto:order@researchchems.online"
-                  className="inline-flex items-center gap-2 bg-white/8 hover:bg-white/15 backdrop-blur-sm border border-white/15 text-white font-semibold px-7 py-3.5 rounded-2xl transition-all hover:-translate-y-1 text-sm"
+                  href="https://wa.me/19062613088"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-sm border border-white/[0.15] text-white font-semibold px-8 py-4 rounded-2xl transition-all hover:-translate-y-1 text-base"
                 >
                   Contact Us
                 </a>
@@ -292,7 +214,7 @@ export default function HeroCarousel() {
       {/* Bottom control bar */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
         <div className="h-[2px] bg-white/10">
-          <motion.div className="h-full bg-gradient-to-r from-white/40 to-white/60" style={{ width: `${progress}%` }} />
+          <motion.div className="h-full bg-gradient-to-r from-sky-400 to-cyan-300" style={{ width: `${progress}%` }} />
         </div>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           {/* Slide dots */}
@@ -301,7 +223,7 @@ export default function HeroCarousel() {
               <button
                 key={s.id}
                 onClick={() => goTo(i)}
-                className={`transition-all duration-300 rounded-full ${i === current ? 'w-8 h-2 bg-white' : 'w-2 h-2 bg-white/25 hover:bg-white/50'}`}
+                className={`transition-all duration-300 rounded-full ${i === current ? 'w-10 h-2.5 bg-sky-300' : 'w-2.5 h-2.5 bg-white/25 hover:bg-sky-300/60'}`}
               />
             ))}
           </div>
@@ -311,11 +233,11 @@ export default function HeroCarousel() {
           </p>
           {/* Arrows */}
           <div className="flex items-center gap-2">
-            <button onClick={prev} className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/8 hover:bg-white/20 border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-sm">
-              <FaArrowLeft size={11} />
+            <button onClick={prev} className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/[0.08] hover:bg-white/20 border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-sm">
+              <FaArrowLeft size={12} />
             </button>
-            <button onClick={next} className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/8 hover:bg-white/20 border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-sm">
-              <FaArrowRight size={11} />
+            <button onClick={next} className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/[0.08] hover:bg-white/20 border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-sm">
+              <FaArrowRight size={12} />
             </button>
           </div>
         </div>

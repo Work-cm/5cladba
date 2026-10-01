@@ -107,7 +107,7 @@ export default function CartPage() {
                       <button onClick={() => updateQuantity(item.id, item.quantity - 1, item.variant?._id)}
                         disabled={item.quantity <= 1}
                         className="w-7 h-7 rounded-lg bg-gray-100 border border-gray-700 text-gray-900 flex items-center justify-center disabled:opacity-40 hover:bg-gray-700 transition-colors text-sm">
-                        âˆ’
+                        &minus;
                       </button>
                       <input type="number" min="1" value={item.quantity}
                         onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1, item.variant?._id)}

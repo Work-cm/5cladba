@@ -1,19 +1,18 @@
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com'),
-  title: 'About BuyResearchChems | Trusted Research Chemicals Supplier',
-  description: 'Learn about BuyResearchChems — a leading supplier of high-purity research chemicals, synthetic cannabinoids (5cl-adba, 5fadb, jwh-018), opioids, nitazenes and laboratory-grade compounds with COA and discreet worldwide shipping.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
+  title: 'About K2PaperLiquid | Trusted K2 Paper, Spray & Powder Supplier',
+  description: 'Learn about K2PaperLiquid — a trusted supplier of K2 paper sheets, K2 liquid spray and cannabinoid K2 powder with discreet worldwide shipping.',
   keywords: [
-    'BuyResearchChems', 'research chemicals supplier', 'buy research chemicals',
-    'synthetic cannabinoids', '5cl-adba', '5fadb', 'jwh-018', 'adb-butinaca',
-    'opioids', 'nitazenes', 'laboratory chemicals', 'certificate of analysis',
-    'discreet shipping', 'lab verified compounds',
+    'K2PaperLiquid', 'k2 supplier', 'buy k2 online',
+    'k2 paper sheets', 'k2 liquid spray', 'k2 powder',
+    'discreet shipping',
   ],
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About BuyResearchChems | Trusted Research Chemicals Supplier',
-    description: 'BuyResearchChems supplies high-purity research chemicals to scientists and laboratories worldwide. Verified compounds, discreet shipping, full certificates of analysis.',
+    title: 'About K2PaperLiquid | Trusted K2 Paper, Spray & Powder Supplier',
+    description: 'K2PaperLiquid supplies premium K2 paper sheets, liquid spray and powder worldwide with discreet shipping.',
     url: '/about',
     type: 'website',
   },

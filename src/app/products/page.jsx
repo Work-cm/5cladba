@@ -11,31 +11,32 @@ export async function generateMetadata({ searchParams }) {
   const category = params?.category || '';
   
   // Always use /products as canonical to avoid duplicate content from query params
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
+  const catLabel = categoryMeta[category.toLowerCase()]?.label || category;
   
-  const categoryKeywords = category
-    ? `${category.toLowerCase()}, ${category.toLowerCase()} for sale, buy ${category.toLowerCase()}`
-    : 'research chemicals, research chemicals for sale, buy research chemicals online, synthetic cannabinoids, buy synthetic cannabinoids, opioids, nitazenes';
+  const categoryKeywords = catLabel
+    ? `${catLabel.toLowerCase()}, ${catLabel.toLowerCase()} for sale, buy ${catLabel.toLowerCase()}`
+    : 'k2 paper sheets, k2 liquid spray, k2 powder, buy k2 online, k2 spice paper, k2 spray for sale';
 
   return {
     metadataBase: new URL(baseUrl),
-    title: category
-      ? `Buy ${category} Online | Research Chemicals | BuyResearchChems`
-      : 'Research Chemicals for Sale | 5cl-adba, 5fadb, JWH-018 | BuyResearchChems',
-    description: category
-      ? `Buy premium ${category.toLowerCase()} online at BuyResearchChems. High-purity 5cl-adba, 5cladba, 5fadb, jwh-018, adb-butinaca and more — lab-verified with discreet worldwide shipping.`
-      : 'Buy premium research chemicals online. Browse 5cl-adba, 5cladba, 5fadb, jwh-018, adb-butinaca, ab-pinaca, 5F-EDMB-PINACA, ADB-FUBINACA, 4FADB, AMB-FUBINACA, MDMB-4en-PINACA and other lab-grade synthetic cannabinoids, opioids and nitazenes.',
-    keywords: `${categoryKeywords}, 5cl-adba, 5cladba, 5fadb, jwh-018, adb-butinaca, ab-pinaca, 5F-EDMB-PINACA, ADB-FUBINACA, 4FADB, AMB-FUBINACA, MDMB-4en-PINACA, 6cl-adba, isotonitazene, ketamine, alpha-pvp, laboratory chemicals, high purity, BuyResearchChems`,
+    title: catLabel
+      ? `Buy ${catLabel} Online | K2PaperLiquid`
+      : 'K2 Paper Sheets, K2 Liquid Spray & K2 Powder for Sale | K2PaperLiquid',
+    description: catLabel
+      ? `Buy premium ${catLabel.toLowerCase()} online at K2PaperLiquid. Strong, consistent quality with discreet worldwide shipping.`
+      : 'Buy K2 paper sheets, K2 liquid spray and K2 powder online. Premium quality, discreet packaging and fast worldwide delivery from K2PaperLiquid.',
+    keywords: `${categoryKeywords}, k2 paper, k2 spray, k2 liquid, k2 powder, cannabinoids k2, k2paperliquid`,
     alternates: {
       canonical: '/products', // Always point to /products to avoid duplicate content from query params
     },
     openGraph: {
-      title: category
-        ? `Buy ${category} Online | Research Chemicals | BuyResearchChems`
-        : 'Research Chemicals for Sale | 5cl-adba, 5fadb, JWH-018 | BuyResearchChems',
-      description: category
-        ? `Browse premium ${category.toLowerCase()} at BuyResearchChems. Lab-verified compounds with discreet worldwide shipping.`
-        : 'Browse premium research chemicals: 5cl-adba, 5cladba, 5fadb, jwh-018, adb-butinaca and more. Lab-verified with discreet worldwide shipping.',
+      title: catLabel
+        ? `Buy ${catLabel} Online | K2PaperLiquid`
+        : 'K2 Paper Sheets, K2 Liquid Spray & K2 Powder for Sale | K2PaperLiquid',
+      description: catLabel
+        ? `Browse premium ${catLabel.toLowerCase()} at K2PaperLiquid. Discreet worldwide shipping.`
+        : 'Browse K2 paper sheets, K2 liquid spray and K2 powder. Premium quality with discreet worldwide shipping.',
       url: '/products',
       type: 'website',
     },
@@ -144,21 +145,21 @@ function ProductsLoading() {
 }
 
 const categoryMeta = {
-  cannabinoids: {
-    label: 'Cannabinoids',
-    desc: 'High-purity synthetic cannabinoids including 5cl-adba, 5cladba, 5fadb, jwh-018, adb-butinaca and more. Lab-verified for research use.',
+  'k2-paper-sheets': {
+    label: 'K2 Paper Sheets',
+    desc: 'Premium K2 infused paper sheets. Evenly coated, strong and consistent — shipped discreetly worldwide.',
   },
-  opioids: {
-    label: 'Opioids',
-    desc: 'Premium-grade opioid research compounds for laboratory analysis and scientific research.',
+  'k2-liquid-spray': {
+    label: 'K2 Liquid Spray',
+    desc: 'High-strength K2 liquid spray in sealed bottles. Easy to apply, long-lasting and reliably potent.',
   },
-  nitazenes: {
-    label: 'Nitazenes',
-    desc: 'High-purity nitazene compounds for analytical chemistry and scientific research.',
+  'k2-powder': {
+    label: 'K2 Powder',
+    desc: 'Pure cannabinoid K2 powder for making your own paper, spray or blends. Lab-tested purity.',
   },
-  'research chemicals': {
-    label: 'Research Chemicals',
-    desc: 'Curated selection of research-grade compounds: ab-pinaca, ADB-FUBINACA, 4FADB, AMB-FUBINACA, MDMB-4en-PINACA and more.',
+  'etomidate': {
+    label: 'Etomidate',
+    desc: 'High-purity etomidate powders and crystals for research use. Lab-tested, COA included, discreet worldwide shipping.',
   },
 };
 
@@ -171,7 +172,7 @@ export default async function ProductsPage({ searchParams }) {
   const catInfo = categoryMeta[catKey] || null;
   const displayLabel = catInfo?.label || selectedCategory || 'All Products';
   const displayDesc = catInfo?.desc ||
-    'Browse our full catalog of high-purity research chemicals, cannabinoids, opioids and nitazenes — each compound verified for lab-grade quality.';
+    'Browse our K2 paper sheets, K2 liquid spray and K2 powder — premium quality, discreet packaging and fast delivery.';
 
   return (
     <div className="min-h-screen bg-white">
@@ -203,13 +204,13 @@ export default async function ProductsPage({ searchParams }) {
           {/* Category tabs */}
           <div className="flex flex-wrap gap-2 mt-7">
             {[
+              { href: '/products?category=etomidate', label: 'Etomidate', key: 'etomidate' },
               { href: '/products', label: 'All' },
-              { href: '/products?category=cannabinoids', label: 'Cannabinoids' },
-              { href: '/products?category=opioids', label: 'Opioids' },
-              { href: '/products?category=nitazenes', label: 'Nitazenes' },
-              { href: '/products?category=research%20chemicals', label: 'Research Chemicals' },
-            ].map(({ href, label }) => {
-              const active = label === 'All' ? !selectedCategory : catKey === label.toLowerCase();
+              { href: '/products?category=k2-paper-sheets', label: 'K2 Paper Sheets', key: 'k2-paper-sheets' },
+              { href: '/products?category=k2-liquid-spray', label: 'K2 Liquid Spray', key: 'k2-liquid-spray' },
+              { href: '/products?category=k2-powder', label: 'K2 Powder', key: 'k2-powder' },
+            ].map(({ href, label, key }) => {
+              const active = label === 'All' ? !selectedCategory : catKey === key;
               return (
                 <a
                   key={label}

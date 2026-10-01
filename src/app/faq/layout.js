@@ -1,19 +1,19 @@
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com'),
-  title: 'FAQ | Buy Research Chemicals Online | BuyResearchChems',
-  description: 'Get answers about buying research chemicals online, shipping, payments, product purity, COAs and more at BuyResearchChems.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
+  title: 'FAQ | Buy K2 Paper, Spray & Powder Online | K2PaperLiquid',
+  description: 'Get answers about buying K2 paper sheets, K2 liquid spray and K2 powder online, shipping, payments and product quality at K2PaperLiquid.',
   keywords: [
-    'buy research chemicals online FAQ', 'research chemicals FAQ',
-    'synthetic cannabinoids', '5cl-adba', '5fadb', 'jwh-018',
-    'shipping research chemicals', 'payment methods', 'certificate of analysis',
-    'BuyResearchChems support',
+    'k2 FAQ', 'buy k2 online FAQ',
+    'k2 paper sheets', 'k2 liquid spray', 'k2 powder',
+    'k2 shipping', 'payment methods',
+    'K2PaperLiquid support',
   ],
   alternates: {
     canonical: '/faq',
   },
   openGraph: {
-    title: 'FAQ | Buy Research Chemicals Online | BuyResearchChems',
-    description: 'Get answers about ordering, shipping, payments and product quality for research chemicals at BuyResearchChems.',
+    title: 'FAQ | Buy K2 Paper, Spray & Powder Online | K2PaperLiquid',
+    description: 'Get answers about ordering, shipping, payments and product quality at K2PaperLiquid.',
     url: '/faq',
     type: 'website',
   },

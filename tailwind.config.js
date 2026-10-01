@@ -8,15 +8,34 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // K2 green theme — 'sky' is remapped so every existing sky-* class picks up the new brand color
+        sky: {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#16a34a',
+          600: '#15803d',
+          700: '#166534',
+          800: '#14532d',
+          900: '#052e16',
+        },
+        cyan: {
+          300: '#bef264',
+          400: '#a3e635',
+          500: '#84cc16',
+          600: '#65a30d',
+        },
         primary: {
-          DEFAULT: '#0ea5e9', // Sky-500
-          dark: '#0284c7',   // Sky-600
-          light: '#38bdf8',  // Sky-400
+          DEFAULT: '#16a34a',
+          dark: '#15803d',
+          light: '#4ade80',
         },
         accent: {
-          DEFAULT: '#06b6d4', // Cyan-500
-          dark: '#0891b2',    // Cyan-600
-          light: '#22d3ee',   // Cyan-400
+          DEFAULT: '#84cc16',
+          dark: '#65a30d',
+          light: '#a3e635',
         },
         dark: {
           DEFAULT: '#f3f4f6', // Gray-100
@@ -42,8 +61,8 @@ module.exports = {
           '100%': { backgroundPosition: '200% center' },
         },
         glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 10px rgba(14,165,233,0.3)' },
-          '50%': { boxShadow: '0 0 25px rgba(14,165,233,0.7), 0 0 50px rgba(14,165,233,0.3)' },
+          '0%, 100%': { boxShadow: '0 0 10px rgba(22,163,74,0.3)' },
+          '50%': { boxShadow: '0 0 25px rgba(22,163,74,0.7), 0 0 50px rgba(22,163,74,0.3)' },
         },
       },
     },

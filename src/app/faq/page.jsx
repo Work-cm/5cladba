@@ -2,18 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FaQuestionCircle, FaChevronDown, FaChevronUp, FaSearch } from 'react-icons/fa';
+import { FaQuestionCircle, FaChevronDown, FaChevronUp, FaSearch, FaWhatsapp, FaTelegramPlane } from 'react-icons/fa';
 
 function renderAnswerWithLinks(text) {
-  const emailRegex = /([\w.-]+@[\w.-]+\.\w+)/g;
-  const parts = text.split(emailRegex);
-  return parts.map((part, i) =>
-    emailRegex.test(part) ? (
-      <a key={i} href={`mailto:${part}`} className="text-sky-400 hover:text-sky-300">{part}</a>
-    ) : (
-      part
-    )
-  );
+  return text;
 }
 
 export default function FAQPage() {
@@ -22,12 +14,12 @@ export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Questions', icon: 'ðŸ“‹' },
-    { id: 'ordering', name: 'Ordering & Payment', icon: 'ðŸ›’' },
-    { id: 'shipping', name: 'Shipping & Delivery', icon: 'ðŸ“¦' },
-    { id: 'products', name: 'Products & Quality', icon: 'ðŸ§ª' },
-    { id: 'account', name: 'Account & Security', icon: 'ðŸ”' },
-    { id: 'returns', name: 'Returns & Refunds', icon: 'ðŸ”„' },
+    { id: 'all', name: 'All Questions', icon: '📋' },
+    { id: 'ordering', name: 'Ordering & Payment', icon: '🛒' },
+    { id: 'shipping', name: 'Shipping & Delivery', icon: '📦' },
+    { id: 'products', name: 'Products & Quality', icon: '🧪' },
+    { id: 'account', name: 'Account & Security', icon: '🔒' },
+    { id: 'returns', name: 'Returns & Refunds', icon: '🔄' },
   ];
 
   const faqs = [
@@ -35,12 +27,12 @@ export default function FAQPage() {
     {
       category: 'ordering',
       question: 'What payment methods do you accept?',
-      answer: 'We accept various payment methods including bank transfer, cryptocurrency (Bitcoin, Ethereum), and other secure payment options. Contact us at order@researchchems.online after placing your order to receive specific payment instructions for your preferred method.'
+      answer: 'We accept Bitcoin (BTC) only. Contact us on WhatsApp after placing your order and we\'ll send you our BTC wallet address with exact payment instructions.'
     },
     {
       category: 'ordering',
       question: 'How do I pay for my order?',
-      answer: 'After adding items to your cart and proceeding to checkout, you\'ll need to contact us at order@researchchems.online for payment instructions. We\'ll respond within 24 hours with detailed instructions for your chosen payment method. Once payment is confirmed, we\'ll process and ship your order.'
+      answer: 'After adding items to your cart and proceeding to checkout, you\'ll need to contact us on WhatsApp for payment instructions. We\'ll respond within 24 hours with detailed instructions for your chosen payment method. Once payment is confirmed, we\'ll process and ship your order.'
     },
     {
       category: 'ordering',
@@ -50,12 +42,12 @@ export default function FAQPage() {
     {
       category: 'ordering',
       question: 'Can I cancel my order after placing it?',
-      answer: 'You can cancel your order for a full refund only if it hasn\'t been processed or shipped yet. Orders are typically processed within 24-48 hours. Contact us immediately at order@researchchems.online with your order number if you need to cancel.'
+      answer: 'You can cancel your order for a full refund only if it hasn\'t been processed or shipped yet. Orders are typically processed within 24-48 hours. Contact us immediately on WhatsApp with your order number if you need to cancel.'
     },
     {
       category: 'ordering',
       question: 'Do you offer bulk discounts?',
-      answer: 'Yes! We offer volume discounts for bulk orders. Contact us at order@researchchems.online with details about the products and quantities you need, and we\'ll provide a custom quote.'
+      answer: 'Yes! We offer volume discounts for bulk orders. Contact us on WhatsApp with details about the products and quantities you need, and we\'ll provide a custom quote.'
     },
     {
       category: 'ordering',
@@ -87,19 +79,19 @@ export default function FAQPage() {
     {
       category: 'shipping',
       question: 'Is packaging discreet?',
-      answer: 'Yes, absolutely. All orders are shipped in plain, unmarked packaging with no mention of BuyResearchChems or product details. The sender name is generic for your privacy.'
+      answer: 'Yes, absolutely. All orders are shipped in plain, unmarked packaging with no mention of K2PaperLiquid or product details. The sender name is generic for your privacy.'
     },
     {
       category: 'shipping',
       question: 'What if my package is lost or stolen?',
-      answer: 'If your package is marked as delivered but you haven\'t received it, wait 24-48 hours and check with neighbors or building management. If still missing, contact us immediately at order@researchchems.online with your tracking number.'
+      answer: 'If your package is marked as delivered but you haven\'t received it, wait 24-48 hours and check with neighbors or building management. If still missing, contact us immediately on WhatsApp with your tracking number.'
     },
 
     // Products & Quality
     {
       category: 'products',
       question: 'Are your products legal?',
-      answer: 'Our products are legal research chemicals intended for laboratory and research use only. However, legality varies by country and region. You are responsible for ensuring products are legal to purchase and possess in your jurisdiction.'
+      answer: 'Legality of K2 products varies by country and region. You are responsible for ensuring products are legal to purchase and possess in your jurisdiction before ordering.'
     },
     {
       category: 'products',
@@ -114,12 +106,12 @@ export default function FAQPage() {
     {
       category: 'products',
       question: 'Can I request a Certificate of Analysis (COA)?',
-      answer: 'Yes! Contact us at order@researchchems.online with your order number and product name, and we\'ll provide the COA for your batch within 24-48 hours.'
+      answer: 'Yes! Contact us on WhatsApp with your order number and product name, and we\'ll provide the COA for your batch within 24-48 hours.'
     },
     {
       category: 'products',
       question: 'Are your products for human consumption?',
-      answer: 'No. All our products are strictly for research and laboratory use only. They are not intended for human consumption. These are research chemicals for qualified researchers and institutions.'
+      answer: 'No. Our K2 paper sheets, K2 liquid spray and cannabinoid K2 powder are sold strictly as research/incense products. They are not intended for human consumption.'
     },
     {
       category: 'products',
@@ -156,7 +148,7 @@ export default function FAQPage() {
     {
       category: 'account',
       question: 'How do I delete my account?',
-      answer: 'Contact us at order@researchchems.online with your account email and request account deletion. We\'ll process your request within 7 business days. Note that order history may be retained for legal compliance.'
+      answer: 'Contact us on WhatsApp with your account email and request account deletion. We\'ll process your request within 7 business days. Note that order history may be retained for legal compliance.'
     },
 
     // Returns & Refunds
@@ -168,7 +160,7 @@ export default function FAQPage() {
     {
       category: 'returns',
       question: 'Can I return a product if I change my mind?',
-      answer: 'No, we do not accept returns for change of mind or customer error due to the nature of research chemicals. All sales are final unless the product is defective, damaged, or incorrect.'
+      answer: 'No, we do not accept returns for change of mind or customer error due to the nature of our products. All sales are final unless the product is defective, damaged, or incorrect.'
     },
     {
       category: 'returns',
@@ -200,17 +192,17 @@ export default function FAQPage() {
     {
       category: 'shipping',
       question: 'Can I change my shipping address after ordering?',
-      answer: 'Contact us immediately at order@researchchems.online if you need to change your shipping address. We can only modify the address if the order hasn\'t been shipped yet.'
+      answer: 'Contact us immediately on WhatsApp if you need to change your shipping address. We can only modify the address if the order hasn\'t been shipped yet.'
     },
     {
       category: 'account',
       question: 'Do you offer customer support?',
-      answer: 'Yes! Contact us via email at order@researchchems.online, use our contact form, or chat with us using the LiveChat widget. We typically respond within 24 hours.'
+      answer: 'Yes! Message us on WhatsApp or Telegram — we typically respond within 24 hours.'
     },
     {
       category: 'ordering',
       question: 'Can I order by phone?',
-      answer: 'Currently, we only accept orders through our website for security and accuracy. If you need assistance placing an order, contact us at order@researchchems.online and we\'ll guide you through the process.'
+      answer: 'Currently, we only accept orders through our website for security and accuracy. If you need assistance placing an order, contact us on WhatsApp and we\'ll guide you through the process.'
     },
   ];
 
@@ -328,13 +320,13 @@ export default function FAQPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-2">Still have questions?</h2>
           <p className="text-gray-900 text-sm mb-6">Our support team typically responds within 24 hours.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="mailto:order@researchchems.online"
+            <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-500 text-gray-900 font-semibold py-3 px-6 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-sky-800/30 text-sm">
-              Contact Support
+              <FaWhatsapp /> WhatsApp Us
             </a>
-            <a href="mailto:order@researchchems.online"
+            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-700 border border-gray-700 text-gray-900 font-semibold py-3 px-6 rounded-xl transition-colors text-sm">
-              Email Us
+              <FaTelegramPlane /> Telegram Us
             </a>
           </div>
         </div>

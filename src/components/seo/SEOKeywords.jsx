@@ -1,49 +1,17 @@
 // Primary keywords — matches actual products listed on the site
 export const primaryKeywords = [
-  // Cannabinoids
-  '5cl-adba', '5-cl-adba', '5cladba',
-  '5fadb', '5-fadb',
-  '6cl-adba', '6-cl-adba',
-  'jwh-018',
-  'adb-butinaca',
-  // Opioids
-  'morphine sulfate',
-  'heroin', 'diacetylmorphine',
-  'codeine phosphate',
-  'oxycodone',
-  'hydrocodone',
-  'fentanyl', 'fentanyl citrate',
-  'methadone',
-  'tramadol',
-  // Nitazenes
-  'isotonitazene',
-  'metonitazene',
-  'protonitazene',
-  'butonitazene',
-  'etonitazene',
-  'etodesnitazene',
-  'n-pyrrolidino etonitazene',
-  'bromazolam',
-  // Research Chemicals
-  'crystal meth', 'methamphetamine',
-  '3-cmc', '4-cmc',
-  '3-mmc', '4-mmc', 'mephedrone',
-  'alpha-pihp',
-  'ketamine',
-  'alpha-pvp',
+  'k2 paper sheets', 'k2 paper', 'k2 infused paper', 'k2 spice paper', 'k2 paper for sale',
+  'k2 liquid spray', 'k2 spray', 'k2 liquid', 'liquid k2 on paper', 'k2 spray for sale',
+  'k2 powder', 'cannabinoids k2 powder', 'k2 cannabinoid powder', 'buy k2 powder',
 ];
 
 export const secondaryKeywords = [
-  'research chemicals',
+  'buy k2 online',
+  'k2 for sale',
+  'k2 spice',
   'synthetic cannabinoids',
-  'laboratory chemicals',
-  'premium research chemicals',
-  'buy research chemicals online',
-  'opioids',
-  'nitazenes',
-  'cannabinoids for research',
-  'chemical compounds',
-  'laboratory grade chemicals'
+  'k2paperliquid',
+  'k2paperliquid.com',
 ];
 
 export const allKeywords = [...primaryKeywords, ...secondaryKeywords];
@@ -51,14 +19,14 @@ export const allKeywords = [...primaryKeywords, ...secondaryKeywords];
 // Schema.org structured data for better SEO
 export const getProductSchema = (product) => {
   const startingPrice = product.priceVariants?.[0]?.price ?? product.price;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com';
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
     description: product.description,
     image: product.images?.[0] || `${BASE_URL}/images/logo.png`,
-    brand: { '@type': 'Brand', name: 'BuyResearchChems' },
+    brand: { '@type': 'Brand', name: 'K2PaperLiquid' },
     offers: {
       '@type': 'Offer',
       price: startingPrice ?? 0,
@@ -76,15 +44,15 @@ export const getProductSchema = (product) => {
 
 // Get base URL for schemas
 const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com';
+  return process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
 };
 
 // Organization schema
 export const getOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'BuyResearchChems',
-  description: 'Premium research chemicals supplier — synthetic cannabinoids, opioids, nitazenes and laboratory-grade compounds for scientific research.',
+  name: 'K2PaperLiquid',
+  description: 'Premium K2 paper sheets, K2 liquid spray and cannabinoid K2 powder with discreet worldwide shipping.',
   url: getBaseUrl(),
   logo: {
     '@type': 'ImageObject',
@@ -103,8 +71,8 @@ export const getOrganizationSchema = () => ({
 export const getWebsiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'BuyResearchChems',
-  description: 'Premium research chemicals — synthetic cannabinoids, opioids, nitazenes and laboratory compounds.',
+  name: 'K2PaperLiquid',
+  description: 'K2 paper sheets, K2 liquid spray and K2 powder for sale online.',
   url: getBaseUrl(),
   potentialAction: {
     '@type': 'SearchAction',

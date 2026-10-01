@@ -1,27 +1,26 @@
 'use client';
 
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 import {
-  FaEnvelope,
+  FaWhatsapp,
   FaTelegramPlane,
   FaPaperPlane,
   FaUser,
   FaPhoneAlt,
   FaMapMarkerAlt,
   FaCommentDots,
-  FaCheckCircle,
-  FaSpinner,
 } from 'react-icons/fa';
 
-const TELEGRAM_USERNAME = 'buyresearchchems';
+const WHATSAPP_NUMBER = '19062613088'; // +1 906-261-3088
+const TELEGRAM_NUMBER = '+19102279379'; // +1 910 227 9379
 
 function buildMessage({ name, contact, phone, address, notes }, cart, orderDetails) {
   const itemLines = cart
     .map((item) => {
       const price = Number(item.price ?? item.variant?.price ?? 0);
       const lineTotal = (price * item.quantity).toFixed(2);
-      const variant = item.variant?.grams ? ` (${item.variant.grams}g)` : '';
+      const variantLabel = item.variant?.label ?? (item.variant?.grams ? `${item.variant.grams}g` : '');
+      const variant = variantLabel ? ` (${variantLabel})` : '';
       return `- ${item.name}${variant} x${item.quantity} @ \u20ac${price.toFixed(2)} = \u20ac${lineTotal}`;
     })
     .join('\n');
@@ -48,10 +47,8 @@ function buildMessage({ name, contact, phone, address, notes }, cart, orderDetai
 }
 
 export default function OrderContactForm({ cart, orderDetails }) {
-  const [method, setMethod] = useState('email');
+  const [method, setMethod] = useState('whatsapp');
   const [confirmed, setConfirmed] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
     name: '',
     contact: '',
@@ -71,64 +68,21 @@ export default function OrderContactForm({ cart, orderDetails }) {
     form.address.trim() &&
     confirmed;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isValid || submitting) return;
+    if (!isValid) return;
 
-    if (method === 'telegram') {
-      const message = buildMessage(form, cart, orderDetails);
-      const text = encodeURIComponent(message);
-      window.open(`https://t.me/${TELEGRAM_USERNAME}?text=${text}`, '_blank', 'noopener,noreferrer');
-      return;
-    }
-
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/orders/request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.contact.trim(),
-          phone: form.phone.trim(),
-          address: form.address.trim(),
-          notes: form.notes.trim(),
-          cart,
-          orderDetails,
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to send order request');
-
-      setSent(true);
-      toast.success(`Order request sent! Reference: ${data.reference}`);
-    } catch (err) {
-      toast.error(err.message || 'Failed to send order request');
-    } finally {
-      setSubmitting(false);
-    }
+    const message = buildMessage(form, cart, orderDetails);
+    const text = encodeURIComponent(message);
+    const url = method === 'whatsapp'
+      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
+      : `https://t.me/${TELEGRAM_NUMBER}?text=${text}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const inputClass = 'bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-2.5 pl-9 pr-3 w-full focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent placeholder-gray-400 text-sm';
   const labelClass = 'block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5';
   const iconClass = 'absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs';
-
-  if (sent) {
-    return (
-      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm text-center">
-        <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-4">
-          <FaCheckCircle className="text-emerald-500 text-2xl" />
-        </div>
-        <h2 className="text-xl font-bold text-gray-900 mb-2">Order Request Sent</h2>
-        <p className="text-gray-500 text-sm leading-relaxed max-w-sm mx-auto">
-          Your order request has been emailed to our team. We&apos;ll reply to{' '}
-          <span className="font-semibold text-gray-900">{form.contact}</span> within 24 hours
-          with secure payment instructions.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
@@ -142,17 +96,17 @@ export default function OrderContactForm({ cart, orderDetails }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
         <button
           type="button"
-          onClick={() => setMethod('email')}
+          onClick={() => setMethod('whatsapp')}
           className={`flex items-center gap-3 p-3.5 rounded-xl border-2 text-left transition-all ${
-            method === 'email'
+            method === 'whatsapp'
               ? 'border-sky-500 bg-sky-50/60 ring-1 ring-sky-500/20'
               : 'border-gray-200 bg-white hover:border-sky-300'
           }`}
         >
-          <FaEnvelope className={method === 'email' ? 'text-sky-500' : 'text-gray-400'} />
+          <FaWhatsapp className={method === 'whatsapp' ? 'text-sky-500' : 'text-gray-400'} />
           <div>
-            <p className="text-sm font-bold text-gray-900 leading-none">Email</p>
-            <p className="text-[11px] text-gray-500 mt-1">We&apos;ll email you order details</p>
+            <p className="text-sm font-bold text-gray-900 leading-none">WhatsApp</p>
+            <p className="text-[11px] text-gray-500 mt-1">Continue privately on WhatsApp</p>
           </div>
         </button>
         <button
@@ -183,18 +137,18 @@ export default function OrderContactForm({ cart, orderDetails }) {
         </div>
 
         <div>
-          <label className={labelClass}>{method === 'email' ? 'Email Address' : 'Telegram Username'}</label>
+          <label className={labelClass}>{method === 'whatsapp' ? 'WhatsApp Number' : 'Telegram Username'}</label>
           <div className="relative">
-            {method === 'email'
-              ? <FaEnvelope className={iconClass} />
+            {method === 'whatsapp'
+              ? <FaWhatsapp className={iconClass} />
               : <FaTelegramPlane className={iconClass} />}
             <input
               name="contact"
-              type={method === 'email' ? 'email' : 'text'}
+              type="text"
               required
               value={form.contact}
               onChange={handleChange}
-              placeholder={method === 'email' ? 'john@example.com' : '@yourusername'}
+              placeholder={method === 'whatsapp' ? '+1 906-261-3088' : '@yourusername'}
               className={inputClass}
             />
           </div>
@@ -238,32 +192,21 @@ export default function OrderContactForm({ cart, orderDetails }) {
           />
           <span className="text-[11px] text-gray-600 leading-relaxed">
             I am a serious buyer. I understand this is a real order request and I am ready to receive
-            payment instructions via {method === 'email' ? 'email' : 'Telegram'}.
+            payment instructions via {method === 'whatsapp' ? 'WhatsApp' : 'Telegram'}.
           </span>
         </label>
 
         <button
           type="submit"
-          disabled={!isValid || submitting}
+          disabled={!isValid}
           className="w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-all text-sm"
         >
-          {submitting ? (
-            <>
-              <FaSpinner className="animate-spin text-xs" />
-              Sending Order...
-            </>
-          ) : (
-            <>
-              <FaPaperPlane className="text-xs" />
-              Send Order via {method === 'email' ? 'Email' : 'Telegram'} &mdash; &euro;{orderDetails.total.toFixed(2)}
-            </>
-          )}
+          <FaPaperPlane className="text-xs" />
+          Send Order via {method === 'whatsapp' ? 'WhatsApp' : 'Telegram'} &mdash; &euro;{orderDetails.total.toFixed(2)}
         </button>
 
         <p className="text-[11px] text-gray-400 text-center">
-          {method === 'email'
-            ? `You'll fill your details and the order will be sent directly to us via email.`
-            : `You'll fill your details and the order will be sent directly to us via Telegram.`}
+          {`Your details will be sent directly to us on ${method === 'whatsapp' ? 'WhatsApp' : 'Telegram'}.`}
         </p>
       </form>
     </div>

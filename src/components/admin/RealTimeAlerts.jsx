@@ -125,7 +125,7 @@ export default function RealTimeAlerts() {
                     )}
                     {alert.device && (
                       <p className="text-gray-400 text-xs mt-1">
-                        💻 {alert.device.type} • {alert.device.browser} • {alert.device.os}
+                        💻 {alert.device.type} &bull; {alert.device.browser} &bull; {alert.device.os}
                       </p>
                     )}
                     {alert.page && (

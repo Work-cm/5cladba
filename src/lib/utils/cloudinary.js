@@ -40,7 +40,7 @@ export async function uploadToCloudinary(file, options = {}) {
   try {
     // Set default options
     const defaultOptions = {
-      folder: 'BuyResearchChems',
+      folder: 'k2paperliquid',
       resource_type: 'auto'
     };
     

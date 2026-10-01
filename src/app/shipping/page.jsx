@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { FaShippingFast, FaGlobeAmericas, FaShieldAlt, FaCheckCircle } from 'react-icons/fa';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com'),
-  title: 'Shipping & Delivery Policy | BuyResearchChems',
-  description: 'Learn about BuyResearchChems shipping methods, delivery times, discreet international shipping, order tracking and free shipping on orders over €100 for research chemicals.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
+  title: 'Shipping & Delivery Policy | K2PaperLiquid',
+  description: 'Learn about K2PaperLiquid shipping methods, delivery times, discreet international shipping, order tracking and free shipping on orders over €100 for K2 paper, spray and powder.',
   keywords: [
-    'research chemicals shipping', 'discreet shipping', 'international shipping',
-    'buy research chemicals online delivery', 'BuyResearchChems shipping',
+    'k2 paper shipping', 'discreet shipping', 'international shipping',
+    'buy k2 online delivery', 'K2PaperLiquid shipping',
     'track order', '48h dispatch',
   ],
   alternates: { canonical: '/shipping' },
@@ -98,7 +98,7 @@ export default function ShippingPolicyPage() {
               <div key={method} className="flex items-center justify-between border border-gray-200 rounded-xl px-5 py-4">
                 <div>
                   <p className="text-gray-900 font-bold text-sm">{method}</p>
-                  <p className="text-gray-900 text-xs">{time} — {note}</p>
+                  <p className="text-gray-900 text-xs">{time} &mdash; {note}</p>
                 </div>
                 <span className="text-sky-500 font-black text-sm">&euro;{price}</span>
               </div>
@@ -136,7 +136,7 @@ export default function ShippingPolicyPage() {
           <ul className="space-y-2 ml-1">
             {[
               ['Unmarked Packaging', 'Plain, neutral boxes or envelopes with no branding'],
-              ['Generic Sender Name', 'No mention of "BuyResearchChems" on the package'],
+              ['Generic Sender Name', 'No mention of "K2PaperLiquid" on the package'],
               ['Secure Sealing', 'Tamper-evident packaging to ensure product integrity'],
               ['Proper Cushioning', 'Products are carefully packed to prevent damage'],
               ['Confidential Labels', 'No product descriptions on shipping labels'],
@@ -213,8 +213,9 @@ export default function ShippingPolicyPage() {
           </ul>
 
           <div className="bg-sky-50 border border-sky-100 rounded-xl p-4 text-sm text-sky-700 mb-6">
-            <strong>Shipping Restrictions:</strong> Please contact us at{' '}
-            <a href="mailto:order@researchchems.online" className="underline">order@researchchems.online</a>{' '}
+            <strong>Shipping Restrictions:</strong> Please message us on{' '}
+            <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="underline">WhatsApp</a> or{' '}
+            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="underline">Telegram</a>{' '}
             to verify if we can ship to your country before placing an order.
           </div>
 
@@ -245,7 +246,7 @@ export default function ShippingPolicyPage() {
             <li>Look for delivery notices or alternative drop-off locations</li>
             <li>Wait 24 hours as carriers sometimes mark packages delivered early</li>
             <li>Contact the shipping carrier directly with your tracking number</li>
-            <li>If still missing after 48 hours, contact us at <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">order@researchchems.online</a></li>
+            <li>If still missing after 48 hours, contact us on <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">WhatsApp</a> or <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">Telegram</a></li>
           </ol>
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-700 mb-6">
             <strong>Note:</strong> We are not responsible for packages stolen after delivery confirmation. Consider using a secure delivery location.
@@ -256,7 +257,7 @@ export default function ShippingPolicyPage() {
             {[
               ['Do Not Open', 'Keep the package sealed if possible'],
               ['Take Photos', 'Document all damage to packaging and contents'],
-              ['Contact Us Immediately', 'Email photos within 24 hours'],
+              ['Contact Us Immediately', 'Message us photos within 24 hours'],
               ['File Carrier Claim', 'We will assist with filing a claim'],
             ].map(([t, d]) => (
               <li key={t} className="flex gap-3">
@@ -308,9 +309,9 @@ export default function ShippingPolicyPage() {
           <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-4">8. Shipping Support</h2>
           <p className="mb-5">Need help with your shipment? We&apos;re here to assist:</p>
           <div className="border border-gray-200 rounded-xl p-5 space-y-2 text-sm mb-6">
-            <p><strong>Email:</strong> <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">order@researchchems.online</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 906-261-3088</a></p>
+            <p><strong>Telegram:</strong> <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 910 227 9379</a></p>
             <p><strong>Response Time:</strong> Within 24 hours</p>
-            <p><strong>Contact:</strong> <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">Email Us</a></p>
             <p className="text-gray-400 text-xs pt-2">Please include your order number and tracking information when contacting us about shipping issues.</p>
           </div>
         </section>

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useCart } from '@/components/cart/CartProvider';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaShoppingCart, FaUser, FaSearch, FaDna, FaFlask, FaCannabis, FaPills, FaSyringe, FaTimes, FaChevronDown, FaChevronRight, FaSignOutAlt, FaUserShield } from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaSearch, FaLeaf, FaFileAlt, FaSprayCan, FaTimes, FaChevronDown, FaChevronRight, FaSignOutAlt, FaUserShield, FaFlask } from 'react-icons/fa';
 import { HiMenu } from 'react-icons/hi';
 
 const navLinks = [
@@ -15,10 +15,10 @@ const navLinks = [
 ];
 
 const shopCategories = [
-  { href: '/products?category=cannabinoids', label: 'Cannabinoids', Icon: FaCannabis, desc: 'Synthetic & natural compounds' },
-  { href: '/products?category=opioids', label: 'Opioids', Icon: FaPills, desc: 'Opioid research compounds' },
-  { href: '/products?category=nitazenes', label: 'Nitazenes', Icon: FaSyringe, desc: 'Nitazene compounds' },
-  { href: '/products?category=research%20chemicals', label: 'Research Chemicals', Icon: FaFlask, desc: 'Specialized compounds' },
+  { href: '/products?category=k2-paper-sheets', label: 'K2 Paper Sheets', Icon: FaFileAlt, desc: 'Infused A4 & letter sheets' },
+  { href: '/products?category=k2-liquid-spray', label: 'K2 Liquid Spray', Icon: FaSprayCan, desc: 'High-strength liquid spray' },
+  { href: '/products?category=k2-powder', label: 'K2 Powder', Icon: FaLeaf, desc: 'Pure cannabinoid powder' },
+  { href: '/products?category=etomidate', label: 'Etomidate', Icon: FaFlask, desc: 'Etomidate powders & crystals' },
 ];
 
 export default function Navbar() {
@@ -108,14 +108,14 @@ export default function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg shadow-sky-500/25 group-hover:scale-105 group-hover:rotate-6 transition-transform">
-                <FaDna className="text-white text-xs" />
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform">
+                <span className="text-white font-black text-[11px] leading-none">K2</span>
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-gray-900 font-black text-[15px] tracking-tight">
-                  BuyResearch<span className="text-sky-500">Chems</span>
+                  K2Paper<span className="text-sky-500">Liquid</span>
                 </span>
-                <span className="text-gray-900 text-[9px] tracking-[0.18em] uppercase font-medium hidden sm:block">Research Chemicals</span>
+                <span className="text-gray-900 text-[9px] tracking-[0.18em] uppercase font-medium hidden sm:block">k2paperliquid.com</span>
               </div>
             </Link>
 
@@ -211,7 +211,7 @@ export default function Navbar() {
                 )}
               </Link>
 
-              {/* User â€” desktop only */}
+              {/* User — desktop only */}
               {mounted && (
                 user ? (
                   <div className="relative hidden md:block" ref={userRef}>
@@ -257,7 +257,7 @@ export default function Navbar() {
                 )
               )}
 
-              {/* Hamburger â€” mobile only */}
+              {/* Hamburger — mobile only */}
               <button
                 onClick={() => setMenuOpen(true)}
                 className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 hover:bg-sky-50 text-gray-700 transition-all"
@@ -293,7 +293,7 @@ export default function Navbar() {
                 <input
                   ref={searchRef}
                   type="search"
-                  placeholder="Search compounds, categories..."
+                  placeholder="Search K2 paper, spray, powder..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   className="flex-1 bg-transparent text-gray-900 text-base outline-none placeholder-gray-400"
@@ -348,16 +348,16 @@ export default function Navbar() {
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 shrink-0">
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center">
-                    <FaDna className="text-white text-xs" />
+                    <span className="text-white font-black text-[11px] leading-none">K2</span>
                   </div>
-                  <span className="text-gray-900 font-black text-sm">BuyResearch<span className="text-sky-500">Chems</span></span>
+                  <span className="text-gray-900 font-black text-sm">K2Paper<span className="text-sky-500">Liquid</span></span>
                 </div>
                 <button onClick={() => setMenuOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 transition-all">
                   <FaTimes size={14} />
                 </button>
               </div>
 
-              {/* Search bar â€” opens overlay */}
+              {/* Search bar — opens overlay */}
               <button
                 onClick={() => { setMenuOpen(false); setSearchOpen(true); }}
                 className="flex items-center gap-2 mx-4 my-3 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-left shrink-0"
@@ -387,7 +387,7 @@ export default function Navbar() {
                     onClick={() => setMobileShopOpen(o => !o)}
                     className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all ${pathname.startsWith('/products') ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-gray-900 hover:bg-gray-50 hover:text-sky-600'}`}
                   >
-                    Shop by Category
+                    Shop K2 Products
                     <FaChevronRight size={11} className={`transition-transform duration-200 ${mobileShopOpen ? 'rotate-90' : ''}`} />
                   </button>
                   <AnimatePresence>

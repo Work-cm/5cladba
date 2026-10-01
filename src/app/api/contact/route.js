@@ -33,7 +33,7 @@ export async function POST(request) {
 
     // Send email using Gmail
     const emailResult = await transporter.sendMail({
-      from: `"BuyResearchChems Contact" <${CONTACT_FROM_EMAIL}>`,
+      from: `"K2PaperLiquid Contact" <${CONTACT_FROM_EMAIL}>`,
       to: CONTACT_TO_EMAIL,
       replyTo: email, // Add Reply-To header with the sender's email
       subject: `🔔 New Contact Form: ${subject}`,
@@ -187,7 +187,7 @@ Reply directly to this email to respond to ${name}.
     <!-- Header -->
     <div class="header">
       <h1>🔔 New Contact Form Submission</h1>
-      <p>BuyResearchChems Contact Form</p>
+      <p>K2PaperLiquid Contact Form</p>
     </div>
 
     <!-- Content -->
@@ -229,11 +229,11 @@ Reply directly to this email to respond to ${name}.
 
     <!-- Footer -->
     <div class="footer">
-      <p><strong>BuyResearchChems</strong> - Premium Research Chemicals</p>
+      <p><strong>K2PaperLiquid</strong> - K2 Paper, Spray & Powder</p>
       <p>This email was sent from your website contact form</p>
       <p style="margin-top: 10px;">
-        <a href="https://buyresearchchems.com" style="color: #dc2626; text-decoration: none;">Visit Website</a> |
-        <a href="https://buyresearchchems.com/admin" style="color: #dc2626; text-decoration: none;">Admin Dashboard</a>
+        <a href="https://k2paperliquid.com" style="color: #dc2626; text-decoration: none;">Visit Website</a> |
+        <a href="https://k2paperliquid.com/admin" style="color: #dc2626; text-decoration: none;">Admin Dashboard</a>
       </p>
     </div>
   </div>
@@ -251,14 +251,14 @@ Reply directly to this email to respond to ${name}.
     if (true) {
       try {
         confirmationResult = await transporter.sendMail({
-            from: `"BuyResearchChems" <${CONTACT_FROM_EMAIL}>`,
+            from: `"K2PaperLiquid" <${CONTACT_FROM_EMAIL}>`,
             to: email,
             replyTo: CONTACT_TO_EMAIL,
-            subject: '✅ We received your message - BuyResearchChems',
+            subject: '✅ We received your message - K2PaperLiquid',
             text: `
 Dear ${name},
 
-Thank you for contacting BuyResearchChems!
+Thank you for contacting K2PaperLiquid!
 
 We have successfully received your message and our team will review it shortly. You can expect a response within 24-48 hours.
 
@@ -270,11 +270,11 @@ Sent: ${timestamp}
 If you have any urgent questions, please don't hesitate to reach out to us directly at ${CONTACT_TO_EMAIL}.
 
 Best regards,
-The BuyResearchChems Team
+The K2PaperLiquid Team
 
 ---
-BuyResearchChems - Premium Research Chemicals
-Website: https://buyresearchchems.com
+K2PaperLiquid - K2 Paper, Spray & Powder
+Website: https://k2paperliquid.com
           `,
           html: `
 <!DOCTYPE html>
@@ -425,7 +425,7 @@ Website: https://buyresearchchems.com
       <p class="greeting">Dear <strong>${name}</strong>,</p>
       
       <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-        Thank you for reaching out to <strong>BuyResearchChems</strong>! We have successfully received your message and our team is reviewing it.
+        Thank you for reaching out to <strong>K2PaperLiquid</strong>! We have successfully received your message and our team is reviewing it.
       </p>
 
       <!-- Response Time -->
@@ -462,24 +462,24 @@ Website: https://buyresearchchems.com
 
       <p style="color: #555; margin-top: 20px;">
         Best regards,<br>
-        <strong>The BuyResearchChems Team</strong>
+        <strong>The K2PaperLiquid Team</strong>
       </p>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-      <div class="footer-logo" style="color: #dc2626;">BuyResearchChems</div>
-      <p><strong>Premium Research Chemicals</strong></p>
+      <div class="footer-logo" style="color: #dc2626;">K2PaperLiquid</div>
+      <p><strong>K2 Paper, Spray & Powder</strong></p>
       <p style="margin-top: 10px;">This is an automated confirmation email.</p>
       
       <div class="footer-links">
-        <a href="https://buyresearchchems.com">Visit Website</a> |
-        <a href="https://buyresearchchems.com/products">Browse Products</a> |
-        <a href="https://buyresearchchems.com/about">About Us</a>
+        <a href="https://k2paperliquid.com">Visit Website</a> |
+        <a href="https://k2paperliquid.com/products">Browse Products</a> |
+        <a href="https://k2paperliquid.com/about">About Us</a>
       </div>
 
       <p style="margin-top: 15px; font-size: 11px; color: #999;">
-        © ${new Date().getFullYear()} BuyResearchChems. All rights reserved.
+        © ${new Date().getFullYear()} K2PaperLiquid. All rights reserved.
       </p>
     </div>
   </div>

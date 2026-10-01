@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com'),
-  title: 'Return & Refund Policy | BuyResearchChems',
-  description: 'Read the BuyResearchChems return and refund policy for research chemicals. Learn how to request returns for defective, damaged or incorrect products within 48 hours.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
+  title: 'Return & Refund Policy | K2PaperLiquid',
+  description: 'Read the K2PaperLiquid return and refund policy for K2 paper, spray and powder. Learn how to request returns for defective, damaged or incorrect products within 48 hours.',
   keywords: [
-    'return policy', 'refund policy', 'research chemicals returns',
-    'defective products', 'BuyResearchChems refund',
+    'return policy', 'refund policy', 'k2 product returns',
+    'defective products', 'K2PaperLiquid refund',
   ],
   alternates: { canonical: '/refund' },
 };
@@ -30,7 +30,7 @@ export default function RefundPolicyPage() {
             Fair, transparent refund policy.
           </h1>
           <p className="text-gray-900 text-base leading-relaxed max-w-xl">
-            Due to the nature of research chemicals, all sales are final unless the product is defective, damaged, or incorrect. Claims are processed within 7 business days.
+            Due to the nature of our products, all sales are final unless the product is defective, damaged, or incorrect. Claims are processed within 7 business days.
           </p>
           <p className="text-gray-400 text-xs mt-4">Last updated: December 3, 2025</p>
         </div>
@@ -115,7 +115,7 @@ export default function RefundPolicyPage() {
           <h3 className="text-lg font-bold text-gray-900 mb-3">How to Request a Return</h3>
           <div className="space-y-4 mb-8">
             {[
-              { title: 'Contact Us Immediately', desc: 'Email order@researchchems.online with your order number, product name, and reason.' },
+              { title: 'Contact Us Immediately', desc: 'Message us on WhatsApp or Telegram with your order number, product name, and reason.' },
               { title: 'Provide Evidence', desc: 'Take clear photos of the product, packaging, and any damage.' },
               { title: 'Wait for Approval', desc: 'Our team reviews your request within 24-48 hours.' },
               { title: 'Receive Return Authorization', desc: 'If approved, you get an RA number. Do NOT return items without one.' },
@@ -266,7 +266,7 @@ export default function RefundPolicyPage() {
                 <li key={item} className="flex gap-2"><span className="w-1 h-1 rounded-full bg-amber-500 shrink-0 mt-2" />{item}</li>
               ))}
             </ul>
-            <p className="font-bold">Please contact us first at <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">order@researchchems.online</a>.</p>
+            <p className="font-bold">Please contact us first on <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">WhatsApp</a> or <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">Telegram</a>.</p>
           </div>
         </section>
 
@@ -275,13 +275,13 @@ export default function RefundPolicyPage() {
           <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-4">8. Contact Us for Returns</h2>
           <p className="mb-5">Have questions or need to start a return?</p>
           <div className="border border-gray-200 rounded-xl p-5 space-y-2 text-sm mb-6">
-            <p><strong>Email:</strong> <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">order@researchchems.online</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 906-261-3088</a></p>
+            <p><strong>Telegram:</strong> <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 910 227 9379</a></p>
             <p><strong>Subject Line:</strong> Return Request - Order #[Your Order Number]</p>
             <p><strong>Response Time:</strong> Within 24 hours</p>
-            <p><strong>Contact:</strong> <a href="mailto:order@researchchems.online" className="text-sky-500 hover:underline">Email Us</a></p>
           </div>
           <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-sm">
-            <p className="font-bold mb-2">Include in Your Email:</p>
+            <p className="font-bold mb-2">Include in Your Message:</p>
             <ul className="space-y-1.5 ml-1">
               {['Order number', 'Product name and quantity', 'Reason for return', 'Photos of product/damage (if applicable)', 'Preferred resolution (refund or replacement)'].map(item => (
                 <li key={item} className="flex gap-2"><span className="w-1 h-1 rounded-full bg-sky-400 shrink-0 mt-2" />{item}</li>

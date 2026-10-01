@@ -1,5 +1,4 @@
 import { Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
@@ -21,23 +20,20 @@ const spaceGrotesk = Space_Grotesk({
   preload: true,
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
 
 export const metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'BuyResearchChems | Premium Research Chemicals',
-    template: '%s | BuyResearchChems',
+    default: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray & K2 Powder',
+    template: '%s | K2PaperLiquid',
   },
-  description: 'Buy premium research chemicals online. BuyResearchChems supplies synthetic cannabinoids, opioids, nitazenes and laboratory-grade compounds with worldwide discreet shipping.',
+  description: 'Buy K2 paper sheets, K2 liquid spray and cannabinoid K2 powder online at K2PaperLiquid.com. Premium quality, discreet packaging and fast worldwide shipping.',
   keywords: [
-    'research chemicals', 'buy research chemicals online',
-    'synthetic cannabinoids', 'opioids', 'nitazenes', 'laboratory chemicals',
-    '5cl-adba', '5cladba', '5fadb', 'jwh-018', 'adb-butinaca', 'ab-pinaca',
-    '5F-EDMB-PINACA', 'ADB-FUBINACA', '4FADB', 'AMB-FUBINACA', 'MDMB-4en-PINACA',
-    'BuyResearchChems',
+    'k2 paper sheets', 'k2 paper', 'k2 liquid spray', 'k2 spray', 'k2 powder',
+    'cannabinoids k2 powder', 'buy k2 online', 'k2 for sale', 'k2paperliquid',
   ],
-  other: { 'theme-color': '#0ea5e9' },
+  other: { 'theme-color': '#16a34a' },
   robots: {
     index: true,
     follow: true,
@@ -53,22 +49,22 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: 'BuyResearchChems',
-    title: 'BuyResearchChems | Premium Research Chemicals',
-    description: 'Premium synthetic cannabinoids, opioids, nitazenes and laboratory compounds. Worldwide discreet shipping.',
+    siteName: 'K2PaperLiquid',
+    title: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray & K2 Powder',
+    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping.',
     images: [
       {
         url: `${BASE_URL}/images/logo.png`,
         width: 1200,
         height: 630,
-        alt: 'BuyResearchChems — Premium Research Chemicals',
+        alt: 'K2PaperLiquid — K2 Paper, Spray & Powder',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BuyResearchChems | Premium Research Chemicals',
-    description: 'Premium synthetic cannabinoids, opioids, nitazenes and laboratory compounds. Worldwide discreet shipping.',
+    title: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray & K2 Powder',
+    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping.',
     images: [`${BASE_URL}/images/logo.png`],
   },
   icons: {
@@ -123,25 +119,6 @@ export default function RootLayout({ children }) {
             </ConditionalNavbar>
           </CartProvider>
         </AuthProvider>
-
-        {/* Live Chat — add Tawk.to / Intercom widget ID here */}
-        <Script
-          id="tawk-to-widget"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-              (function(){
-                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                s1.async=true;
-                s1.src='https://embed.tawk.to/6aa49c840f09ed34497bc71b/1k29g6qf9';
-                s1.charset='UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1,s0);
-              })();
-            `,
-          }}
-        />
       </body>
     </html>
   );

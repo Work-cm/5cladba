@@ -59,7 +59,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-extrabold text-gray-900 mt-3">Create an account</h1>
-          <p className="text-gray-900 text-sm mt-1">Join BuyResearchChems for premium research chemicals</p>
+          <p className="text-gray-900 text-sm mt-1">Join K2PaperLiquid for premium K2 paper, spray and powder</p>
         </div>
 
         <div className="bg-gray-50/70 border border-gray-700/50 rounded-2xl p-8 shadow-xl">
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                 </div>
                 <input id="confirmPassword" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required
                   className="bg-gray-100/60 border border-gray-700 text-gray-900 rounded-xl py-3 px-4 pl-10 w-full focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent placeholder-gray-600"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" />
+                  placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
               </div>
             </div>
 

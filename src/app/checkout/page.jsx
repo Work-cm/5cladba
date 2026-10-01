@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useCart } from '@/components/cart/CartProvider';
 import OrderSummary from '@/components/checkout/OrderSummary';
 import OrderContactForm from '@/components/checkout/OrderContactForm';
-import { FaLock } from 'react-icons/fa';
+import { FaLock, FaBitcoin } from 'react-icons/fa';
 
 export default function CheckoutPage() {
   const { cart } = useCart();
@@ -62,6 +62,19 @@ export default function CheckoutPage() {
 
         <h1 className="text-3xl font-extrabold text-gray-900 mb-8">Complete Your Order</h1>
 
+        {/* Payment method notice */}
+        <div className="mb-6 flex items-center gap-3.5 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4">
+          <div className="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center shrink-0">
+            <FaBitcoin className="text-amber-500 text-3xl" />
+          </div>
+          <div>
+            <p className="text-sm font-bold text-gray-900">We accept Bitcoin (BTC) only</p>
+            <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">
+              After you send your order on WhatsApp or Telegram, we&apos;ll reply with our BTC wallet address and exact payment instructions.
+            </p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Order form */}
           <div className="lg:col-span-2 space-y-4">
@@ -78,7 +91,7 @@ export default function CheckoutPage() {
               <p className="text-gray-500 text-xs mb-4 leading-relaxed">
                 Questions about your order? Our team is here to assist.
               </p>
-              <a href="mailto:order@researchchems.online"
+              <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sky-500 hover:text-sky-600 text-sm font-semibold transition-colors">
                 Contact Support &rarr;
               </a>

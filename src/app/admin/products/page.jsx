@@ -196,7 +196,7 @@ export default function AdminProducts() {
                           {product.featured ? (
                             <span className="bg-sky-500/20 text-sky-400 px-2 py-1 rounded-full text-xs font-medium">Featured</span>
                           ) : (
-                            <span className="bg-gray-700/40 text-gray-500 px-2 py-1 rounded-full text-xs">—</span>
+                            <span className="bg-gray-700/40 text-gray-500 px-2 py-1 rounded-full text-xs">&mdash;</span>
                           )}
                         </td>
                         <td className="px-5 py-3">

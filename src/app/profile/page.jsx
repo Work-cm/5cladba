@@ -357,7 +357,7 @@ export default function ProfilePage() {
                                       {item.variant && (
                                         <span className="text-gray-900 ml-2">({item.variant.quantity}g)</span>
                                       )}
-                                      <span className="text-gray-900 mx-2">Ã—</span>
+                                      <span className="text-gray-900 mx-2">&times;</span>
                                       <span className="text-white">{item.quantity}</span>
                                     </div>
                                     <span className="text-white">${(item.price * item.quantity).toFixed(2)}</span>

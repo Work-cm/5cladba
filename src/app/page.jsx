@@ -6,27 +6,17 @@ import { getOrganizationSchema, getWebsiteSchema } from '@/components/seo/SEOKey
 
 export const dynamic = 'force-dynamic';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://buyresearchchems.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
 
 export const metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'Buy Research Chemicals Online | 5cl-adba, 5fadb, JWH-018 | BuyResearchChems',
-  description: 'Buy premium research chemicals online at BuyResearchChems. High-purity synthetic cannabinoids (5cl-adba, 5fadb, jwh-018, adb-butinaca), opioids, nitazenes and lab-grade compounds with discreet worldwide shipping.',
+  title: 'Buy K2 Paper Sheets, K2 Liquid Spray & K2 Powder Online | K2PaperLiquid',
+  description: 'Buy K2 paper sheets, K2 liquid spray and cannabinoid K2 powder online at K2PaperLiquid.com. Premium quality, discreet packaging and fast worldwide shipping.',
   keywords: [
-    'buy research chemicals online',
-    'research chemicals for sale',
-    'synthetic cannabinoids',
-    'buy synthetic cannabinoids',
-    '5cl-adba', '5cladba', '5-cl-adba', '5fadb', '5-fadb',
-    'jwh-018', 'adb-butinaca', 'ab-pinaca',
-    '5F-EDMB-PINACA', 'ADB-FUBINACA', '4FADB', 'AMB-FUBINACA', 'MDMB-4en-PINACA',
-    '6cl-adba', '6-cl-adba',
-    'opioids', 'nitazenes', 'benzos',
-    'isotonitazene', 'metonitazene', 'protonitazene', 'butonitazene',
-    'fentanyl', 'morphine sulfate', 'oxycodone', 'hydrocodone', 'codeine phosphate',
-    'ketamine', 'alpha-pvp', 'alpha-pihp', '3-cmc', '4-cmc', '3-mmc', '4-mmc',
-    'laboratory chemicals', 'premium research chemicals', 'lab verified chemicals',
-    'BuyResearchChems',
+    'k2 paper sheets', 'k2 paper', 'k2 infused paper', 'k2 spice paper',
+    'k2 liquid spray', 'k2 spray', 'liquid k2',
+    'k2 powder', 'cannabinoids k2 powder',
+    'buy k2 online', 'k2 for sale', 'k2paperliquid',
   ],
   alternates: {
     canonical: BASE_URL,
@@ -35,22 +25,22 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: 'BuyResearchChems',
-    title: 'Buy Research Chemicals Online | 5cl-adba, 5fadb, JWH-018 | BuyResearchChems',
-    description: 'Premium synthetic cannabinoids, opioids, nitazenes and laboratory compounds. Worldwide discreet shipping. Shop BuyResearchChems today.',
+    siteName: 'K2PaperLiquid',
+    title: 'Buy K2 Paper Sheets, K2 Liquid Spray & K2 Powder Online | K2PaperLiquid',
+    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping. Shop K2PaperLiquid today.',
     images: [
       {
         url: `${BASE_URL}/images/logo.png`,
         width: 1200,
         height: 630,
-        alt: 'BuyResearchChems — Premium Research Chemicals',
+        alt: 'K2PaperLiquid — K2 Paper, Spray & Powder',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Buy Research Chemicals Online | BuyResearchChems',
-    description: 'Premium synthetic cannabinoids, opioids, nitazenes and laboratory compounds. Worldwide discreet shipping.',
+    title: 'Buy K2 Online | K2PaperLiquid',
+    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping.',
     images: [`${BASE_URL}/images/logo.png`],
   },
 };

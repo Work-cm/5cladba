@@ -159,7 +159,7 @@ export default function OrdersPage() {
                 <div className="px-5 py-3 border-t border-gray-700/50 flex justify-end">
                   <Link href={`/account/orders/${order._id}`}
                     className="text-sky-400 hover:text-sky-300 text-sm font-medium transition-colors">
-                    View Details â†’
+                    View Details &rarr;
                   </Link>
                 </div>
               </div>

@@ -117,7 +117,7 @@ Total: ${money(totals.total)}
 
     // 1. Notify the store
     const notification = await transporter.sendMail({
-      from: `"BuyResearchChems Orders" <${FROM_EMAIL}>`,
+      from: `"K2PaperLiquid Orders" <${FROM_EMAIL}>`,
       to: STORE_EMAIL,
       replyTo: email,
       subject: `New Order Request ${reference} - ${money(totals.total)}`,
@@ -165,7 +165,7 @@ Total: ${money(totals.total)}
       </center>
     </div>
     <div style="background:#f8f9fa;padding:18px;text-align:center;border-top:1px solid #e9ecef;">
-      <p style="margin:4px 0;color:#6c757d;font-size:12px;"><strong>BuyResearchChems</strong> - Order request from website checkout</p>
+      <p style="margin:4px 0;color:#6c757d;font-size:12px;"><strong>K2PaperLiquid</strong> - Order request from website checkout</p>
     </div>
   </div>
 </body>
@@ -176,20 +176,20 @@ Total: ${money(totals.total)}
     let confirmation = { messageId: 'not-sent', status: 'skipped' };
     try {
       confirmation = await transporter.sendMail({
-        from: `"BuyResearchChems" <${FROM_EMAIL}>`,
+        from: `"K2PaperLiquid" <${FROM_EMAIL}>`,
         to: email,
         replyTo: STORE_EMAIL,
-        subject: `Order request received (${reference}) - BuyResearchChems`,
+        subject: `Order request received (${reference}) - K2PaperLiquid`,
         text: `Dear ${name},
 
-Thank you for your order request with BuyResearchChems.
+Thank you for your order request with K2PaperLiquid.
 
 We have received your request and will reply within 24 hours with secure payment instructions.
 ${detailsText}
 If you have any questions, reply to this email or contact ${STORE_EMAIL}.
 
 Best regards,
-The BuyResearchChems Team`,
+The K2PaperLiquid Team`,
         html: `
 <!DOCTYPE html>
 <html>
@@ -232,12 +232,12 @@ The BuyResearchChems Team`,
         Questions? Reply to this email or contact
         <a href="mailto:${STORE_EMAIL}" style="color:#0284c7;text-decoration:none;">${STORE_EMAIL}</a>.
       </p>
-      <p style="color:#555;margin-top:18px;">Best regards,<br><strong>The BuyResearchChems Team</strong></p>
+      <p style="color:#555;margin-top:18px;">Best regards,<br><strong>The K2PaperLiquid Team</strong></p>
     </div>
     <div style="background:#f8f9fa;padding:22px;text-align:center;border-top:1px solid #e9ecef;">
-      <div style="font-size:19px;font-weight:700;color:#0284c7;margin-bottom:8px;">BuyResearchChems</div>
-      <p style="margin:4px 0;color:#6c757d;font-size:12px;">Premium Research Chemicals</p>
-      <p style="margin-top:12px;font-size:11px;color:#999;">&copy; ${new Date().getFullYear()} BuyResearchChems. All rights reserved.</p>
+      <div style="font-size:19px;font-weight:700;color:#16a34a;margin-bottom:8px;">K2PaperLiquid</div>
+      <p style="margin:4px 0;color:#6c757d;font-size:12px;">K2 Paper Sheets • K2 Liquid Spray • K2 Powder</p>
+      <p style="margin-top:12px;font-size:11px;color:#999;">&copy; ${new Date().getFullYear()} K2PaperLiquid. All rights reserved.</p>
     </div>
   </div>
 </body>

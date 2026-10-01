@@ -102,7 +102,7 @@ export default function ProductCard({ product }) {
             href={`/products/${product.slug || product._id}`}
             className="bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5"
           >
-            View <span className="text-[10px]">â†’</span>
+            View <span className="text-[10px]">&rarr;</span>
           </Link>
         </div>
       </div>

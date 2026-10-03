@@ -25,13 +25,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'
 export const metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray & K2 Powder',
+    default: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate',
     template: '%s | K2PaperLiquid',
   },
-  description: 'Buy K2 paper sheets, K2 liquid spray and cannabinoid K2 powder online at K2PaperLiquid.com. Premium quality, discreet packaging and fast worldwide shipping.',
+  description: 'Buy K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and research-grade etomidate online at K2PaperLiquid.com. Premium quality, discreet packaging and fast worldwide shipping.',
   keywords: [
     'k2 paper sheets', 'k2 paper', 'k2 liquid spray', 'k2 spray', 'k2 powder',
-    'cannabinoids k2 powder', 'buy k2 online', 'k2 for sale', 'k2paperliquid',
+    'cannabinoids k2 powder', 'k2 spice', 'k2 spice paper',
+    'etomidate', 'etomidate powder', 'etomidate for sale', 'buy etomidate',
+    'buy k2 online', 'k2 for sale', 'k2paperliquid',
   ],
   other: { 'theme-color': '#16a34a' },
   robots: {
@@ -50,21 +52,21 @@ export const metadata = {
     locale: 'en_US',
     url: BASE_URL,
     siteName: 'K2PaperLiquid',
-    title: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray & K2 Powder',
-    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping.',
+    title: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate',
+    description: 'Premium K2 paper sheets, K2 liquid spray, K2 powder and research-grade etomidate. Worldwide discreet shipping.',
     images: [
       {
         url: `${BASE_URL}/images/logo.png`,
         width: 1200,
         height: 630,
-        alt: 'K2PaperLiquid — K2 Paper, Spray & Powder',
+        alt: 'K2PaperLiquid — K2 Paper, Spray, Powder & Etomidate',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray & K2 Powder',
-    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping.',
+    title: 'K2PaperLiquid | K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate',
+    description: 'Premium K2 paper sheets, K2 liquid spray, K2 powder and research-grade etomidate. Worldwide discreet shipping.',
     images: [`${BASE_URL}/images/logo.png`],
   },
   icons: {

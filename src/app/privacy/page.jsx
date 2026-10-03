@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
   title: 'Privacy Policy | K2PaperLiquid',
-  description: 'Read the K2PaperLiquid Privacy Policy. Learn how we collect, use and protect your personal information when ordering K2 paper, spray and powder online.',
+  description: 'Read the K2PaperLiquid Privacy Policy. Learn how we collect, use and protect your personal information when ordering K2 paper, spray, powder and etomidate online.',
   keywords: [
     'privacy policy', 'K2PaperLiquid privacy', 'k2 paper privacy',
     'personal information', 'data protection',

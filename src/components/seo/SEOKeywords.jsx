@@ -3,6 +3,7 @@ export const primaryKeywords = [
   'k2 paper sheets', 'k2 paper', 'k2 infused paper', 'k2 spice paper', 'k2 paper for sale',
   'k2 liquid spray', 'k2 spray', 'k2 liquid', 'liquid k2 on paper', 'k2 spray for sale',
   'k2 powder', 'cannabinoids k2 powder', 'k2 cannabinoid powder', 'buy k2 powder',
+  'etomidate', 'etomidate powder', 'etomidate crystal', 'buy etomidate', 'etomidate for sale',
 ];
 
 export const secondaryKeywords = [
@@ -10,6 +11,7 @@ export const secondaryKeywords = [
   'k2 for sale',
   'k2 spice',
   'synthetic cannabinoids',
+  'research chemicals',
   'k2paperliquid',
   'k2paperliquid.com',
 ];
@@ -52,7 +54,7 @@ export const getOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'K2PaperLiquid',
-  description: 'Premium K2 paper sheets, K2 liquid spray and cannabinoid K2 powder with discreet worldwide shipping.',
+  description: 'Premium K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and research-grade etomidate with discreet worldwide shipping.',
   url: getBaseUrl(),
   logo: {
     '@type': 'ImageObject',
@@ -61,7 +63,7 @@ export const getOrganizationSchema = () => ({
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'order@researchchems.online',
+    email: 'order@k2paperliquid.com',
     availableLanguage: 'English',
   },
   sameAs: [],
@@ -72,7 +74,7 @@ export const getWebsiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'K2PaperLiquid',
-  description: 'K2 paper sheets, K2 liquid spray and K2 powder for sale online.',
+  description: 'K2 paper sheets, K2 liquid spray, K2 powder and etomidate for sale online.',
   url: getBaseUrl(),
   potentialAction: {
     '@type': 'SearchAction',

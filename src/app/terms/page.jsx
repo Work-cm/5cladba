@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
   title: 'Terms & Conditions | K2PaperLiquid',
-  description: 'Read the K2PaperLiquid Terms and Conditions. Learn our policies for purchasing K2 paper sheets, K2 liquid spray and cannabinoid K2 powder.',
+  description: 'Read the K2PaperLiquid Terms and Conditions. Learn our policies for purchasing K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and etomidate.',
   keywords: [
     'terms and conditions', 'terms of service', 'K2PaperLiquid terms',
     'k2 paper terms', 'buy k2 online',

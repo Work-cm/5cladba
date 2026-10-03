@@ -4,10 +4,10 @@ import { FaShippingFast, FaGlobeAmericas, FaShieldAlt, FaCheckCircle } from 'rea
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
   title: 'Shipping & Delivery Policy | K2PaperLiquid',
-  description: 'Learn about K2PaperLiquid shipping methods, delivery times, discreet international shipping, order tracking and free shipping on orders over €100 for K2 paper, spray and powder.',
+  description: 'Learn about K2PaperLiquid shipping methods, delivery times, discreet international shipping, order tracking and free shipping on orders over €100 for K2 paper, spray, powder and etomidate.',
   keywords: [
     'k2 paper shipping', 'discreet shipping', 'international shipping',
-    'buy k2 online delivery', 'K2PaperLiquid shipping',
+    'buy k2 online delivery', 'etomidate shipping', 'K2PaperLiquid shipping',
     'track order', '48h dispatch',
   ],
   alternates: { canonical: '/shipping' },

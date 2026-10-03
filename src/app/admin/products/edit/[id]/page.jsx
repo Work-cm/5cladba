@@ -229,8 +229,7 @@ export default function EditProduct({ params }) {
       // Prepare data for API
       const productData = {
         ...formData,
-        // Map 'research chemicals' to 'other' for API compatibility
-        category: formData.category === 'research chemicals' ? 'other' : formData.category,
+        category: formData.category,
         images: imageUrls,
         price: parseFloat(formData.price),
         countInStock: parseInt(formData.countInStock)
@@ -377,6 +376,10 @@ export default function EditProduct({ params }) {
                   formErrors.category ? 'border border-sky-500' : ''
                 }`}
               >
+                <option value="k2-paper-sheets">K2 Paper Sheets</option>
+                <option value="k2-liquid-spray">K2 Liquid Spray</option>
+                <option value="k2-powder">K2 Powder</option>
+                <option value="etomidate">Etomidate</option>
                 <option value="cannabinoids">Cannabinoids</option>
                 <option value="opioids">Opioids</option>
                 <option value="nitazenes">Nitazenes</option>

@@ -16,27 +16,27 @@ export async function generateMetadata({ searchParams }) {
   
   const categoryKeywords = catLabel
     ? `${catLabel.toLowerCase()}, ${catLabel.toLowerCase()} for sale, buy ${catLabel.toLowerCase()}`
-    : 'k2 paper sheets, k2 liquid spray, k2 powder, buy k2 online, k2 spice paper, k2 spray for sale';
+    : 'k2 paper sheets, k2 liquid spray, k2 powder, etomidate, etomidate powder, buy etomidate, buy k2 online, k2 spice paper, k2 spray for sale';
 
   return {
     metadataBase: new URL(baseUrl),
     title: catLabel
       ? `Buy ${catLabel} Online | K2PaperLiquid`
-      : 'K2 Paper Sheets, K2 Liquid Spray & K2 Powder for Sale | K2PaperLiquid',
+      : 'K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate for Sale | K2PaperLiquid',
     description: catLabel
       ? `Buy premium ${catLabel.toLowerCase()} online at K2PaperLiquid. Strong, consistent quality with discreet worldwide shipping.`
-      : 'Buy K2 paper sheets, K2 liquid spray and K2 powder online. Premium quality, discreet packaging and fast worldwide delivery from K2PaperLiquid.',
-    keywords: `${categoryKeywords}, k2 paper, k2 spray, k2 liquid, k2 powder, cannabinoids k2, k2paperliquid`,
+      : 'Buy K2 paper sheets, K2 liquid spray, K2 powder and etomidate online. Premium quality, discreet packaging and fast worldwide delivery from K2PaperLiquid.',
+    keywords: `${categoryKeywords}, k2 paper, k2 spray, k2 liquid, k2 powder, k2 spice, cannabinoids k2, etomidate, etomidate powder, k2paperliquid`,
     alternates: {
       canonical: '/products', // Always point to /products to avoid duplicate content from query params
     },
     openGraph: {
       title: catLabel
         ? `Buy ${catLabel} Online | K2PaperLiquid`
-        : 'K2 Paper Sheets, K2 Liquid Spray & K2 Powder for Sale | K2PaperLiquid',
+        : 'K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate for Sale | K2PaperLiquid',
       description: catLabel
         ? `Browse premium ${catLabel.toLowerCase()} at K2PaperLiquid. Discreet worldwide shipping.`
-        : 'Browse K2 paper sheets, K2 liquid spray and K2 powder. Premium quality with discreet worldwide shipping.',
+        : 'Browse K2 paper sheets, K2 liquid spray, K2 powder and etomidate. Premium quality with discreet worldwide shipping.',
       url: '/products',
       type: 'website',
     },
@@ -172,7 +172,7 @@ export default async function ProductsPage({ searchParams }) {
   const catInfo = categoryMeta[catKey] || null;
   const displayLabel = catInfo?.label || selectedCategory || 'All Products';
   const displayDesc = catInfo?.desc ||
-    'Browse our K2 paper sheets, K2 liquid spray and K2 powder — premium quality, discreet packaging and fast delivery.';
+    'Browse our K2 paper sheets, K2 liquid spray, K2 powder and etomidate products — premium quality, discreet packaging and fast delivery.';
 
   return (
     <div className="min-h-screen bg-white">

@@ -4,7 +4,7 @@ import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
   title: 'Return & Refund Policy | K2PaperLiquid',
-  description: 'Read the K2PaperLiquid return and refund policy for K2 paper, spray and powder. Learn how to request returns for defective, damaged or incorrect products within 48 hours.',
+  description: 'Read the K2PaperLiquid return and refund policy for K2 paper, spray, powder and etomidate. Learn how to request returns for defective, damaged or incorrect products within 48 hours.',
   keywords: [
     'return policy', 'refund policy', 'k2 product returns',
     'defective products', 'K2PaperLiquid refund',

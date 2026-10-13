@@ -6,11 +6,13 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useCart } from '@/components/cart/CartProvider';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaShoppingCart, FaUser, FaSearch, FaLeaf, FaFileAlt, FaSprayCan, FaTimes, FaChevronDown, FaChevronRight, FaSignOutAlt, FaUserShield, FaFlask } from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaSearch, FaLeaf, FaFileAlt, FaSprayCan, FaTimes, FaChevronDown, FaSignOutAlt, FaUserShield, FaFlask, FaBitcoin, FaTruck, FaLock, FaTelegramPlane } from 'react-icons/fa';
 import { HiMenu } from 'react-icons/hi';
+import Logo from '@/components/common/Logo';
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/products', label: 'Shop' },
   { href: '/about', label: 'About' },
 ];
 
@@ -49,7 +51,6 @@ export default function Navbar() {
   }, [pathname]);
   useEffect(() => { if (searchOpen) searchRef.current?.focus(); }, [searchOpen]);
 
-  // Scroll-aware header
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -57,7 +58,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const onClick = (e) => {
       if (shopRef.current && !shopRef.current.contains(e.target)) setShopOpen(false);
@@ -67,7 +67,6 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', onClick);
   }, []);
 
-  // Keyboard shortcuts: Ctrl/Cmd+K to open search, Esc to close
   useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -84,97 +83,84 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Lock body scroll when mobile menu or search overlay open
   useEffect(() => {
-    if (menuOpen || searchOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = (menuOpen || searchOpen) ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen, searchOpen]);
 
-  const handleSearch = useCallback((e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) window.location.href = `/products?search=${encodeURIComponent(searchQuery.trim())}`;
-  }, [searchQuery]);
+  const go = useCallback((q) => {
+    if (q.trim()) window.location.href = `/products?search=${encodeURIComponent(q.trim())}`;
+  }, []);
 
   return (
     <>
-      {/* Main header */}
-      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-md' : 'bg-white/80 backdrop-blur-md border-b border-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-16'}`}>
+      {/* Gold announcement strip — scrolls away */}
+      <div className="bg-cyan-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-8 flex items-center justify-center gap-2">
+          <FaBitcoin className="text-ink" size={10} />
+          <p className="text-ink text-[10px] font-black uppercase tracking-[0.22em]">Bitcoin accepted &middot; Discreet shipping to 50+ countries</p>
+        </div>
+      </div>
+
+      {/* Floating pill bar */}
+      <header className={`fixed left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'top-3' : 'top-10'}`}>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          <div className={`flex items-center justify-between gap-3 h-14 pl-3 pr-2 sm:pl-4 sm:pr-3 rounded-full bg-ink-deep/95 backdrop-blur-xl border border-white/10 transition-shadow duration-300 ${scrolled ? 'shadow-2xl shadow-ink-deep/40' : 'shadow-xl shadow-ink-deep/20'}`}>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform">
-                <span className="text-white font-black text-[11px] leading-none">K2</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-gray-900 font-black text-[15px] tracking-tight">
-                  K2Paper<span className="text-sky-500">Liquid</span>
-                </span>
-                <span className="text-gray-900 text-[9px] tracking-[0.18em] uppercase font-medium hidden sm:block">k2paperliquid.com</span>
-              </div>
-            </Link>
+            <Logo size={34} dark showDomain={false} className="shrink-0" />
 
-            {/* Desktop nav */}
+            {/* Center links — desktop */}
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map(({ href, label }) => {
-                const active = pathname === href;
+                const active = pathname === href || (href === '/products' && pathname.startsWith('/products'));
                 return (
-                  <Link key={href} href={href} className="relative px-4 py-2 text-sm font-semibold rounded-lg transition-colors">
-                    {active && (
-                      <motion.span layoutId="navPill" className="absolute inset-0 bg-sky-50 rounded-lg" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
-                    )}
-                    <span className={`relative z-10 ${active ? 'text-sky-600' : 'text-gray-900 hover:text-sky-600'}`}>{label}</span>
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`relative px-4 py-2 rounded-full text-[13px] font-semibold transition-all ${active ? 'bg-white/10 text-cyan-300' : 'text-white/60 hover:text-white hover:bg-white/[0.07]'}`}
+                  >
+                    {label}
                   </Link>
                 );
               })}
 
-              {/* Shop dropdown */}
+              {/* Categories */}
               <div className="relative" ref={shopRef}>
                 <button
                   onClick={() => setShopOpen(o => !o)}
-                  className="relative flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg transition-colors"
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold transition-all ${shopOpen ? 'bg-white/10 text-cyan-300' : 'text-white/60 hover:text-white hover:bg-white/[0.07]'}`}
                   aria-expanded={shopOpen}
                 >
-                  {(shopOpen || pathname.startsWith('/products')) && (
-                    <motion.span layoutId="navPill" className="absolute inset-0 bg-sky-50 rounded-lg" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
-                  )}
-                  <span className={`relative z-10 flex items-center gap-1.5 ${shopOpen || pathname.startsWith('/products') ? 'text-sky-600' : 'text-gray-900 hover:text-sky-600'}`}>
-                    Shop <FaChevronDown size={9} className={`transition-transform duration-200 ${shopOpen ? 'rotate-180' : ''}`} />
-                  </span>
+                  Categories <FaChevronDown size={7} className={`transition-transform duration-200 ${shopOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {shopOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50 w-64"
+                      className="absolute left-1/2 -translate-x-1/2 top-full pt-4 z-50 w-[440px]"
                     >
-                      <div className="bg-white border border-gray-200 rounded-2xl shadow-xl shadow-gray-200/60 overflow-hidden">
-                        <div className="h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent" />
-                        <div className="p-2">
-                          <p className="text-[10px] text-gray-900 uppercase tracking-widest px-3 py-1.5">Categories</p>
+                      <div className="bg-ink border border-white/10 rounded-3xl shadow-2xl shadow-ink-deep/50 overflow-hidden">
+                        <div className="h-[3px] bg-gradient-to-r from-sky-700 via-sky-500 to-cyan-400" />
+                        <div className="p-3 grid grid-cols-2 gap-1.5">
                           {shopCategories.map(({ href, label, Icon, desc }) => (
-                            <Link key={href} href={href} onClick={() => setShopOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-sky-50 group/item transition-all">
-                              <div className="w-7 h-7 rounded-lg bg-sky-50 flex items-center justify-center shrink-0 group-hover/item:bg-sky-100 transition-colors">
-                                <Icon className="text-sky-500 text-[10px]" />
+                            <Link key={href} href={href} onClick={() => setShopOpen(false)} className="flex items-center gap-3 px-3 py-3 rounded-2xl hover:bg-white/[0.06] group/item transition-all">
+                              <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0 group-hover/item:bg-cyan-400 group-hover/item:border-cyan-400 transition-all">
+                                <Icon className="text-cyan-300 text-xs group-hover/item:text-ink transition-colors" />
                               </div>
-                              <div>
-                                <p className="text-gray-700 text-sm font-semibold group-hover/item:text-sky-600 transition-colors leading-none">{label}</p>
-                                <p className="text-gray-900 text-xs mt-0.5">{desc}</p>
+                              <div className="min-w-0">
+                                <p className="text-white text-sm font-bold leading-none group-hover/item:text-cyan-300 transition-colors">{label}</p>
+                                <p className="text-white/35 text-[11px] mt-1 truncate">{desc}</p>
                               </div>
                             </Link>
                           ))}
-                          <div className="mt-1 pt-2 border-t border-gray-100">
-                            <Link href="/products" onClick={() => setShopOpen(false)} className="flex items-center justify-center py-1.5 text-xs text-sky-500 hover:text-sky-600 font-semibold transition-colors">View all &rarr;</Link>
-                          </div>
                         </div>
+                        <Link href="/products" onClick={() => setShopOpen(false)} className="flex items-center justify-between px-6 py-3.5 bg-white/[0.04] border-t border-white/10 text-[11px] font-black uppercase tracking-[0.18em] text-cyan-300 hover:bg-cyan-400 hover:text-ink transition-all">
+                          Browse full catalog <FaChevronDown size={9} className="-rotate-90" />
+                        </Link>
                       </div>
                     </motion.div>
                   )}
@@ -183,101 +169,89 @@ export default function Navbar() {
             </nav>
 
             {/* Right actions */}
-            <div className="flex items-center gap-1.5">
-              {/* Search trigger — desktop */}
+            <div className="flex items-center gap-1.5 shrink-0">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="hidden md:flex items-center gap-2 h-9 pl-3 pr-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-sky-600 hover:border-sky-300 hover:bg-sky-50/60 transition-all"
-              >
-                <FaSearch size={12} />
-                <span className="text-xs">Search</span>
-                <kbd className="hidden lg:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 rounded-md bg-gray-100 border border-gray-200 text-[10px] font-semibold text-gray-500">Ctrl K</kbd>
-              </button>
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl text-gray-900 hover:text-sky-600 hover:bg-sky-50 transition-all"
+                className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-all"
                 aria-label="Search"
               >
-                <FaSearch size={14} />
+                <FaSearch size={13} />
               </button>
 
-              {/* Cart */}
-              <Link href="/cart" className="relative cart-icon w-9 h-9 flex items-center justify-center rounded-xl text-gray-900 hover:text-sky-600 hover:bg-sky-50 transition-all">
-                <FaShoppingCart size={15} />
+              <Link href="/cart" className="relative cart-icon w-10 h-10 flex items-center justify-center rounded-full bg-cyan-400 text-ink hover:bg-cyan-300 transition-all">
+                <FaShoppingCart size={13} />
                 {cartCount > 0 && (
-                  <motion.span key={cartCount} initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-0.5 -right-0.5 bg-sky-500 text-white text-[9px] font-black rounded-full w-4 h-4 flex items-center justify-center leading-none">
+                  <motion.span key={cartCount} initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-1 -right-1 bg-white text-ink text-[9px] font-black rounded-full w-[18px] h-[18px] flex items-center justify-center leading-none ring-2 ring-ink-deep">
                     {cartCount}
                   </motion.span>
                 )}
               </Link>
 
-              {/* User — desktop only */}
-              {mounted && (
-                user ? (
-                  <div className="relative hidden md:block" ref={userRef}>
-                    <button
-                      onClick={() => setUserMenuOpen(o => !o)}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-sm transition-all ${userMenuOpen ? 'border-sky-300 text-sky-600 bg-sky-50/60' : 'border-gray-200 hover:border-sky-300 text-gray-700 hover:text-sky-600'}`}
-                    >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white text-xs font-black">{user.name.charAt(0).toUpperCase()}</div>
-                      <span className="hidden lg:block font-medium">{user.name.split(' ')[0]}</span>
-                      <FaChevronDown size={8} className={`transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    <AnimatePresence>
-                      {userMenuOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-2xl shadow-xl py-1.5 z-50"
-                        >
-                          <div className="px-4 py-2 border-b border-gray-100 mb-1">
-                            <p className="text-sm font-bold text-gray-900 truncate">{user.name}</p>
-                            <p className="text-xs text-gray-400 truncate">{user.email}</p>
-                          </div>
-                          <Link href="/profile" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-900 hover:text-sky-600 hover:bg-sky-50 transition-colors">
-                            <FaUser size={12} /> Profile
+              {mounted && user ? (
+                <div className="relative hidden md:block" ref={userRef}>
+                  <button
+                    onClick={() => setUserMenuOpen(o => !o)}
+                    className={`flex items-center gap-2 pl-1.5 pr-3 h-10 rounded-full border text-sm transition-all ${userMenuOpen ? 'border-cyan-400/50 text-cyan-300 bg-white/10' : 'border-white/15 bg-white/[0.06] hover:border-cyan-400/40 text-white/70 hover:text-white'}`}
+                  >
+                    <div className="w-7 h-7 rounded-full bg-sky-700 flex items-center justify-center text-white text-xs font-black">{user.name.charAt(0).toUpperCase()}</div>
+                    <span className="hidden lg:block font-semibold text-xs">{user.name.split(' ')[0]}</span>
+                    <FaChevronDown size={8} className={`transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <AnimatePresence>
+                    {userMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-0 top-full mt-3 w-52 bg-ink border border-white/10 rounded-3xl shadow-2xl shadow-ink-deep/50 py-1.5 z-50"
+                      >
+                        <div className="px-4 py-2.5 border-b border-white/10 mb-1">
+                          <p className="text-sm font-bold text-white truncate">{user.name}</p>
+                          <p className="text-xs text-white/40 truncate">{user.email}</p>
+                        </div>
+                        <Link href="/profile" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors">
+                          <FaUser size={11} className="text-cyan-300" /> Profile
+                        </Link>
+                        {user.isAdmin && (
+                          <Link href="/admin" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors">
+                            <FaUserShield size={11} className="text-cyan-300" /> Admin
                           </Link>
-                          {user.isAdmin && (
-                            <Link href="/admin" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-900 hover:text-sky-600 hover:bg-sky-50 transition-colors">
-                              <FaUserShield size={12} /> Admin
-                            </Link>
-                          )}
-                          <div className="border-t border-gray-100 my-1" />
-                          <button onClick={() => { setUserMenuOpen(false); logout(); }} className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-sm text-gray-900 hover:text-sky-600 hover:bg-sky-50 transition-colors">
-                            <FaSignOutAlt size={12} /> Sign out
-                          </button>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  null
-                )
+                        )}
+                        <div className="border-t border-white/10 my-1" />
+                        <button onClick={() => { setUserMenuOpen(false); logout(); }} className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors">
+                          <FaSignOutAlt size={11} className="text-cyan-300" /> Sign out
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : mounted && (
+                <Link href="/login" className="hidden md:flex items-center gap-2 h-10 px-4 rounded-full border border-white/15 bg-white/[0.06] hover:border-cyan-400/40 text-white/70 hover:text-white text-xs font-bold transition-all">
+                  <FaUser size={11} /> Sign in
+                </Link>
               )}
 
-              {/* Hamburger — mobile only */}
+              {/* Hamburger — mobile */}
               <button
                 onClick={() => setMenuOpen(true)}
-                className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 hover:bg-sky-50 text-gray-700 transition-all"
+                className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.07] border border-white/10 text-white hover:bg-white/10 transition-all"
                 aria-label="Open menu"
               >
-                <HiMenu size={20} />
+                <HiMenu size={18} />
               </button>
             </div>
-
           </div>
         </div>
       </header>
 
-      {/* Search overlay */}
+      {/* Search overlay — dark card */}
       <AnimatePresence>
         {searchOpen && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
-            className="fixed inset-0 z-[70] flex items-start justify-center px-4 pt-24 sm:pt-32 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-[70] flex items-start justify-center px-4 pt-24 sm:pt-32 bg-ink-deep/70 backdrop-blur-sm"
             onClick={() => setSearchOpen(false)}
           >
             <motion.div
@@ -286,33 +260,34 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -16, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 320, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200"
+              className="w-full max-w-xl bg-ink rounded-3xl shadow-2xl overflow-hidden border border-white/10"
             >
-              <form onSubmit={handleSearch} className="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-                <FaSearch className="text-sky-500 shrink-0" size={16} />
+              <div className="h-[3px] bg-gradient-to-r from-sky-700 via-sky-500 to-cyan-400" />
+              <form onSubmit={(e) => { e.preventDefault(); go(searchQuery); }} className="flex items-center gap-3 px-5 py-4 border-b border-white/10">
+                <FaSearch className="text-cyan-300 shrink-0" size={15} />
                 <input
                   ref={searchRef}
                   type="search"
                   placeholder="Search K2 paper, spray, powder..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
-                  className="flex-1 bg-transparent text-gray-900 text-base outline-none placeholder-gray-400"
+                  className="flex-1 bg-transparent text-white text-base outline-none placeholder-white/35"
                 />
-                <button type="button" onClick={() => setSearchOpen(false)} className="text-gray-400 hover:text-gray-700 shrink-0">
+                <button type="button" onClick={() => setSearchOpen(false)} className="text-white/40 hover:text-white shrink-0">
                   <FaTimes size={14} />
                 </button>
               </form>
               <div className="p-3">
-                <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold px-2 pb-2">Quick categories</p>
+                <p className="text-[10px] text-white/35 uppercase tracking-widest font-bold px-2 pb-2">Quick categories</p>
                 <div className="grid grid-cols-1 gap-1">
                   {shopCategories.map(({ href, label, Icon, desc }) => (
-                    <Link key={href} href={href} onClick={() => setSearchOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-sky-50 transition-all group/item">
-                      <div className="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center shrink-0 group-hover/item:bg-sky-100 transition-colors">
-                        <Icon className="text-sky-500 text-xs" />
+                    <Link key={href} href={href} onClick={() => setSearchOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.06] transition-all group/item">
+                      <div className="w-8 h-8 rounded-lg bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0 group-hover/item:bg-cyan-400 transition-colors">
+                        <Icon className="text-cyan-300 text-xs group-hover/item:text-ink transition-colors" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-gray-800 text-sm font-semibold leading-none">{label}</p>
-                        <p className="text-gray-400 text-xs mt-0.5 truncate">{desc}</p>
+                        <p className="text-white text-sm font-semibold leading-none">{label}</p>
+                        <p className="text-white/35 text-xs mt-0.5 truncate">{desc}</p>
                       </div>
                     </Link>
                   ))}
@@ -323,57 +298,55 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — slides from right, dark */}
       <AnimatePresence>
         {menuOpen && (
           <div className="fixed inset-0 z-[60] md:hidden">
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-ink-deep/60 backdrop-blur-sm"
               onClick={() => setMenuOpen(false)}
             />
 
-            {/* Panel */}
             <motion.div
               initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="absolute right-0 top-0 bottom-0 w-4/5 max-w-[300px] bg-white border-l border-gray-200 flex flex-col"
+              className="absolute right-0 top-0 bottom-0 w-[85%] max-w-[320px] bg-ink flex flex-col overflow-hidden border-l border-white/10"
             >
-              {/* Red top line */}
-              <div className="h-[3px] bg-gradient-to-r from-transparent via-sky-400 to-transparent shrink-0" />
+              <div className="h-[3px] bg-gradient-to-r from-sky-700 via-sky-500 to-cyan-400 shrink-0" />
 
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 shrink-0">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center">
-                    <span className="text-white font-black text-[11px] leading-none">K2</span>
-                  </div>
-                  <span className="text-gray-900 font-black text-sm">K2Paper<span className="text-sky-500">Liquid</span></span>
-                </div>
-                <button onClick={() => setMenuOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 transition-all">
-                  <FaTimes size={14} />
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
+                <Logo size={32} dark showDomain={false} />
+                <button onClick={() => setMenuOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.06] hover:bg-white/10 text-white transition-all">
+                  <FaTimes size={13} />
                 </button>
               </div>
 
-              {/* Search bar — opens overlay */}
-              <button
-                onClick={() => { setMenuOpen(false); setSearchOpen(true); }}
-                className="flex items-center gap-2 mx-4 my-3 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-left shrink-0"
+              {/* Search field */}
+              <form
+                onSubmit={(e) => { e.preventDefault(); setMenuOpen(false); go(searchQuery); }}
+                className="flex items-center gap-2 mx-4 my-4 bg-white/[0.05] border border-white/10 rounded-full px-4 py-2.5 shrink-0"
               >
-                <FaSearch className="text-gray-900 text-xs shrink-0" />
-                <span className="text-gray-400 text-sm">Search products...</span>
-              </button>
+                <FaSearch className="text-cyan-300 text-xs shrink-0" />
+                <input
+                  type="search"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder="Search products..."
+                  className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/40"
+                />
+              </form>
 
               {/* Nav links */}
-              <nav className="flex-1 overflow-y-auto px-3 py-3">
+              <nav className="flex-1 overflow-y-auto px-3 py-2">
                 <div className="space-y-1 mb-4">
                   {navLinks.map(({ href, label }, i) => (
                     <motion.div key={href} initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * i, duration: 0.2 }}>
                       <Link
                         href={href}
-                        className={`flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-all ${pathname === href ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-gray-900 hover:bg-gray-50 hover:text-sky-600'}`}
+                        className={`flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-all ${pathname === href ? 'bg-cyan-400/15 text-cyan-300 border border-cyan-400/30' : 'text-white/70 hover:bg-white/[0.06] hover:text-white'}`}
                       >
                         {label}
                       </Link>
@@ -381,14 +354,14 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                {/* Shop accordion */}
+                {/* Categories accordion */}
                 <motion.div initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * navLinks.length, duration: 0.2 }}>
                   <button
                     onClick={() => setMobileShopOpen(o => !o)}
-                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all ${pathname.startsWith('/products') ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-gray-900 hover:bg-gray-50 hover:text-sky-600'}`}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all ${pathname.startsWith('/products') ? 'bg-cyan-400/15 text-cyan-300 border border-cyan-400/30' : 'text-white/70 hover:bg-white/[0.06] hover:text-white'}`}
                   >
-                    Shop K2 Products
-                    <FaChevronRight size={11} className={`transition-transform duration-200 ${mobileShopOpen ? 'rotate-90' : ''}`} />
+                    Shop by Category
+                    <FaChevronDown size={11} className={`transition-transform duration-200 ${mobileShopOpen ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence>
                     {mobileShopOpen && (
@@ -403,18 +376,18 @@ export default function Navbar() {
                           {shopCategories.map(({ href, label, Icon, desc }) => (
                             <Link
                               key={href} href={href}
-                              className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-900 hover:bg-sky-50 hover:text-sky-600 text-sm transition-all"
+                              className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/70 hover:bg-white/[0.06] hover:text-white text-sm transition-all"
                             >
-                              <div className="w-7 h-7 rounded-lg bg-sky-50 flex items-center justify-center shrink-0">
-                                <Icon className="text-sky-500 text-[10px]" />
+                              <div className="w-7 h-7 rounded-lg bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0">
+                                <Icon className="text-cyan-300 text-[10px]" />
                               </div>
                               <div className="min-w-0">
                                 <p className="font-medium leading-none">{label}</p>
-                                <p className="text-xs text-gray-400 mt-0.5 truncate">{desc}</p>
+                                <p className="text-xs text-white/35 mt-0.5 truncate">{desc}</p>
                               </div>
                             </Link>
                           ))}
-                          <Link href="/products" className="flex items-center justify-center py-2 text-xs text-sky-500 hover:text-sky-600 font-semibold transition-colors">View all &rarr;</Link>
+                          <Link href="/products" className="flex items-center justify-center py-2 text-xs text-cyan-300 hover:text-cyan-200 font-semibold transition-colors">View all &rarr;</Link>
                         </div>
                       </motion.div>
                     )}
@@ -422,31 +395,34 @@ export default function Navbar() {
                 </motion.div>
               </nav>
 
-              {/* Bottom auth */}
-              <div className="px-3 pb-6 pt-3 border-t border-gray-100 space-y-2 shrink-0">
-                <Link href="/cart" className="flex items-center justify-between w-full px-4 py-3 rounded-xl bg-gray-50 hover:bg-sky-50 text-gray-700 hover:text-sky-600 text-sm font-semibold transition-all">
-                  <span className="flex items-center gap-2.5"><FaShoppingCart size={13} /> Cart</span>
-                  {cartCount > 0 && <span className="bg-sky-500 text-white text-xs font-black px-2 py-0.5 rounded-full">{cartCount}</span>}
+              {/* Trust strip */}
+              <div className="px-5 py-3 border-t border-white/10 flex items-center gap-4 text-[10px] text-white/35 font-semibold uppercase tracking-wider shrink-0">
+                <span className="flex items-center gap-1.5"><FaTruck className="text-cyan-300" size={10} /> 48h</span>
+                <span className="flex items-center gap-1.5"><FaLock className="text-cyan-300" size={9} /> Discreet</span>
+                <span className="flex items-center gap-1.5"><FaBitcoin className="text-cyan-400" size={11} /> BTC</span>
+              </div>
+
+              {/* Bottom */}
+              <div className="px-3 pb-6 pt-3 border-t border-white/10 space-y-2 shrink-0">
+                <Link href="/cart" className="flex items-center justify-between w-full px-4 py-3 rounded-xl bg-cyan-400 text-ink hover:bg-cyan-300 text-sm font-black transition-all">
+                  <span className="flex items-center gap-2.5"><FaShoppingCart size={13} /> View cart</span>
+                  {cartCount > 0 && <span className="bg-ink text-cyan-300 text-xs font-black px-2 py-0.5 rounded-full">{cartCount}</span>}
                 </Link>
 
-                {mounted && (
-                  user ? (
-                    <>
-                      <Link href="/profile" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-gray-50 hover:bg-sky-50 text-gray-700 hover:text-sky-600 text-sm font-semibold transition-all">
-                        <FaUser size={12} /> Profile
+                {mounted && user && (
+                  <>
+                    <Link href="/profile" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.08] text-white/70 hover:text-white text-sm font-semibold transition-all">
+                      <FaUser size={12} /> Profile
+                    </Link>
+                    {user.isAdmin && (
+                      <Link href="/admin" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.08] text-white/70 hover:text-white text-sm font-semibold transition-all">
+                        Admin Panel
                       </Link>
-                      {user.isAdmin && (
-                        <Link href="/admin" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-gray-50 hover:bg-sky-50 text-gray-700 hover:text-sky-600 text-sm font-semibold transition-all">
-                          Admin Panel
-                        </Link>
-                      )}
-                      <button onClick={logout} className="w-full flex items-center gap-2.5 px-4 py-3 rounded-xl text-gray-900 hover:text-sky-600 hover:bg-sky-50 text-sm font-semibold transition-all text-left">
-                        Sign out
-                      </button>
-                    </>
-                  ) : (
-                    null
-                  )
+                    )}
+                    <button onClick={logout} className="w-full flex items-center gap-2.5 px-4 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/[0.05] text-sm font-semibold transition-all text-left">
+                      Sign out
+                    </button>
+                  </>
                 )}
               </div>
             </motion.div>

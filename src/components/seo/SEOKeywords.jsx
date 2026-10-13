@@ -12,8 +12,8 @@ export const secondaryKeywords = [
   'k2 spice',
   'synthetic cannabinoids',
   'research chemicals',
-  'k2paperliquid',
-  'k2paperliquid.com',
+  'k2liquidstore',
+  'k2liquidstore.com',
 ];
 
 export const allKeywords = [...primaryKeywords, ...secondaryKeywords];
@@ -21,14 +21,14 @@ export const allKeywords = [...primaryKeywords, ...secondaryKeywords];
 // Schema.org structured data for better SEO
 export const getProductSchema = (product) => {
   const startingPrice = product.priceVariants?.[0]?.price ?? product.price;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
     description: product.description,
     image: product.images?.[0] || `${BASE_URL}/images/logo.png`,
-    brand: { '@type': 'Brand', name: 'K2PaperLiquid' },
+    brand: { '@type': 'Brand', name: 'K2LiquidStore' },
     offers: {
       '@type': 'Offer',
       price: startingPrice ?? 0,
@@ -46,14 +46,14 @@ export const getProductSchema = (product) => {
 
 // Get base URL for schemas
 const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com';
+  return process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
 };
 
 // Organization schema
 export const getOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'K2PaperLiquid',
+  name: 'K2LiquidStore',
   description: 'Premium K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and research-grade etomidate with discreet worldwide shipping.',
   url: getBaseUrl(),
   logo: {
@@ -63,7 +63,7 @@ export const getOrganizationSchema = () => ({
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'order@k2paperliquid.com',
+    email: 'order@k2liquidstore.com',
     availableLanguage: 'English',
   },
   sameAs: [],
@@ -73,7 +73,7 @@ export const getOrganizationSchema = () => ({
 export const getWebsiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'K2PaperLiquid',
+  name: 'K2LiquidStore',
   description: 'K2 paper sheets, K2 liquid spray, K2 powder and etomidate for sale online.',
   url: getBaseUrl(),
   potentialAction: {

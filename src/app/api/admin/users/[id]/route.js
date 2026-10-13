@@ -1,14 +1,19 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
-import dbConnect from '@/lib/utils/db';
-import User from '@/models/User';
-import { ObjectId } from 'mongodb';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Configure Cloudinary with fallback values
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dnxyxgc1m',
+  api_key: process.env.CLOUDINARY_API_KEY || '262695698328963',
+  api_secret: process.env.CLOUDINARY_API_SECRET || '9EzxMjSzz71frqYAGhFunNe7xWo',
+});
 
 // Helper function to check admin authorization
 async function checkAdminAuth() {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const token = cookieStore.get('admin-token');
     
     if (!token) {
@@ -29,145 +34,105 @@ async function checkAdminAuth() {
   }
 }
 
-// GET - Fetch a single user by ID
-export async function GET(request, { params }) {
+// Helper function to upload to Cloudinary
+async function uploadToCloudinary(file) {
   try {
-    // Check admin authorization
-    if (!await checkAdminAuth()) {
-      return NextResponse.json({ message: 'Not authorized' }, { status: 403 });
-    }
-
-    await dbConnect();
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
     
-    const userId = params.id;
-    
-    // Validate ObjectId
-    if (!ObjectId.isValid(userId)) {
-      return NextResponse.json({ message: 'Invalid user ID' }, { status: 400 });
-    }
-    
-    // Find user
-    const user = await User.findById(userId).select('-password');
-    
-    if (!user) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
-    }
-    
-    return NextResponse.json(user);
+    return new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          folder: 'k2liquidstore/products',
+          resource_type: 'auto',
+        },
+        (error, result) => {
+          if (error) {
+            console.error('Cloudinary upload error:', error);
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+      
+      uploadStream.end(buffer);
+    });
   } catch (error) {
-    console.error('Error fetching user:', error);
-    return NextResponse.json(
-      { message: 'Server error' },
-      { status: 500 }
-    );
+    console.error('Error preparing file for upload:', error);
+    throw error;
   }
 }
 
-// PUT - Update a user
-export async function PUT(request, { params }) {
+export async function POST(request) {
   try {
+    console.log('Upload API called');
+    
     // Check admin authorization
     if (!await checkAdminAuth()) {
+      console.log('Authorization failed');
       return NextResponse.json({ message: 'Not authorized' }, { status: 403 });
     }
 
-    await dbConnect();
-    
-    const userId = params.id;
-    
-    // Validate ObjectId
-    if (!ObjectId.isValid(userId)) {
-      return NextResponse.json({ message: 'Invalid user ID' }, { status: 400 });
-    }
-    
-    const updateData = await request.json();
-    
-    // Find user to update
-    const user = await User.findById(userId);
-    
-    if (!user) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
-    }
-    
-    // Prevent changing the role of the last admin
-    if (user.role === 'admin' && updateData.role === 'user') {
-      const adminCount = await User.countDocuments({ role: 'admin' });
-      if (adminCount <= 1) {
-        return NextResponse.json(
-          { message: 'Cannot change role: This is the last admin user' },
-          { status: 400 }
-        );
-      }
-    }
-    
-    // Update user fields
-    if (updateData.name) user.name = updateData.name;
-    if (updateData.email) user.email = updateData.email;
-    if (updateData.role) user.role = updateData.role;
-    
-    // Only update password if provided
-    if (updateData.password) {
-      user.password = updateData.password;
-    }
-    
-    await user.save();
-    
-    // Return user without password
-    const userResponse = user.toObject();
-    delete userResponse.password;
-    
-    return NextResponse.json(userResponse);
-  } catch (error) {
-    console.error('Error updating user:', error);
-    return NextResponse.json(
-      { message: error.message || 'Server error' },
-      { status: 500 }
-    );
-  }
-}
+    console.log('Admin authorized');
 
-// DELETE - Delete a user
-export async function DELETE(request, { params }) {
-  try {
-    // Check admin authorization
-    if (!await checkAdminAuth()) {
-      return NextResponse.json({ message: 'Not authorized' }, { status: 403 });
+    // Parse the multipart form data
+    const formData = await request.formData();
+    const file = formData.get('file');
+    
+    if (!file) {
+      console.log('No file in request');
+      return NextResponse.json(
+        { message: 'No file provided' },
+        { status: 400 }
+      );
+    }
+    
+    console.log('File received:', file.name, file.type, file.size);
+    
+    // Check file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/jpg'];
+    if (!allowedTypes.includes(file.type)) {
+      console.log('Invalid file type:', file.type);
+      return NextResponse.json(
+        { message: 'Invalid file type. Only JPEG, PNG, WEBP, and GIF files are allowed.' },
+        { status: 400 }
+      );
+    }
+    
+    // Check file size (10MB limit)
+    if (file.size > 10 * 1024 * 1024) {
+      console.log('File too large:', file.size);
+      return NextResponse.json(
+        { message: 'File size exceeds the 10MB limit.' },
+        { status: 400 }
+      );
     }
 
-    await dbConnect();
+    console.log('Starting Cloudinary upload...');
+    console.log('Cloudinary config:', {
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dnxyxgc1m',
+      has_api_key: !!(process.env.CLOUDINARY_API_KEY || '262695698328963'),
+      has_api_secret: !!(process.env.CLOUDINARY_API_SECRET || '9EzxMjSzz71frqYAGhFunNe7xWo')
+    });
+
+    // Upload to Cloudinary
+    const result = await uploadToCloudinary(file);
     
-    const userId = params.id;
-    
-    // Validate ObjectId
-    if (!ObjectId.isValid(userId)) {
-      return NextResponse.json({ message: 'Invalid user ID' }, { status: 400 });
-    }
-    
-    // Find user to delete
-    const user = await User.findById(userId);
-    
-    if (!user) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
-    }
-    
-    // Prevent deleting the last admin
-    if (user.role === 'admin') {
-      const adminCount = await User.countDocuments({ role: 'admin' });
-      if (adminCount <= 1) {
-        return NextResponse.json(
-          { message: 'Cannot delete the last admin user' },
-          { status: 400 }
-        );
-      }
-    }
-    
-    await User.findByIdAndDelete(userId);
-    
-    return NextResponse.json({ message: 'User deleted successfully' });
+    console.log('Upload successful:', result.secure_url);
+
+    return NextResponse.json({
+      message: 'File uploaded successfully',
+      url: result.secure_url,
+      publicId: result.public_id,
+      filename: result.original_filename,
+      size: result.bytes
+    });
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error('Error uploading file:', error);
+    console.error('Error stack:', error.stack);
     return NextResponse.json(
-      { message: 'Server error' },
+      { message: 'Error uploading file: ' + error.message },
       { status: 500 }
     );
   }

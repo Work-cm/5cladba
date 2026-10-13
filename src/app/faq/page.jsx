@@ -79,7 +79,7 @@ export default function FAQPage() {
     {
       category: 'shipping',
       question: 'Is packaging discreet?',
-      answer: 'Yes, absolutely. All orders are shipped in plain, unmarked packaging with no mention of K2PaperLiquid or product details. The sender name is generic for your privacy.'
+      answer: 'Yes, absolutely. All orders are shipped in plain, unmarked packaging with no mention of K2LiquidStore or product details. The sender name is generic for your privacy.'
     },
     {
       category: 'shipping',

@@ -6,7 +6,6 @@ import {
   FaTelegramPlane,
   FaPaperPlane,
   FaUser,
-  FaPhoneAlt,
   FaMapMarkerAlt,
   FaCommentDots,
 } from 'react-icons/fa';
@@ -14,7 +13,7 @@ import {
 const WHATSAPP_NUMBER = '19062613088'; // +1 906-261-3088
 const TELEGRAM_NUMBER = '+19102279379'; // +1 910 227 9379
 
-function buildMessage({ name, contact, phone, address, notes }, cart, orderDetails) {
+function buildMessage({ name, contact, address, notes }, cart, orderDetails) {
   const itemLines = cart
     .map((item) => {
       const price = Number(item.price ?? item.variant?.price ?? 0);
@@ -30,7 +29,6 @@ function buildMessage({ name, contact, phone, address, notes }, cart, orderDetai
     '',
     `Name: ${name}`,
     `Contact: ${contact}`,
-    `Phone: ${phone}`,
     `Shipping Address: ${address}`,
     notes ? `Message: ${notes}` : null,
     '',
@@ -52,7 +50,6 @@ export default function OrderContactForm({ cart, orderDetails }) {
   const [form, setForm] = useState({
     name: '',
     contact: '',
-    phone: '',
     address: '',
     notes: '',
   });
@@ -64,7 +61,6 @@ export default function OrderContactForm({ cart, orderDetails }) {
   const isValid =
     form.name.trim() &&
     form.contact.trim() &&
-    form.phone.trim() &&
     form.address.trim() &&
     confirmed;
 
@@ -151,15 +147,6 @@ export default function OrderContactForm({ cart, orderDetails }) {
               placeholder={method === 'whatsapp' ? '+1 906-261-3088' : '@yourusername'}
               className={inputClass}
             />
-          </div>
-        </div>
-
-        <div>
-          <label className={labelClass}>Phone Number *</label>
-          <div className="relative">
-            <FaPhoneAlt className={iconClass} />
-            <input name="phone" type="tel" required value={form.phone} onChange={handleChange}
-              placeholder="+1 234 567 8900" className={inputClass} />
           </div>
         </div>
 

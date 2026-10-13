@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { FaTelegramPlane, FaWhatsapp, FaBitcoin } from 'react-icons/fa';
-import { HiOutlineArrowRight as HiArrowRight } from 'react-icons/hi';
+import { FaTelegramPlane, FaWhatsapp, FaBitcoin, FaCheckCircle } from 'react-icons/fa';
+import { HiOutlineArrowRight as HiArrowRight } from 'react-icons/hi2';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Logo, { LogoMark } from '@/components/common/Logo';
 
 const footerLinks = {
   Shop: [
@@ -18,6 +18,7 @@ const footerLinks = {
     { href: '/about', label: 'About Us' },
     { href: '/faq', label: 'FAQ' },
     { href: '/shipping', label: 'Shipping Info' },
+    { href: '/contact', label: 'Contact' },
   ],
 };
 
@@ -33,56 +34,65 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-sky-900 text-white overflow-hidden">
+    <footer className="relative bg-ink text-white overflow-hidden">
+      {/* Giant serif wordmark band */}
+      <div className="border-b border-white/10">
+        <div className="container mx-auto px-6 pt-14 pb-8 flex flex-col items-center text-center">
+          <LogoMark size={56} />
+          <p className="font-display font-black tracking-tight mt-5 leading-none" style={{ fontSize: 'clamp(2.2rem,6vw,4.2rem)' }}>
+            K2 <span className="text-sky-400">Liquid</span><span className="text-cyan-400">Store</span>
+          </p>
+          <p className="text-white/35 text-xs tracking-[0.3em] uppercase font-semibold mt-3">Lab standard &middot; Discreet &middot; Worldwide</p>
+        </div>
+      </div>
 
-      {/* Watermark brand name */}
-      <div className="absolute top-0 left-0 right-0 flex items-start justify-center pointer-events-none overflow-hidden select-none" aria-hidden>
-        <span className="font-black text-transparent leading-none" style={{ fontSize: 'clamp(4rem,14vw,12rem)', WebkitTextStroke: '1px rgba(134,239,172,0.10)', marginTop: '-0.15em' }}>K2PaperLiquid</span>
-      </div>{/* Main grid */}
-      <div className="relative z-10 container mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-14">
+      {/* Main grid */}
+      <div className="container mx-auto px-6 py-14">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 lg:gap-12">
 
-          {/* Brand — spans 2 cols */}
-          <div className="col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-3 group w-fit">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-xl shadow-sky-500/25 group-hover:scale-105 transition-transform">
-                <span className="text-white font-black text-sm leading-none">K2</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-white font-black text-lg tracking-tight">K2Paper<span className="text-sky-400">Liquid</span></span>
-                <span className="text-sky-200/60 text-[9px] tracking-[0.2em] uppercase mt-0.5">k2paperliquid.com</span>
-              </div>
-            </Link>
+          {/* Newsletter + brand blurb */}
+          <div className="col-span-2 md:col-span-5 space-y-6">
+            <div>
+              <h4 className="font-display font-black text-2xl tracking-tight mb-2">Restocks &amp; new drops.</h4>
+              <p className="text-white/45 text-sm leading-relaxed max-w-xs">One short email when new batches land. No spam.</p>
+            </div>
+            <form onSubmit={handleSubscribe} className="flex w-full max-w-sm gap-2">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="you@email.com"
+                className="flex-1 bg-white/[0.06] border border-white/15 rounded-full px-5 py-3 text-sm text-white placeholder-white/35 outline-none focus:border-cyan-400 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={status !== 'idle'}
+                className="inline-flex items-center gap-2 bg-cyan-400 hover:bg-cyan-300 disabled:opacity-70 text-ink font-black text-sm px-5 py-3 rounded-full transition-all whitespace-nowrap"
+              >
+                {status === 'done' ? <><FaCheckCircle /> In</> : status === 'loading' ? '...' : <>Join <HiArrowRight size={13} /></>}
+              </button>
+            </form>
 
-            <p className="text-sky-100/70 text-sm leading-relaxed max-w-xs">Premium K2 paper sheets, K2 liquid spray and K2 powder. Strong, consistent quality with discreet worldwide shipping.</p>
-
-
-            {/* Contact quick links */}
-            <div className="space-y-2">
-              <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-sky-100/70 hover:text-white transition-colors">
-                <FaTelegramPlane className="text-sky-400 text-xs shrink-0" /> Telegram &mdash; +1 910 227 9379
+            <div className="space-y-2.5 pt-2">
+              <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-white/55 hover:text-white transition-colors">
+                <span className="w-8 h-8 rounded-full bg-white/[0.07] border border-white/10 flex items-center justify-center shrink-0"><FaTelegramPlane className="text-cyan-300 text-xs" /></span> Telegram &mdash; +1 910 227 9379
               </a>
-              <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-sky-100/70 hover:text-white transition-colors">
-                <FaWhatsapp className="text-sky-400 text-xs shrink-0" /> WhatsApp Support
+              <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-white/55 hover:text-white transition-colors">
+                <span className="w-8 h-8 rounded-full bg-white/[0.07] border border-white/10 flex items-center justify-center shrink-0"><FaWhatsapp className="text-cyan-300 text-xs" /></span> WhatsApp Support
               </a>
-
-              {/* Payment method */}
-              <div className="flex items-center gap-2.5 text-sm pt-1">
-                <FaBitcoin className="text-amber-400 text-2xl shrink-0" />
-                <span className="text-sky-100/70 text-base">Payment: <span className="text-amber-300 font-bold">Bitcoin (BTC) only</span></span>
-              </div>
             </div>
           </div>
 
           {/* Link columns */}
           {Object.entries(footerLinks).map(([section, links]) => (
-            <div key={section}>
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-sky-300 mb-5">{section}</h4>
+            <div key={section} className="md:col-span-2">
+              <h4 className="text-[11px] font-black uppercase tracking-[0.22em] text-cyan-400 mb-5">{section}</h4>
               <ul className="space-y-3">
                 {links.map(({ href, label }) => (
                   <li key={href}>
-                    <Link href={href} className="group text-sm text-sky-100/70 hover:text-white transition-colors flex items-center gap-1.5">
-                      <span className="w-0 group-hover:w-2 h-px bg-sky-400 transition-all duration-200 shrink-0" />
+                    <Link href={href} className="group text-sm text-white/50 hover:text-white transition-colors flex items-center gap-1.5">
+                      <span className="w-0 group-hover:w-2 h-[2px] bg-cyan-400 rounded-full transition-all duration-200 shrink-0" />
                       {label}
                     </Link>
                   </li>
@@ -90,29 +100,37 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
-      </div>
 
-      {/* Trust badges row */}
-      <div className="relative z-10 border-t border-white/10">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-            {['Premium Quality', 'Strong & Consistent', 'Discreet Packaging', 'Secure Checkout', '48h Dispatch', 'Bitcoin (BTC) Payments'].map(b => (
-              <span key={b} className="text-xs text-sky-100/60 font-medium flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-sky-400 rounded-full" /> {b}
-              </span>
-            ))}
+          {/* Assurance column */}
+          <div className="col-span-2 md:col-span-3">
+            <h4 className="text-[11px] font-black uppercase tracking-[0.22em] text-cyan-400 mb-5">Guaranteed</h4>
+            <ul className="space-y-3">
+              {['Dispatched within 48 hours', 'Plain, discreet packaging', 'Batch-tested consistency', 'Secure BTC checkout'].map((text) => (
+                <li key={text} className="flex items-center gap-2.5 text-sm text-white/50">
+                  <FaCheckCircle className="text-sky-400 text-[11px] shrink-0" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+            <div className="inline-flex items-center gap-2.5 text-sm bg-white/[0.06] border border-white/10 rounded-2xl px-4 py-3 mt-6">
+              <FaBitcoin className="text-cyan-400 text-xl shrink-0" />
+              <span className="text-white/60">Payment: <span className="text-cyan-300 font-bold">Bitcoin (BTC) only</span></span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="relative z-10 border-t border-white/10">
-        <div className="container mx-auto px-6 py-5 flex items-center justify-center">
-          <p className="text-sky-100/40 text-xs">&copy; {new Date().getFullYear()} K2PaperLiquid.com. All rights reserved.</p>
+      <div className="border-t border-white/10 bg-ink-deep">
+        <div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-white/30 text-xs">&copy; {new Date().getFullYear()} K2LiquidStore.com. All rights reserved.</p>
+          <div className="flex items-center gap-5 text-xs text-white/30">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/refund" className="hover:text-white transition-colors">Refunds</Link>
+          </div>
         </div>
       </div>
-
     </footer>
   );
 }

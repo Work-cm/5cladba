@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { FaShippingFast, FaGlobeAmericas, FaShieldAlt, FaCheckCircle } from 'react-icons/fa';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2paperliquid.com'),
-  title: 'Shipping & Delivery Policy | K2PaperLiquid',
-  description: 'Learn about K2PaperLiquid shipping methods, delivery times, discreet international shipping, order tracking and free shipping on orders over €100 for K2 paper, spray, powder and etomidate.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com'),
+  title: 'Shipping & Delivery Policy | K2LiquidStore',
+  description: 'Learn about K2LiquidStore shipping methods, delivery times, discreet international shipping, order tracking and free shipping on orders over €100 for K2 paper, spray, powder and etomidate.',
   keywords: [
     'k2 paper shipping', 'discreet shipping', 'international shipping',
-    'buy k2 online delivery', 'etomidate shipping', 'K2PaperLiquid shipping',
+    'buy k2 online delivery', 'etomidate shipping', 'K2LiquidStore shipping',
     'track order', '48h dispatch',
   ],
   alternates: { canonical: '/shipping' },
@@ -136,7 +136,7 @@ export default function ShippingPolicyPage() {
           <ul className="space-y-2 ml-1">
             {[
               ['Unmarked Packaging', 'Plain, neutral boxes or envelopes with no branding'],
-              ['Generic Sender Name', 'No mention of "K2PaperLiquid" on the package'],
+              ['Generic Sender Name', 'No mention of "K2LiquidStore" on the package'],
               ['Secure Sealing', 'Tamper-evident packaging to ensure product integrity'],
               ['Proper Cushioning', 'Products are carefully packed to prevent damage'],
               ['Confidential Labels', 'No product descriptions on shipping labels'],

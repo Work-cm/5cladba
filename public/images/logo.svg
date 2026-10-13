@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160" fill="none">
+  <defs>
+    <clipPath id="f"><path d="M59.3 34h21.6v32.4l24.7 56.6a13 13 0 0 1-11.7 20.2H45.9a13 13 0 0 1-11.7-20.2L59.3 66.4V34Z"/></clipPath>
+  </defs>
+  <circle cx="80" cy="80" r="64" fill="#0f3229"/>
+  <circle cx="80" cy="80" r="64" fill="none" stroke="#c98f12" stroke-width="4"/>
+  <path d="M59.3 34h21.6v32.4l24.7 56.6a13 13 0 0 1-11.7 20.2H45.9a13 13 0 0 1-11.7-20.2L59.3 66.4V34Z" fill="#e0efe8"/>
+  <g clip-path="url(#f)">
+    <rect x="16" y="94" width="128" height="66" fill="#c98f12"/>
+    <circle cx="58" cy="106" r="5.2" fill="#fdf8ec" opacity="0.75"/>
+    <circle cx="88" cy="116" r="3.7" fill="#fdf8ec" opacity="0.6"/>
+    <circle cx="72" cy="128" r="6" fill="#fdf8ec" opacity="0.5"/>
+  </g>
+  <rect x="49" y="30" width="39" height="8" rx="4" fill="#e0efe8"/>
+  <text x="170" y="96" font-family="Fraunces, Georgia, serif" font-weight="900" font-size="66" letter-spacing="-2" fill="#152019">K2 <tspan fill="#1f5744">Liquid</tspan><tspan fill="#c98f12">Store</tspan></text>
+  <text x="174" y="128" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="600" font-size="15" letter-spacing="4" fill="#8a9189">K2LIQUIDSTORE.COM</text>
+</svg>

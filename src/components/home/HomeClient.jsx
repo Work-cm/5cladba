@@ -2,28 +2,27 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { FaFlask, FaShoppingCart, FaStar, FaTruck, FaCheckCircle, FaQuoteLeft, FaBoxOpen, FaAtom, FaEye, FaLeaf, FaFileAlt, FaSprayCan, FaShieldAlt } from 'react-icons/fa';
-import { HiOutlineArrowRight as HiArrowRight } from 'react-icons/hi';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { FaFlask, FaShoppingCart, FaStar, FaTruck, FaCheckCircle, FaQuoteLeft, FaShieldAlt, FaArrowRight, FaArrowLeft, FaFileAlt, FaSprayCan, FaLeaf, FaBitcoin, FaTelegramPlane } from 'react-icons/fa';
+import { HiOutlineArrowRight as HiArrowRight, HiOutlineArrowUpRight as HiArrowUpRight } from 'react-icons/hi2';
 import { useCart } from '@/components/cart/CartProvider';
 import SEOKeywords from '@/components/seo/SEOKeywords';
 import HomeSEOContent from '@/components/seo/HomeSEOContent';
-import HeroCarousel from '@/components/home/HeroCarousel';
+import Hero from '@/components/home/Hero';
 
 export default function HomeClient({ featuredProducts = [] }) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#faf8f2]">
       <SEOKeywords />
-      <HeroCarousel />
-      <HeroDivider />
-      <K2CategoriesSection />
-      <FeaturedProductsSection products={featuredProducts} />
-      <HowItWorksSection />
-      <QualityBanner />
-      <TestimonialsSection />
+      <Hero />
+      <PromiseStrip />
+      <CategoryCollage />
+      <FeaturedShelf products={featuredProducts} />
+      <ProcessLedger />
+      <TestimonialCarousel />
       <HomeSEOContent />
-      <CTABanner />
+      <CTASlab />
     </div>
   );
 }
@@ -38,61 +37,48 @@ function FadeUp({ children, delay = 0 }) {
   );
 }
 
-/* -- Hero Divider Ticker -- */
-const TICKER_ITEMS = [
-  '◆ K2 Paper Sheets', '◆ K2 Liquid Spray', '◆ K2 Powder',
-  '◆ 50+ Countries Delivered', '◆ 48h Dispatch', '◆ 10K+ Happy Customers',
-  '◆ Strong & Consistent', '◆ Discreet Packaging',
-];
-
-function HeroDivider() {
+function SectionHead({ eyebrow, title, link = '/products', linkText = 'View all' }) {
   return (
-    <>
-      <style>{`@keyframes synthaTicker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.syntha-ticker{animation:synthaTicker 32s linear infinite;}`}</style>
-      <div className="relative overflow-hidden border-y border-sky-100 bg-sky-50/50">
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-sky-50/50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-sky-50/50 to-transparent z-10 pointer-events-none" />
-        <div className="overflow-hidden py-3.5">
-          <div className="syntha-ticker flex gap-10 whitespace-nowrap w-max">
-            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className="text-sky-500/60 text-[11px] font-bold uppercase tracking-[0.2em]">{item}</span>
-            ))}
-          </div>
+    <FadeUp>
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div>
+          <p className="eyebrow mb-3">{eyebrow}</p>
+          <h2 className="font-display text-4xl md:text-5xl font-black text-ink tracking-tight leading-[1.02]">{title}</h2>
         </div>
+        <Link href={link} className="group inline-flex items-center gap-2 text-ink text-sm font-bold w-fit">
+          <span className="border-b-2 border-cyan-500 pb-0.5 group-hover:border-sky-600 transition-colors">{linkText}</span>
+          <span className="w-7 h-7 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-sky-700 group-hover:border-sky-700 group-hover:text-white transition-all">
+            <HiArrowUpRight size={12} />
+          </span>
+        </Link>
       </div>
-    </>
+    </FadeUp>
   );
 }
 
-/* -- K2 Categories -- */
-const k2Categories = [
-  { href: '/products?category=k2-paper-sheets', Icon: FaFileAlt, title: 'K2 Paper Sheets', desc: 'Evenly coated A4 and letter-size infused sheets. Strong, odourless and discreet.' },
-  { href: '/products?category=k2-liquid-spray', Icon: FaSprayCan, title: 'K2 Liquid Spray', desc: 'High-strength liquid spray in sealed bottles. Easy to apply and long-lasting.' },
-  { href: '/products?category=k2-powder', Icon: FaLeaf, title: 'K2 Powder', desc: 'Pure cannabinoid powder for making your own paper, spray or blends.' },
-];
-
-function K2CategoriesSection() {
+/* ============ Promise strip — bordered stat row ============ */
+function PromiseStrip() {
+  const items = [
+    { Icon: FaTruck, label: 'Dispatched in 48h', sub: 'Tracked worldwide' },
+    { Icon: FaShieldAlt, label: 'Batch tested', sub: 'Every order QC checked' },
+    { Icon: FaBitcoin, label: 'BTC only', sub: 'Private & secure checkout' },
+    { Icon: FaCheckCircle, label: '50+ countries', sub: 'Discreet packaging' },
+  ];
   return (
-    <section className="py-24 bg-white">
+    <section className="bg-[#faf8f2] border-b border-ink/10">
       <div className="container mx-auto px-6">
-        <FadeUp>
-          <div className="text-center mb-14">
-            <p className="text-sky-500 text-xs font-black uppercase tracking-[0.25em] mb-3">&#9670; Our Products</p>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter">Three Ways to Get K2</h2>
-            <p className="text-gray-600 text-sm mt-3 max-w-xl mx-auto">Paper, spray or powder &mdash; pick the format that suits you.</p>
-          </div>
-        </FadeUp>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-          {k2Categories.map(({ href, Icon, title, desc }, i) => (
-            <FadeUp key={href} delay={i * 0.1}>
-              <Link href={href} className={`group relative overflow-hidden rounded-3xl p-8 border border-gray-200 hover:border-sky-300 hover:shadow-xl hover:shadow-sky-100 hover:-translate-y-1 transition-all h-full bg-gradient-to-br ${i === 0 ? 'from-sky-50 via-white to-white' : i === 1 ? 'from-cyan-50 via-white to-white' : 'from-emerald-50 via-white to-white'}`}>
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white text-sky-600 mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                  <Icon className="text-2xl" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-ink/10 border-x border-ink/10">
+          {items.map(({ Icon, label, sub }, i) => (
+            <FadeUp key={label} delay={i * 0.05}>
+              <div className="flex items-center gap-4 px-6 py-7">
+                <span className="w-10 h-10 rounded-full bg-sky-100 border border-sky-200 flex items-center justify-center shrink-0">
+                  <Icon className="text-sky-700 text-sm" />
+                </span>
+                <div>
+                  <p className="text-ink font-black text-sm leading-tight">{label}</p>
+                  <p className="text-ink/40 text-xs mt-0.5">{sub}</p>
                 </div>
-                <h3 className="text-gray-900 font-black text-2xl mb-3 tracking-tight">{title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">{desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sky-600 text-sm font-bold">Shop now <HiArrowRight size={14} className="transition-transform group-hover:translate-x-1" /></span>
-              </Link>
+              </div>
             </FadeUp>
           ))}
         </div>
@@ -101,7 +87,78 @@ function K2CategoriesSection() {
   );
 }
 
-/* -- Featured Products -- */
+/* ============ Categories — asymmetric editorial collage ============ */
+const collageCategories = [
+  { href: '/products?category=k2-paper-sheets', img: '/images/k2-paper/diablo-k2-paper.webp', Icon: FaFileAlt, n: '01', title: 'K2 Paper Sheets', desc: 'Evenly coated A4 & letter-size infused sheets — strong, odourless, discreet.', tall: true },
+  { href: '/products?category=k2-liquid-spray', img: '/images/k2-spray/diablo-k2-spray.jpg', Icon: FaSprayCan, n: '02', title: 'K2 Liquid Spray', desc: 'High-strength liquid spray in sealed bottles.' },
+  { href: '/products?category=k2-powder', img: '/images/k2-powder/jwh-018-powder.jpg', Icon: FaLeaf, n: '03', title: 'K2 Powder', desc: 'Pure cannabinoid powder for your own blends.' },
+  { href: '/products?category=etomidate', img: '/images/etomidate/etomidate-powder-pure.jpg', Icon: FaFlask, n: '04', title: 'Etomidate', desc: 'Research-grade powders and crystals.' },
+];
+
+function CategoryCollage() {
+  const [main, ...rest] = collageCategories;
+  return (
+    <section className="py-24 bg-[#faf8f2]">
+      <div className="container mx-auto px-6">
+        <SectionHead eyebrow="The Catalog" title={<>Four formats.<br />One standard.</>} link="/products" linkText="All products" />
+
+        <div className="grid lg:grid-cols-5 gap-5">
+          {/* Tall feature card */}
+          <FadeUp>
+            <Link href={main.href} className="group relative block h-[340px] lg:h-full min-h-[480px] rounded-lg overflow-hidden lg:col-span-2">
+              <Image src={main.img} alt={main.title} fill sizes="(max-width:1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/95 via-ink-deep/30 to-transparent" />
+              <div className="absolute top-5 left-5 flex items-center gap-2">
+                <span className="bg-cyan-400 text-ink text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Best Seller</span>
+              </div>
+              <span className="absolute top-5 right-5 font-display font-black text-white/25 text-6xl leading-none">{main.n}</span>
+              <div className="absolute bottom-0 left-0 right-0 p-7">
+                <main.Icon className="text-cyan-300 text-lg mb-3" />
+                <h3 className="font-display text-white font-black text-3xl tracking-tight">{main.title}</h3>
+                <p className="text-white/60 text-sm mt-2 max-w-xs leading-relaxed">{main.desc}</p>
+                <span className="inline-flex items-center gap-2 mt-4 text-cyan-300 text-xs font-black uppercase tracking-[0.2em]">
+                  Shop now <FaArrowRight size={9} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          </FadeUp>
+
+          {/* Remaining 3 — horizontal list rows on cream */}
+          <div className="lg:col-span-3 flex flex-col divide-y divide-ink/10 border-y border-ink/10">
+            {rest.map(({ href, img, Icon, n, title, desc }, i) => (
+              <FadeUp key={href} delay={0.08 + i * 0.06}>
+                <Link href={href} className="group flex items-center gap-5 py-6 px-2 sm:px-4 hover:bg-white transition-colors">
+                  <span className="font-display font-black text-ink/15 text-4xl sm:text-5xl w-14 shrink-0 group-hover:text-sky-700/30 transition-colors">{n}</span>
+                  <span className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden shrink-0 border border-ink/10">
+                    <Image src={img} alt={title} fill sizes="96px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                  </span>
+                  <span className="flex-1 min-w-0">
+                    <span className="flex items-center gap-2 mb-1">
+                      <Icon className="text-cyan-600 text-[10px]" />
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">Category</span>
+                    </span>
+                    <h3 className="font-display text-ink font-black text-xl sm:text-2xl tracking-tight group-hover:text-sky-700 transition-colors">{title}</h3>
+                    <p className="text-ink/50 text-xs sm:text-sm mt-1 truncate">{desc}</p>
+                  </span>
+                  <span className="w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center text-ink/40 group-hover:bg-ink group-hover:border-ink group-hover:text-white transition-all shrink-0">
+                    <HiArrowUpRight size={14} />
+                  </span>
+                </Link>
+              </FadeUp>
+            ))}
+            <FadeUp delay={0.32}>
+              <Link href="/products" className="flex items-center justify-center gap-2 py-5 text-xs font-black uppercase tracking-[0.25em] text-sky-700 hover:bg-white transition-colors">
+                Browse everything <FaArrowRight size={9} />
+              </Link>
+            </FadeUp>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ Featured — sharp product shelf ============ */
 function ProductCard({ product, addedId, onAddToCart }) {
   const displayPrice = product.price && product.price > 0
     ? product.price
@@ -110,34 +167,33 @@ function ProductCard({ product, addedId, onAddToCart }) {
       : 0;
 
   return (
-    <div className="relative group bg-white border border-gray-200 rounded-3xl overflow-hidden hover:border-sky-300 transition-all duration-300 hover:shadow-xl hover:shadow-sky-100 flex flex-col h-full">
-      {product.countInStock <= 0 && <div className="absolute top-3 left-3 z-10 bg-gray-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Sold Out</div>}
-      <Link href={`/products/${product.slug}`} className="relative block h-48 bg-gray-100 overflow-hidden shrink-0">
+    <div className="relative group bg-white border border-ink/10 rounded-lg overflow-hidden hover:border-sky-500 transition-all duration-300 hover:shadow-xl hover:shadow-sky-200/60 hover:-translate-y-1 flex flex-col">
+      {product.countInStock <= 0 && <div className="absolute top-3 left-3 z-10 bg-ink text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Sold Out</div>}
+      <Link href={`/products/${product.slug}`} className="relative block aspect-square bg-sky-50 overflow-hidden shrink-0">
         {product.images?.[0] ? (
-          <Image src={product.images[0]} alt={product.name} fill sizes="300px" className="object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src = '/images/Laboratory-Science.jpg'; }} />
+          <Image src={product.images[0]} alt={product.name} fill sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src = '/images/Laboratory-Science.jpg'; }} />
         ) : (
           <div className="w-full h-full flex items-center justify-center"><FaFlask className="text-gray-400 text-4xl" /></div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </Link>
       <div className="p-4 flex flex-col flex-1">
-        <div className="flex items-center justify-between mb-1.5">
-          <span className="text-sky-500 text-[10px] font-black uppercase tracking-widest">{product.category}</span>
-          <div className="flex gap-0.5">{[1,2,3,4,5].map(n => <FaStar key={n} className={`text-[9px] ${n <= Math.round(product.rating||0) ? 'text-amber-400' : 'text-gray-200'}`} />)}</div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-cyan-700 text-[10px] font-black uppercase tracking-widest">{product.category}</span>
+          <div className="flex gap-0.5">{[1,2,3,4,5].map(n => <FaStar key={n} className={`text-[9px] ${n <= Math.round(product.rating||0) ? 'text-cyan-500' : 'text-gray-200'}`} />)}</div>
         </div>
-        <Link href={`/products/${product.slug}`}><h3 className="text-gray-900 font-bold text-sm leading-snug hover:text-sky-500 transition-colors line-clamp-2 mb-1.5">{product.name}</h3></Link>
-        <p className="text-gray-600 text-xs leading-relaxed line-clamp-2 mb-3 flex-1">{product.description}</p>
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+        <Link href={`/products/${product.slug}`}><h3 className="text-ink font-bold text-sm leading-snug hover:text-sky-700 transition-colors line-clamp-2 mb-2">{product.name}</h3></Link>
+        <p className="text-ink/45 text-xs leading-relaxed line-clamp-2 mb-4 flex-1">{product.description}</p>
+        <div className="flex items-center justify-between pt-3 border-t border-ink/10">
           <div>
-            <p className="text-xl font-black text-gray-900 leading-none">&euro;{displayPrice.toFixed(2)}</p>
-            <p className={`text-[10px] mt-0.5 font-semibold ${product.countInStock > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{product.countInStock > 0 ? 'In stock' : 'Out of stock'}</p>
+            <p className="text-xl font-black text-ink leading-none">&euro;{displayPrice.toFixed(2)}</p>
+            <p className={`text-[10px] mt-1 font-semibold ${product.countInStock > 0 ? 'text-sky-700' : 'text-red-500'}`}>{product.countInStock > 0 ? 'In stock' : 'Out of stock'}</p>
           </div>
           {product.countInStock > 0 ? (
-            <motion.button onClick={e => onAddToCart(e, product)} whileTap={{ scale: 0.93 }} className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${addedId === product._id ? 'bg-emerald-500 text-white' : 'bg-sky-500 hover:bg-sky-600 text-white'}`}>
+            <motion.button onClick={e => onAddToCart(e, product)} whileTap={{ scale: 0.93 }} className={`flex items-center gap-1.5 px-4 py-2.5 rounded-md text-xs font-black uppercase tracking-wider transition-all ${addedId === product._id ? 'bg-cyan-400 text-ink' : 'bg-ink hover:bg-sky-700 text-white'}`}>
               {addedId === product._id ? <><FaCheckCircle /> Added</> : <><FaShoppingCart /> Add</>}
             </motion.button>
           ) : (
-            <button disabled className="px-3 py-2 rounded-xl text-xs font-black uppercase bg-gray-100 text-gray-400 cursor-not-allowed">Sold Out</button>
+            <button disabled className="px-4 py-2.5 rounded-md text-xs font-black uppercase bg-gray-100 text-gray-400 cursor-not-allowed">Sold Out</button>
           )}
         </div>
       </div>
@@ -145,7 +201,7 @@ function ProductCard({ product, addedId, onAddToCart }) {
   );
 }
 
-function FeaturedProductsSection({ products = [] }) {
+function FeaturedShelf({ products = [] }) {
   const { addToCart } = useCart();
   const [addedId, setAddedId] = useState(null);
 
@@ -160,7 +216,7 @@ function FeaturedProductsSection({ products = [] }) {
     if (cartIcon) {
       const cr = cartIcon.getBoundingClientRect();
       const dot = document.createElement('div');
-      dot.style.cssText = `position:fixed;z-index:9999;width:12px;height:12px;border-radius:50%;background:#16a34a;pointer-events:none;transition:transform 0.65s cubic-bezier(0.4,0,1,1),opacity 0.65s ease;top:${br.top + br.height / 2}px;left:${br.left + br.width / 2}px;`;
+      dot.style.cssText = `position:fixed;z-index:9999;width:12px;height:12px;border-radius:50%;background:#c98f12;box-shadow:0 0 12px rgba(201,143,18,.6);pointer-events:none;transition:transform 0.65s cubic-bezier(0.4,0,1,1),opacity 0.65s ease;top:${br.top + br.height / 2}px;left:${br.left + br.width / 2}px;`;
       document.body.appendChild(dot);
       requestAnimationFrame(() => { dot.style.transform = `translate(${cr.left - br.left}px,${cr.top - br.top}px) scale(0.3)`; dot.style.opacity = '0'; });
       setTimeout(() => { dot.remove(); cartIcon.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' }], { duration: 300 }); }, 680);
@@ -168,22 +224,14 @@ function FeaturedProductsSection({ products = [] }) {
   };
 
   return (
-    <section className="py-24 bg-gray-50/70 border-b border-gray-200">
+    <section className="py-24 bg-white border-y border-ink/10">
       <div className="container mx-auto px-6">
-        <FadeUp>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-            <div>
-              <p className="text-sky-500 text-xs font-black uppercase tracking-[0.25em] mb-2">&#9670; Products</p>
-              <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter">Featured Products</h2>
-              <p className="text-gray-600 text-sm mt-3">Our best-selling K2 paper sheets, liquid sprays and powders.</p>
-            </div>
-            <Link href="/products" className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-900 hover:border-sky-300 hover:text-sky-600 px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">View all <HiArrowRight size={14} /></Link>
-          </div>
-        </FadeUp>
+        <SectionHead eyebrow="Featured" title={<>Best sellers,<br />fresh stock.</>} link="/products" linkText="View all" />
+
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product, i) => (
-              <FadeUp key={product._id} delay={i * 0.05}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {products.slice(0, 8).map((product, i) => (
+              <FadeUp key={product._id} delay={(i % 4) * 0.06}>
                 <ProductCard product={product} addedId={addedId} onAddToCart={handleAddToCart} />
               </FadeUp>
             ))}
@@ -196,34 +244,36 @@ function FeaturedProductsSection({ products = [] }) {
   );
 }
 
-/* -- How It Works -- */
-const steps = [
-  { n: '01', Icon: FaBoxOpen, title: 'Pick Your Format', desc: 'Choose K2 paper sheets, liquid spray or powder. Add to cart and checkout securely in minutes.' },
-  { n: '02', Icon: FaShieldAlt, title: 'Quality Checked', desc: 'Every batch is tested for strength and consistency before it leaves our hands.' },
-  { n: '03', Icon: FaTruck, title: 'Discreet Delivery', desc: 'Orders dispatched within 48h in plain unmarked packaging. Full tracking provided at every step.' },
+/* ============ Process — editorial ledger rows ============ */
+const ledgerSteps = [
+  { n: 'No. 1', title: 'Pick your format', desc: 'Choose K2 paper sheets, liquid spray or powder. Add to cart and checkout securely in minutes.' },
+  { n: 'No. 2', title: 'We check the batch', desc: 'Every batch is tested for strength and consistency before it leaves our hands.' },
+  { n: 'No. 3', title: 'Discreet delivery', desc: 'Orders dispatched within 48h in plain unmarked packaging. Full tracking provided.' },
 ];
 
-function HowItWorksSection() {
+function ProcessLedger() {
   return (
-    <section className="py-24 bg-white border-t border-gray-200">
-      <div className="container mx-auto px-6">
+    <section className="py-24 bg-[#faf8f2]">
+      <div className="container mx-auto px-6 max-w-4xl">
         <FadeUp>
           <div className="text-center mb-14">
-            <p className="text-sky-500 text-xs font-black uppercase tracking-[0.25em] mb-3">&#9670; Process</p>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter">How It Works</h2>
-            <p className="text-gray-600 text-sm mt-3">Three simple steps from order to delivery.</p>
+            <p className="eyebrow justify-center mb-4">Process</p>
+            <h2 className="font-display text-4xl md:text-5xl font-black text-ink tracking-tight">How it works</h2>
           </div>
         </FadeUp>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {steps.map(({ n, Icon, title, desc }, i) => (
+
+        <div className="border-y border-ink/10 divide-y divide-ink/10">
+          {ledgerSteps.map(({ n, title, desc }, i) => (
             <FadeUp key={n} delay={i * 0.1}>
-              <div className="relative bg-sky-50/60 border border-sky-100 rounded-3xl p-8 hover:border-sky-300 transition-all group text-center shadow-sm hover:shadow-md">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm select-none">{n}</div>
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-sky-200 mb-5 group-hover:bg-sky-100 transition-colors shadow-sm">
-                  <Icon className="text-sky-500 text-2xl" />
+              <div className="group grid grid-cols-1 md:grid-cols-[140px_1fr_auto] items-center gap-3 md:gap-8 py-8 px-2 hover:bg-white transition-colors">
+                <span className="font-display font-black text-cyan-600 text-lg italic">{n}</span>
+                <div>
+                  <h3 className="font-display text-ink font-black text-2xl tracking-tight group-hover:text-sky-700 transition-colors">{title}</h3>
+                  <p className="text-ink/50 text-sm leading-relaxed mt-1.5 max-w-lg">{desc}</p>
                 </div>
-                <h3 className="text-gray-900 font-black text-lg mb-2 tracking-tight">{title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+                <span className="hidden md:flex w-10 h-10 rounded-full border border-ink/15 items-center justify-center text-ink/30 group-hover:bg-sky-700 group-hover:border-sky-700 group-hover:text-white transition-all">
+                  <FaCheckCircle size={14} />
+                </span>
               </div>
             </FadeUp>
           ))}
@@ -233,121 +283,96 @@ function HowItWorksSection() {
   );
 }
 
-/* -- Quality Banner -- */
-function QualityBanner() {
-  const facts = [
-    { Icon: FaAtom, label: '99%', sub: 'Purity Powder' },
-    { Icon: FaEye, label: '3', sub: 'K2 Formats' },
-    { Icon: FaLeaf, label: '10K+', sub: 'Customers Served' },
-    { Icon: FaTruck, label: '48h', sub: 'Dispatch Time' },
-  ];
+/* ============ Testimonials — single quote carousel ============ */
+const testimonials = [
+  { text: "The K2 paper sheets are evenly coated and strong. Best I've ordered online, and it arrived in three days.", author: "J. Smith", role: "Verified Buyer" },
+  { text: "Fast shipping, excellent service. The liquid spray is consistent every single time we order.", author: "L. Johnson", role: "Repeat Customer" },
+  { text: "We rely on K2LiquidStore for all our K2 needs. Packaging is plain and discreet, exactly as promised.", author: "M. Williams", role: "Verified Buyer" },
+  { text: "The powder is clean and potent. Made my own sheets with it and the results were great.", author: "A. Rodriguez", role: "Repeat Customer" },
+  { text: "Great results on every order. K2LiquidStore is my go-to for paper and spray.", author: "K. Chen", role: "Verified Buyer" },
+  { text: "Prompt support and discreet packaging. Exactly what I needed.", author: "T. Okafor", role: "Verified Buyer" },
+];
+
+function TestimonialCarousel() {
+  const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState(1);
+
+  const next = useCallback(() => { setDir(1); setIndex(i => (i + 1) % testimonials.length); }, []);
+  const prev = () => { setDir(-1); setIndex(i => (i - 1 + testimonials.length) % testimonials.length); };
+
+  useEffect(() => {
+    const t = setInterval(next, 6000);
+    return () => clearInterval(t);
+  }, [next]);
+
+  const t = testimonials[index];
+
   return (
-    <section className="border-t border-gray-200 overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[360px]">
-        <div className="relative min-h-[240px] lg:min-h-auto">
-          <Image src="/images/Laboratory-Science.jpg" alt="Laboratory quality" fill className="object-cover object-center" sizes="50vw" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/80 hidden lg:block" />
-          <div className="absolute inset-0 bg-white/50 lg:hidden" />
-          <div className="absolute bottom-6 left-6 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl px-5 py-3 shadow-sm">
-            <p className="text-gray-900 font-black text-sm">Sealed & Fresh</p>
-            <p className="text-gray-600 text-xs mt-0.5">Every order packed to order</p>
-          </div>
-        </div>
-        <div className="bg-sky-50/70 px-10 py-16 flex flex-col justify-center">
-          <FadeUp>
-            <p className="text-sky-500 text-xs font-black uppercase tracking-[0.25em] mb-3">&#9670; Our Numbers</p>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter mb-8">Quality You Can<br />Measure.</h2>
-          </FadeUp>
-          <div className="grid grid-cols-2 gap-6">
-            {facts.map(({ Icon, label, sub }, i) => (
-              <FadeUp key={sub} delay={i * 0.08}>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-sky-200 flex items-center justify-center shrink-0 shadow-sm">
-                    <Icon className="text-sky-500 text-lg" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-black text-gray-900 leading-none">{label}</p>
-                    <p className="text-gray-600 text-xs mt-0.5">{sub}</p>
-                  </div>
+    <section className="py-24 bg-white border-y border-ink/10">
+      <div className="container mx-auto px-6 max-w-3xl text-center">
+        <FadeUp>
+          <p className="eyebrow justify-center mb-4">Testimonials</p>
+          <FaQuoteLeft className="text-cyan-500 text-3xl mx-auto mb-6" />
+        </FadeUp>
+
+        <div className="relative min-h-[190px] sm:min-h-[160px]">
+          <AnimatePresence mode="wait" custom={dir}>
+            <motion.blockquote
+              key={index}
+              initial={{ opacity: 0, x: dir * 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: dir * -40 }}
+              transition={{ duration: 0.4 }}
+            >
+              <p className="font-display text-ink text-2xl md:text-3xl font-semibold leading-snug tracking-tight">&ldquo;{t.text}&rdquo;</p>
+              <div className="flex items-center justify-center gap-3 mt-7">
+                <div className="w-10 h-10 rounded-full bg-sky-700 flex items-center justify-center text-white font-black text-sm">{t.author[0]}</div>
+                <div className="text-left">
+                  <p className="text-ink font-bold text-sm leading-tight">{t.author}</p>
+                  <p className="text-cyan-600 text-[11px] font-semibold">{t.role}</p>
                 </div>
-              </FadeUp>
+              </div>
+            </motion.blockquote>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex items-center justify-center gap-6 mt-10">
+          <button onClick={prev} aria-label="Previous testimonial" className="w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center text-ink/60 hover:bg-ink hover:text-white hover:border-ink transition-all">
+            <FaArrowLeft size={12} />
+          </button>
+          <div className="flex gap-2">
+            {testimonials.map((_, i) => (
+              <button key={i} onClick={() => { setDir(i > index ? 1 : -1); setIndex(i); }} aria-label={`Go to testimonial ${i + 1}`} className={`h-1.5 rounded-full transition-all ${i === index ? 'w-8 bg-sky-700' : 'w-1.5 bg-ink/15 hover:bg-ink/30'}`} />
             ))}
           </div>
-          <FadeUp delay={0.3}>
-            <Link href="/about" className="inline-flex items-center gap-2 mt-8 text-sky-500 hover:text-sky-600 text-sm font-bold transition-colors">
-              Learn about our standards <HiArrowRight size={13} />
-            </Link>
-          </FadeUp>
+          <button onClick={next} aria-label="Next testimonial" className="w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center text-ink/60 hover:bg-ink hover:text-white hover:border-ink transition-all">
+            <FaArrowRight size={12} />
+          </button>
         </div>
       </div>
     </section>
   );
 }
 
-/* -- Testimonials -- */
-const testimonials = [
-  { text: "The K2 paper sheets are evenly coated and strong. Best I've ordered online, and it arrived in three days.", author: "J. Smith", role: "Verified Buyer", avatar: "J" },
-  { text: "Fast shipping, excellent service. The liquid spray is consistent every single time we order.", author: "L. Johnson", role: "Repeat Customer", avatar: "L" },
-  { text: "We rely on K2PaperLiquid for all our K2 needs. Packaging is plain and discreet, exactly as promised.", author: "M. Williams", role: "Verified Buyer", avatar: "M" },
-  { text: "The powder is clean and potent. Made my own sheets with it and the results were great.", author: "A. Rodriguez", role: "Repeat Customer", avatar: "A" },
-  { text: "Great results on every order. K2PaperLiquid is my go-to for paper and spray.", author: "K. Chen", role: "Verified Buyer", avatar: "K" },
-  { text: "Prompt support and discreet packaging. Exactly what I needed.", author: "T. Okafor", role: "Verified Buyer", avatar: "T" },
-];
-
-function TestimonialsSection() {
+/* ============ CTA — dark green slab ============ */
+function CTASlab() {
   return (
-    <section className="py-24 bg-gray-50/50 border-t border-gray-200">
-      <div className="container mx-auto px-6">
+    <section className="relative overflow-hidden bg-ink-deep">
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#ecc84f 1.5px, transparent 1.5px)', backgroundSize: '30px 30px' }} />
+      <div className="absolute -top-32 -left-24 w-[30rem] h-[30rem] rounded-full bg-sky-700/30 blur-[130px] pointer-events-none" />
+      <div className="absolute -bottom-40 -right-24 w-[26rem] h-[26rem] rounded-full bg-cyan-600/20 blur-[130px] pointer-events-none" />
+      <div className="relative container mx-auto px-6 py-24 lg:py-28 text-center">
         <FadeUp>
-          <div className="text-center mb-14">
-            <p className="text-sky-500 text-xs font-black uppercase tracking-[0.25em] mb-3">&#9670; Testimonials</p>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter">What Customers Say</h2>
-            <p className="text-gray-600 mt-3 text-sm">Trusted by thousands of K2 customers across the globe.</p>
-          </div>
-        </FadeUp>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {testimonials.map(({ text, author, role, avatar }, i) => (
-            <FadeUp key={i} delay={i * 0.06}>
-              <div className="bg-white border border-gray-200 rounded-3xl p-7 hover:border-sky-300 transition-all h-full flex flex-col justify-between shadow-sm hover:shadow-md">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex gap-0.5">{[1,2,3,4,5].map(n => <FaStar key={n} className="text-amber-400 text-xs" />)}</div>
-                    <FaQuoteLeft className="text-sky-200 text-xl" />
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
-                </div>
-                <div className="flex items-center gap-3 pt-5 mt-5 border-t border-gray-100">
-                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white font-black text-sm shrink-0">{avatar}</div>
-                  <div>
-                    <p className="text-gray-900 font-bold text-sm leading-tight">{author}</p>
-                    <p className="text-sky-500 text-xs font-medium">{role}</p>
-                  </div>
-                </div>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -- CTA Banner -- */
-function CTABanner() {
-  return (
-    <section className="relative overflow-hidden border-t border-gray-200">
-      <div className="absolute inset-0 bg-gradient-to-br from-sky-500 via-sky-600 to-sky-700 pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
-      <div className="relative z-10 container mx-auto px-6 py-24 text-center">
-        <FadeUp>
-          <p className="text-sky-200 text-xs font-black uppercase tracking-[0.3em] mb-4">&#9670; Get Started Today</p>
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.9] mb-6">Order Your<br />K2 Today.</h2>
-          <p className="text-sky-100 text-base max-w-xl mx-auto mb-10">Join thousands of customers who trust K2PaperLiquid for premium K2 paper sheets, liquid spray and powder &mdash; discreetly delivered.</p>
+          <p className="inline-flex items-center gap-2 text-cyan-300 text-xs font-black uppercase tracking-[0.3em] mb-6 border border-cyan-300/30 rounded-full px-4 py-1.5">Lab Standard Quality</p>
+          <h2 className="font-display text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.02] mb-6">Order your K2<br /><span className="italic text-cyan-300">the discreet way.</span></h2>
+          <p className="text-white/60 text-base max-w-xl mx-auto mb-10">Join thousands of customers who trust K2LiquidStore for premium paper sheets, liquid spray and powder — delivered fast and plain.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/products" className="group inline-flex items-center gap-2.5 bg-white text-sky-700 font-black px-10 py-[1.125rem] rounded-2xl transition-all hover:bg-sky-50 hover:-translate-y-1 shadow-2xl text-base">
+            <Link href="/products" className="group inline-flex items-center gap-2.5 bg-cyan-400 hover:bg-cyan-300 text-ink font-black px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
               Shop Now <HiArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/30 text-white hover:text-white hover:border-white/60 font-bold px-10 py-[1.125rem] rounded-2xl transition-all hover:-translate-y-1 text-base">Telegram Us</a>
+            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
+              <FaTelegramPlane size={15} /> Telegram Us
+            </a>
           </div>
         </FadeUp>
       </div>

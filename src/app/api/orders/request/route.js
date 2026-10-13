@@ -117,7 +117,7 @@ Total: ${money(totals.total)}
 
     // 1. Notify the store
     const notification = await transporter.sendMail({
-      from: `"K2PaperLiquid Orders" <${FROM_EMAIL}>`,
+      from: `"K2LiquidStore Orders" <${FROM_EMAIL}>`,
       to: STORE_EMAIL,
       replyTo: email,
       subject: `New Order Request ${reference} - ${money(totals.total)}`,
@@ -165,7 +165,7 @@ Total: ${money(totals.total)}
       </center>
     </div>
     <div style="background:#f8f9fa;padding:18px;text-align:center;border-top:1px solid #e9ecef;">
-      <p style="margin:4px 0;color:#6c757d;font-size:12px;"><strong>K2PaperLiquid</strong> - Order request from website checkout</p>
+      <p style="margin:4px 0;color:#6c757d;font-size:12px;"><strong>K2LiquidStore</strong> - Order request from website checkout</p>
     </div>
   </div>
 </body>
@@ -176,20 +176,20 @@ Total: ${money(totals.total)}
     let confirmation = { messageId: 'not-sent', status: 'skipped' };
     try {
       confirmation = await transporter.sendMail({
-        from: `"K2PaperLiquid" <${FROM_EMAIL}>`,
+        from: `"K2LiquidStore" <${FROM_EMAIL}>`,
         to: email,
         replyTo: STORE_EMAIL,
-        subject: `Order request received (${reference}) - K2PaperLiquid`,
+        subject: `Order request received (${reference}) - K2LiquidStore`,
         text: `Dear ${name},
 
-Thank you for your order request with K2PaperLiquid.
+Thank you for your order request with K2LiquidStore.
 
 We have received your request and will reply within 24 hours with secure payment instructions.
 ${detailsText}
 If you have any questions, reply to this email or contact ${STORE_EMAIL}.
 
 Best regards,
-The K2PaperLiquid Team`,
+The K2LiquidStore Team`,
         html: `
 <!DOCTYPE html>
 <html>
@@ -232,12 +232,12 @@ The K2PaperLiquid Team`,
         Questions? Reply to this email or contact
         <a href="mailto:${STORE_EMAIL}" style="color:#0284c7;text-decoration:none;">${STORE_EMAIL}</a>.
       </p>
-      <p style="color:#555;margin-top:18px;">Best regards,<br><strong>The K2PaperLiquid Team</strong></p>
+      <p style="color:#555;margin-top:18px;">Best regards,<br><strong>The K2LiquidStore Team</strong></p>
     </div>
     <div style="background:#f8f9fa;padding:22px;text-align:center;border-top:1px solid #e9ecef;">
-      <div style="font-size:19px;font-weight:700;color:#16a34a;margin-bottom:8px;">K2PaperLiquid</div>
+      <div style="font-size:19px;font-weight:700;color:#1f5744;margin-bottom:8px;">K2LiquidStore</div>
       <p style="margin:4px 0;color:#6c757d;font-size:12px;">K2 Paper Sheets • K2 Liquid Spray • K2 Powder</p>
-      <p style="margin-top:12px;font-size:11px;color:#999;">&copy; ${new Date().getFullYear()} K2PaperLiquid. All rights reserved.</p>
+      <p style="margin-top:12px;font-size:11px;color:#999;">&copy; ${new Date().getFullYear()} K2LiquidStore. All rights reserved.</p>
     </div>
   </div>
 </body>

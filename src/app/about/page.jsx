@@ -35,7 +35,7 @@ export default function AboutPage() {
               Premium K2 paper sheets, liquid spray and powder shipped fast and discreet, worldwide.
             </h1>
             <p className="text-gray-900 text-lg leading-relaxed">
-              K2PaperLiquid is a specialist supplier of K2 paper sheets, K2 liquid spray and cannabinoid K2 powder. We serve customers across more than 50 countries with consistent quality, fast dispatch and plain, discreet packaging on every order.
+              K2LiquidStore is a specialist supplier of K2 paper sheets, K2 liquid spray and cannabinoid K2 powder. We serve customers across more than 50 countries with consistent quality, fast dispatch and plain, discreet packaging on every order.
             </p>
           </motion.div>
         </div>
@@ -68,7 +68,7 @@ export default function AboutPage() {
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight mb-6">Our story</h2>
           <div className="space-y-5 text-gray-900 leading-relaxed">
             <p>
-              K2PaperLiquid was founded on a simple premise: getting strong, high-quality K2 products shouldn't be complicated or risky. We set out to build a store that pairs consistent product with the speed and discretion customers expect.
+              K2LiquidStore was founded on a simple premise: getting strong, high-quality K2 products shouldn't be complicated or risky. We set out to build a store that pairs consistent product with the speed and discretion customers expect.
             </p>
             <p>
               Today our catalog focuses on <strong className="text-gray-900">K2 paper sheets, K2 liquid spray and cannabinoid K2 powder</strong>. Every batch we stock is quality-checked before it's listed, so you get the same strong product every time.

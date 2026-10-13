@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaLock, FaSpinner, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLock, FaSpinner } from 'react-icons/fa';
 import { useCart } from '@/components/cart/CartProvider';
 
 export default function CheckoutForm({ orderDetails }) {
@@ -13,8 +13,7 @@ export default function CheckoutForm({ orderDetails }) {
   const [processing, setProcessing] = useState(false);
   const [billingDetails, setBillingDetails] = useState({
     name: '',
-    email: '',
-    phone: '',
+    whatsapp: '',
     address: '',
     city: '',
     postalCode: '',
@@ -37,8 +36,7 @@ export default function CheckoutForm({ orderDetails }) {
         body: JSON.stringify({
           billingDetails: {
             name: billingDetails.name,
-            email: billingDetails.email,
-            phone: billingDetails.phone,
+            whatsapp: billingDetails.whatsapp,
             address: {
               line1: billingDetails.address,
               city: billingDetails.city,
@@ -83,14 +81,9 @@ export default function CheckoutForm({ orderDetails }) {
           <input name="name" type="text" required value={billingDetails.name} onChange={handleChange}
             placeholder="John Doe" className={inputClass} />
         </div>
-        <div>
-          <label className={labelClass}>Email Address</label>
-          <input name="email" type="email" required value={billingDetails.email} onChange={handleChange}
-            placeholder="john@example.com" className={inputClass} />
-        </div>
-        <div>
-          <label className={labelClass}>Phone Number</label>
-          <input name="phone" type="tel" value={billingDetails.phone} onChange={handleChange}
+        <div className="sm:col-span-2">
+          <label className={labelClass}>WhatsApp Number</label>
+          <input name="whatsapp" type="tel" required value={billingDetails.whatsapp} onChange={handleChange}
             placeholder="+1 234 567 8900" className={inputClass} />
         </div>
         <div>
@@ -134,7 +127,7 @@ export default function CheckoutForm({ orderDetails }) {
       </button>
 
       <p className="text-gray-900 text-xs text-center">
-        By placing your order you agree to be contacted with payment instructions via email.
+        By placing your order you agree to be contacted with payment instructions via WhatsApp.
       </p>
     </form>
   );

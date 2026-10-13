@@ -2,14 +2,20 @@ export const contentType = 'image/svg+xml';
 export const size = { width: 32, height: 32 };
 
 export default function Icon() {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="8" fill="#0f172a"/>
-  <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="rgba(220,38,38,0.6)" stroke-width="1.5"/>
-  <ellipse cx="16" cy="16" rx="11" ry="4.5" fill="none" stroke="rgba(139,92,246,0.55)" stroke-width="1" transform="rotate(0,16,16)"/>
-  <ellipse cx="16" cy="16" rx="11" ry="4.5" fill="none" stroke="rgba(167,139,250,0.45)" stroke-width="1" transform="rotate(60,16,16)"/>
-  <ellipse cx="16" cy="16" rx="11" ry="4.5" fill="none" stroke="rgba(167,139,250,0.45)" stroke-width="1" transform="rotate(-60,16,16)"/>
-  <circle cx="16" cy="16" r="3.2" fill="#dc2626"/>
-  <circle cx="16" cy="16" r="1.8" fill="#f87171"/>
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32" fill="none">
+  <defs>
+    <clipPath id="f"><path d="M27 6h10v15l11.4 26.2A6 6 0 0 1 43 56.5H21a6 6 0 0 1-5.4-9.3L27 21V6Z"/></clipPath>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="#0f3229"/>
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#c98f12" stroke-width="2"/>
+  <path d="M27 6h10v15l11.4 26.2A6 6 0 0 1 43 56.5H21a6 6 0 0 1-5.4-9.3L27 21V6Z" fill="#e0efe8"/>
+  <g clip-path="url(#f)">
+    <rect x="8" y="34" width="48" height="30" fill="#c98f12"/>
+    <circle cx="27" cy="42" r="2.4" fill="#fdf8ec" opacity="0.75"/>
+    <circle cx="36" cy="46" r="1.7" fill="#fdf8ec" opacity="0.6"/>
+    <circle cx="32" cy="51" r="2.8" fill="#fdf8ec" opacity="0.5"/>
+  </g>
+  <rect x="23" y="4" width="18" height="4" rx="2" fill="#e0efe8"/>
 </svg>`;
   return new Response(svg, {
     headers: { 'Content-Type': 'image/svg+xml' },

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useCart } from '@/components/cart/CartProvider';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaShoppingCart, FaUser, FaSearch, FaLeaf, FaFileAlt, FaSprayCan, FaTimes, FaChevronDown, FaSignOutAlt, FaUserShield, FaFlask, FaBitcoin, FaTruck, FaLock, FaTelegramPlane } from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaSearch, FaLeaf, FaVial, FaSprayCan, FaTimes, FaChevronDown, FaSignOutAlt, FaUserShield, FaFlask, FaBitcoin, FaTruck, FaLock, FaTelegramPlane } from 'react-icons/fa';
 import { HiMenu } from 'react-icons/hi';
 import Logo from '@/components/common/Logo';
 
@@ -17,10 +17,10 @@ const navLinks = [
 ];
 
 const shopCategories = [
-  { href: '/products?category=k2-paper-sheets', label: 'K2 Paper Sheets', Icon: FaFileAlt, desc: 'Infused A4 & letter sheets' },
-  { href: '/products?category=k2-liquid-spray', label: 'K2 Liquid Spray', Icon: FaSprayCan, desc: 'High-strength liquid spray' },
-  { href: '/products?category=k2-powder', label: 'K2 Powder', Icon: FaLeaf, desc: 'Pure cannabinoid powder' },
+  { href: '/products?category=cannabinoids', label: 'Cannabinoids', Icon: FaLeaf, desc: 'Synthetic cannabinoid powders' },
   { href: '/products?category=etomidate', label: 'Etomidate', Icon: FaFlask, desc: 'Etomidate powders & crystals' },
+  { href: '/products?category=vapes-kpods', label: 'Vapes / K-Pods', Icon: FaSprayCan, desc: 'Etomidate vapes & pods' },
+  { href: '/products?category=research%20chemicals', label: 'Research Chems', Icon: FaVial, desc: 'Lab-grade research chemicals' },
 ];
 
 export default function Navbar() {
@@ -268,7 +268,7 @@ export default function Navbar() {
                 <input
                   ref={searchRef}
                   type="search"
-                  placeholder="Search K2 paper, spray, powder..."
+                  placeholder="Search cannabinoids, etomidate, vapes..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   className="flex-1 bg-transparent text-white text-base outline-none placeholder-white/35"

@@ -376,13 +376,9 @@ export default function EditProduct({ params }) {
                   formErrors.category ? 'border border-sky-500' : ''
                 }`}
               >
-                <option value="k2-paper-sheets">K2 Paper Sheets</option>
-                <option value="k2-liquid-spray">K2 Liquid Spray</option>
-                <option value="k2-powder">K2 Powder</option>
-                <option value="etomidate">Etomidate</option>
                 <option value="cannabinoids">Cannabinoids</option>
-                <option value="opioids">Opioids</option>
-                <option value="nitazenes">Nitazenes</option>
+                <option value="etomidate">Etomidate</option>
+                <option value="vapes-kpods">Vapes / K-Pods</option>
                 <option value="research chemicals">Research Chemicals</option>
               </select>
               {formErrors.category && <p className="text-sky-400 text-sm mt-1">{formErrors.category}</p>}

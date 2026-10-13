@@ -9,17 +9,13 @@ import { FaStar, FaShoppingCart, FaCheck, FaShieldAlt, FaTruck, FaBoxOpen } from
 import { useCart } from '@/components/cart/CartProvider';
 import ProductReviews from '@/components/product/ProductReviews';
 
-// Exact variant label format used by the source store:
-// k2-paper-sheets -> "1 A4 sheet" / "2 A4 sheets"
-// k2-liquid-spray -> "100ml" (no space)
-// powders/others  -> "50g", or "1kg" when quantity >= 1000
+// Variant label format:
 // vapes-kpods     -> "1 pod" / "50 pods"
+// powders/others  -> "50g", or "1kg" when quantity >= 1000
 function variantLabel(product, variant) {
   if (variant.label) return variant.label;
   const cat = (product.category || '').toLowerCase();
   const q = variant.quantity;
-  if (cat === 'k2-paper-sheets') return `${q} ${q === 1 ? 'A4 sheet' : 'A4 sheets'}`;
-  if (cat === 'k2-liquid-spray') return `${q}ml`;
   if (cat === 'vapes-kpods') return `${q} ${q === 1 ? 'pod' : 'pods'}`;
   return q >= 1000 ? `${q / 1000}kg` : `${q}g`;
 }

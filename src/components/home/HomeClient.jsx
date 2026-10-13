@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { FaFlask, FaShoppingCart, FaStar, FaTruck, FaCheckCircle, FaQuoteLeft, FaShieldAlt, FaArrowRight, FaArrowLeft, FaFileAlt, FaSprayCan, FaLeaf, FaBitcoin, FaTelegramPlane } from 'react-icons/fa';
+import { FaFlask, FaShoppingCart, FaStar, FaTruck, FaCheckCircle, FaQuoteLeft, FaShieldAlt, FaArrowRight, FaArrowLeft, FaVial, FaSprayCan, FaLeaf, FaBitcoin, FaTelegramPlane } from 'react-icons/fa';
 import { HiOutlineArrowRight as HiArrowRight, HiOutlineArrowUpRight as HiArrowUpRight } from 'react-icons/hi2';
 import { useCart } from '@/components/cart/CartProvider';
 import SEOKeywords from '@/components/seo/SEOKeywords';
@@ -13,7 +13,7 @@ import Hero from '@/components/home/Hero';
 
 export default function HomeClient({ featuredProducts = [] }) {
   return (
-    <div className="min-h-screen bg-[#faf8f2]">
+    <div className="min-h-screen bg-[#fdf6f9]">
       <SEOKeywords />
       <Hero />
       <PromiseStrip />
@@ -65,7 +65,7 @@ function PromiseStrip() {
     { Icon: FaCheckCircle, label: '50+ countries', sub: 'Discreet packaging' },
   ];
   return (
-    <section className="bg-[#faf8f2] border-b border-ink/10">
+    <section className="bg-[#fdf6f9] border-b border-ink/10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-ink/10 border-x border-ink/10">
           {items.map(({ Icon, label, sub }, i) => (
@@ -89,69 +89,74 @@ function PromiseStrip() {
 
 /* ============ Categories — asymmetric editorial collage ============ */
 const collageCategories = [
-  { href: '/products?category=k2-paper-sheets', img: '/images/k2-paper/diablo-k2-paper.webp', Icon: FaFileAlt, n: '01', title: 'K2 Paper Sheets', desc: 'Evenly coated A4 & letter-size infused sheets — strong, odourless, discreet.', tall: true },
-  { href: '/products?category=k2-liquid-spray', img: '/images/k2-spray/diablo-k2-spray.jpg', Icon: FaSprayCan, n: '02', title: 'K2 Liquid Spray', desc: 'High-strength liquid spray in sealed bottles.' },
-  { href: '/products?category=k2-powder', img: '/images/k2-powder/jwh-018-powder.jpg', Icon: FaLeaf, n: '03', title: 'K2 Powder', desc: 'Pure cannabinoid powder for your own blends.' },
-  { href: '/products?category=etomidate', img: '/images/etomidate/etomidate-powder-pure.jpg', Icon: FaFlask, n: '04', title: 'Etomidate', desc: 'Research-grade powders and crystals.' },
+  { href: '/products?category=cannabinoids', img: '/images/k2-powder/5-fadb-powder.jpg', Icon: FaLeaf, n: '01', title: 'Cannabinoids', desc: 'Synthetic cannabinoid powders and precursor kits — lab-tested, batch-verified.', tall: true },
+  { href: '/products?category=etomidate', img: '/images/etomidate/etomidate-powder-pure.jpg', Icon: FaFlask, n: '02', title: 'Etomidate', desc: 'High-purity etomidate powders and crystals, COA included.' },
+  { href: '/products?category=vapes-kpods', img: '/images/vapes/etomidate-vape-k-pod-classic.jpg', Icon: FaSprayCan, n: '03', title: 'Vapes / K-Pods', desc: 'Pre-filled etomidate vape pods, disposables and starter kits.' },
+  { href: '/products?category=research%20chemicals', img: '/images/Laboratory-Science.jpg', Icon: FaVial, n: '04', title: 'Research Chemicals', desc: 'Lab-grade research chemicals, batch-tested for consistency.' },
 ];
 
 function CategoryCollage() {
-  const [main, ...rest] = collageCategories;
   return (
-    <section className="py-24 bg-[#faf8f2]">
-      <div className="container mx-auto px-6">
-        <SectionHead eyebrow="The Catalog" title={<>Four formats.<br />One standard.</>} link="/products" linkText="All products" />
+    <section className="relative py-24 bg-ink-deep overflow-hidden">
+      {/* Ambient glow accents */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_0%,rgba(34,211,238,0.12),transparent),radial-gradient(ellipse_50%_40%_at_85%_100%,rgba(56,189,248,0.10),transparent)]" />
 
-        <div className="grid lg:grid-cols-5 gap-5">
-          {/* Tall feature card */}
-          <FadeUp>
-            <Link href={main.href} className="group relative block h-[340px] lg:h-full min-h-[480px] rounded-lg overflow-hidden lg:col-span-2">
-              <Image src={main.img} alt={main.title} fill sizes="(max-width:1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/95 via-ink-deep/30 to-transparent" />
-              <div className="absolute top-5 left-5 flex items-center gap-2">
-                <span className="bg-cyan-400 text-ink text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Best Seller</span>
-              </div>
-              <span className="absolute top-5 right-5 font-display font-black text-white/25 text-6xl leading-none">{main.n}</span>
-              <div className="absolute bottom-0 left-0 right-0 p-7">
-                <main.Icon className="text-cyan-300 text-lg mb-3" />
-                <h3 className="font-display text-white font-black text-3xl tracking-tight">{main.title}</h3>
-                <p className="text-white/60 text-sm mt-2 max-w-xs leading-relaxed">{main.desc}</p>
-                <span className="inline-flex items-center gap-2 mt-4 text-cyan-300 text-xs font-black uppercase tracking-[0.2em]">
-                  Shop now <FaArrowRight size={9} className="transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
+      <div className="container mx-auto px-6 relative">
+        {/* Dark section header */}
+        <FadeUp>
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
+            <div>
+              <span className="inline-flex items-center gap-2 text-cyan-300 text-[11px] font-black uppercase tracking-[0.22em]">
+                <span className="w-6 h-px bg-cyan-300" /> The Catalog
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.02] mt-3">
+                Four lines.<br />One standard.
+              </h2>
+            </div>
+            <Link href="/products" className="group inline-flex items-center gap-2 text-cyan-300 text-xs font-black uppercase tracking-[0.22em] border-b border-cyan-300/30 pb-1 hover:border-cyan-300 transition-colors">
+              All products <FaArrowRight size={10} className="transition-transform group-hover:translate-x-1" />
             </Link>
-          </FadeUp>
+          </div>
+        </FadeUp>
 
-          {/* Remaining 3 — horizontal list rows on cream */}
-          <div className="lg:col-span-3 flex flex-col divide-y divide-ink/10 border-y border-ink/10">
-            {rest.map(({ href, img, Icon, n, title, desc }, i) => (
-              <FadeUp key={href} delay={0.08 + i * 0.06}>
-                <Link href={href} className="group flex items-center gap-5 py-6 px-2 sm:px-4 hover:bg-white transition-colors">
-                  <span className="font-display font-black text-ink/15 text-4xl sm:text-5xl w-14 shrink-0 group-hover:text-sky-700/30 transition-colors">{n}</span>
-                  <span className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden shrink-0 border border-ink/10">
-                    <Image src={img} alt={title} fill sizes="96px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
+        {/* Portrait image cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {collageCategories.map(({ href, img, Icon, n, title, desc }, i) => (
+            <FadeUp key={href} delay={0.05 + i * 0.07}>
+              <Link
+                href={href}
+                className="group relative block h-[440px] rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-300/50 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-cyan-500/10"
+              >
+                <Image
+                  src={img}
+                  alt={title}
+                  fill
+                  sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-deep via-ink-deep/35 to-ink-deep/10" />
+
+                {/* Ghost index number */}
+                <span className="absolute top-5 right-5 font-display font-black text-white/15 text-6xl leading-none group-hover:text-cyan-300/40 transition-colors">{n}</span>
+
+                {i === 0 && (
+                  <span className="absolute top-5 left-5 bg-cyan-400 text-ink text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">Flagship</span>
+                )}
+
+                {/* Card content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-cyan-300 mb-4 group-hover:bg-cyan-400 group-hover:text-ink transition-colors">
+                    <Icon className="text-sm" />
                   </span>
-                  <span className="flex-1 min-w-0">
-                    <span className="flex items-center gap-2 mb-1">
-                      <Icon className="text-cyan-600 text-[10px]" />
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700">Category</span>
-                    </span>
-                    <h3 className="font-display text-ink font-black text-xl sm:text-2xl tracking-tight group-hover:text-sky-700 transition-colors">{title}</h3>
-                    <p className="text-ink/50 text-xs sm:text-sm mt-1 truncate">{desc}</p>
+                  <h3 className="font-display text-white font-black text-2xl tracking-tight">{title}</h3>
+                  <p className="text-white/55 text-xs leading-relaxed mt-2 line-clamp-2">{desc}</p>
+                  <span className="inline-flex items-center gap-2 mt-4 text-cyan-300 text-[11px] font-black uppercase tracking-[0.2em]">
+                    Shop now <FaArrowRight size={9} className="transition-transform group-hover:translate-x-1" />
                   </span>
-                  <span className="w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center text-ink/40 group-hover:bg-ink group-hover:border-ink group-hover:text-white transition-all shrink-0">
-                    <HiArrowUpRight size={14} />
-                  </span>
-                </Link>
-              </FadeUp>
-            ))}
-            <FadeUp delay={0.32}>
-              <Link href="/products" className="flex items-center justify-center gap-2 py-5 text-xs font-black uppercase tracking-[0.25em] text-sky-700 hover:bg-white transition-colors">
-                Browse everything <FaArrowRight size={9} />
+                </div>
               </Link>
             </FadeUp>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -216,7 +221,7 @@ function FeaturedShelf({ products = [] }) {
     if (cartIcon) {
       const cr = cartIcon.getBoundingClientRect();
       const dot = document.createElement('div');
-      dot.style.cssText = `position:fixed;z-index:9999;width:12px;height:12px;border-radius:50%;background:#c98f12;box-shadow:0 0 12px rgba(201,143,18,.6);pointer-events:none;transition:transform 0.65s cubic-bezier(0.4,0,1,1),opacity 0.65s ease;top:${br.top + br.height / 2}px;left:${br.left + br.width / 2}px;`;
+      dot.style.cssText = `position:fixed;z-index:9999;width:12px;height:12px;border-radius:50%;background:#f089ac;box-shadow:0 0 12px rgba(240,137,172,.6);pointer-events:none;transition:transform 0.65s cubic-bezier(0.4,0,1,1),opacity 0.65s ease;top:${br.top + br.height / 2}px;left:${br.left + br.width / 2}px;`;
       document.body.appendChild(dot);
       requestAnimationFrame(() => { dot.style.transform = `translate(${cr.left - br.left}px,${cr.top - br.top}px) scale(0.3)`; dot.style.opacity = '0'; });
       setTimeout(() => { dot.remove(); cartIcon.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' }], { duration: 300 }); }, 680);
@@ -246,14 +251,14 @@ function FeaturedShelf({ products = [] }) {
 
 /* ============ Process — editorial ledger rows ============ */
 const ledgerSteps = [
-  { n: 'No. 1', title: 'Pick your format', desc: 'Choose K2 paper sheets, liquid spray or powder. Add to cart and checkout securely in minutes.' },
+  { n: 'No. 1', title: 'Pick your product', desc: 'Choose from cannabinoids, etomidate, vapes and more. Add to cart and checkout securely in minutes.' },
   { n: 'No. 2', title: 'We check the batch', desc: 'Every batch is tested for strength and consistency before it leaves our hands.' },
   { n: 'No. 3', title: 'Discreet delivery', desc: 'Orders dispatched within 48h in plain unmarked packaging. Full tracking provided.' },
 ];
 
 function ProcessLedger() {
   return (
-    <section className="py-24 bg-[#faf8f2]">
+    <section className="py-24 bg-[#fdf6f9]">
       <div className="container mx-auto px-6 max-w-4xl">
         <FadeUp>
           <div className="text-center mb-14">
@@ -285,11 +290,11 @@ function ProcessLedger() {
 
 /* ============ Testimonials — single quote carousel ============ */
 const testimonials = [
-  { text: "The K2 paper sheets are evenly coated and strong. Best I've ordered online, and it arrived in three days.", author: "J. Smith", role: "Verified Buyer" },
+  { text: "The etomidate powder is pure and consistent. Best I've ordered online, and it arrived in three days.", author: "J. Smith", role: "Verified Buyer" },
   { text: "Fast shipping, excellent service. The liquid spray is consistent every single time we order.", author: "L. Johnson", role: "Repeat Customer" },
-  { text: "We rely on K2LiquidStore for all our K2 needs. Packaging is plain and discreet, exactly as promised.", author: "M. Williams", role: "Verified Buyer" },
+  { text: "We rely on 5fadb5cladba for all our research chemical needs. Packaging is plain and discreet, exactly as promised.", author: "M. Williams", role: "Verified Buyer" },
   { text: "The powder is clean and potent. Made my own sheets with it and the results were great.", author: "A. Rodriguez", role: "Repeat Customer" },
-  { text: "Great results on every order. K2LiquidStore is my go-to for paper and spray.", author: "K. Chen", role: "Verified Buyer" },
+  { text: "Great results on every order. 5fadb5cladba is my go-to for etomidate and vapes.", author: "K. Chen", role: "Verified Buyer" },
   { text: "Prompt support and discreet packaging. Exactly what I needed.", author: "T. Okafor", role: "Verified Buyer" },
 ];
 
@@ -358,14 +363,14 @@ function TestimonialCarousel() {
 function CTASlab() {
   return (
     <section className="relative overflow-hidden bg-ink-deep">
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#ecc84f 1.5px, transparent 1.5px)', backgroundSize: '30px 30px' }} />
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#f6b3cb 1.5px, transparent 1.5px)', backgroundSize: '30px 30px' }} />
       <div className="absolute -top-32 -left-24 w-[30rem] h-[30rem] rounded-full bg-sky-700/30 blur-[130px] pointer-events-none" />
       <div className="absolute -bottom-40 -right-24 w-[26rem] h-[26rem] rounded-full bg-cyan-600/20 blur-[130px] pointer-events-none" />
       <div className="relative container mx-auto px-6 py-24 lg:py-28 text-center">
         <FadeUp>
           <p className="inline-flex items-center gap-2 text-cyan-300 text-xs font-black uppercase tracking-[0.3em] mb-6 border border-cyan-300/30 rounded-full px-4 py-1.5">Lab Standard Quality</p>
-          <h2 className="font-display text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.02] mb-6">Order your K2<br /><span className="italic text-cyan-300">the discreet way.</span></h2>
-          <p className="text-white/60 text-base max-w-xl mx-auto mb-10">Join thousands of customers who trust K2LiquidStore for premium paper sheets, liquid spray and powder — delivered fast and plain.</p>
+          <h2 className="font-display text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.02] mb-6">Order your chems<br /><span className="italic text-cyan-300">the discreet way.</span></h2>
+          <p className="text-white/60 text-base max-w-xl mx-auto mb-10">Join thousands of customers who trust 5fadb5cladba for premium cannabinoids, etomidate and research chemicals — delivered fast and plain.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/products" className="group inline-flex items-center gap-2.5 bg-cyan-400 hover:bg-cyan-300 text-ink font-black px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
               Shop Now <HiArrowRight size={14} className="transition-transform group-hover:translate-x-1" />

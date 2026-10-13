@@ -1,4 +1,4 @@
-import { Space_Grotesk, Fraunces } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
@@ -13,37 +13,36 @@ import WhatsAppButton from "@/components/common/WhatsAppButton";
 import AuthProvider from "@/components/auth/AuthProvider";
 import CartProvider from "@/components/cart/CartProvider";
 
-const spaceGrotesk = Space_Grotesk({
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
   preload: true,
 });
 
-const fraunces = Fraunces({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ['400', '600', '700', '900'],
+  weight: ['600', '700', '800', '900'],
   display: 'swap',
   preload: false,
   variable: '--font-display',
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
 
 export const metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'K2LiquidStore | K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate',
-    template: '%s | K2LiquidStore',
+    default: '5fadb5cladba | Cannabinoids, Etomidate & Vapes',
+    template: '%s | 5fadb5cladba',
   },
-  description: 'Buy K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and research-grade etomidate online at K2LiquidStore.com. Premium quality, discreet packaging and fast worldwide shipping.',
+  description: 'Buy cannabinoids, etomidate, etomidate vapes and research-grade chemicals online at 5fadb5cladba.com. Premium quality, discreet packaging and fast worldwide shipping.',
   keywords: [
-    'k2 paper sheets', 'k2 paper', 'k2 liquid spray', 'k2 spray', 'k2 powder',
-    'cannabinoids k2 powder', 'k2 spice', 'k2 spice paper',
-    'etomidate', 'etomidate powder', 'etomidate for sale', 'buy etomidate',
-    'buy k2 online', 'k2 for sale', 'k2liquidstore',
+    'cannabinoids', 'cannabinoid powder', 'buy cannabinoids', 'etomidate',
+    'etomidate powder', 'etomidate for sale', 'etomidate vape', 'k-pods',
+    'research chemicals', 'buy research chemicals online', '5fadb5cladba',
   ],
-  other: { 'theme-color': '#0b120e' },
+  other: { 'theme-color': '#170a10' },
   robots: {
     index: true,
     follow: true,
@@ -59,22 +58,22 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: 'K2LiquidStore',
-    title: 'K2LiquidStore | K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate',
-    description: 'Premium K2 paper sheets, K2 liquid spray, K2 powder and research-grade etomidate. Worldwide discreet shipping.',
+    siteName: '5fadb5cladba',
+    title: '5fadb5cladba | Cannabinoids, Etomidate & Vapes',
+    description: 'Premium cannabinoids, etomidate, vapes and research-grade chemicals. Worldwide discreet shipping.',
     images: [
       {
         url: `${BASE_URL}/images/logo.png`,
         width: 1200,
         height: 630,
-        alt: 'K2LiquidStore — K2 Paper, Spray, Powder & Etomidate',
+        alt: '5fadb5cladba — Cannabinoids, Etomidate & Vapes',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'K2LiquidStore | K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate',
-    description: 'Premium K2 paper sheets, K2 liquid spray, K2 powder and research-grade etomidate. Worldwide discreet shipping.',
+    title: '5fadb5cladba | Cannabinoids, Etomidate & Vapes',
+    description: 'Premium cannabinoids, etomidate, vapes and research-grade chemicals. Worldwide discreet shipping.',
     images: [`${BASE_URL}/images/logo.png`],
   },
   icons: {
@@ -107,7 +106,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${spaceGrotesk.className} ${fraunces.variable} font-sans min-h-screen flex flex-col`}>
+      <body className={`${manrope.className} ${playfair.variable} font-sans min-h-screen flex flex-col`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-sky-500 focus:text-white focus:px-4 focus:py-2 focus:rounded"

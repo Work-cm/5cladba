@@ -26,7 +26,7 @@ export default function ProductForm({ product = null }) {
   const [success, setSuccess] = useState('');
   
   // Categories available in the store
-  const categories = ['k2-paper-sheets', 'k2-liquid-spray', 'k2-powder', 'etomidate', 'cannabinoids', 'opioids', 'nitazenes', 'research chemicals'];
+  const categories = ['cannabinoids', 'etomidate', 'vapes-kpods', 'research chemicals'];
   
   useEffect(() => {
     if (product) {

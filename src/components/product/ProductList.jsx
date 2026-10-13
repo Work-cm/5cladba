@@ -340,10 +340,10 @@ export default function ProductList({ initialProducts, selectedCategory }) {
                     className="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl p-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
                   >
                     <option value="">All Categories</option>
-                    <option value="k2-paper-sheets">K2 Paper Sheets</option>
-                    <option value="k2-liquid-spray">K2 Liquid Spray</option>
-                    <option value="k2-powder">K2 Powder</option>
+                    <option value="cannabinoids">Cannabinoids</option>
                     <option value="etomidate">Etomidate</option>
+                    <option value="vapes-kpods">Vapes / K-Pods</option>
+                    <option value="research chemicals">Research Chemicals</option>
                   </select>
                 </div>
 

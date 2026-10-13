@@ -17,7 +17,7 @@ export default function NewProductPage() {
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
-    category: 'k2-paper-sheets',
+    category: 'cannabinoids',
     description: '',
     price: '',
     countInStock: '',
@@ -228,13 +228,9 @@ export default function NewProductPage() {
                 className="w-full bg-gray-700 text-white p-3 rounded-lg"
                 required
               >
-                <option value="k2-paper-sheets">K2 Paper Sheets</option>
-                <option value="k2-liquid-spray">K2 Liquid Spray</option>
-                <option value="k2-powder">K2 Powder</option>
-                <option value="etomidate">Etomidate</option>
                 <option value="cannabinoids">Cannabinoids</option>
-                <option value="opioids">Opioids</option>
-                <option value="nitazenes">Nitazenes</option>
+                <option value="etomidate">Etomidate</option>
+                <option value="vapes-kpods">Vapes / K-Pods</option>
                 <option value="research chemicals">Research Chemicals</option>
               </select>
             </div>

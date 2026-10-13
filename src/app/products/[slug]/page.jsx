@@ -7,6 +7,9 @@ import ProductCard from '@/components/product/ProductCard';
 
 export const dynamic = 'force-dynamic';
 
+// Categories removed from the catalog — direct product URLs 404
+const REMOVED_CATEGORIES = ['k2-paper-sheets', 'k2-liquid-spray', 'k2-powder', 'opioids', 'nitazenes'];
+
 // Convert MongoDB document to plain object
 function convertToPlainObject(doc) {
   const plainObject = { ...doc };
@@ -36,6 +39,7 @@ async function getProduct(slug) {
     await dbConnect();
     const product = await Product.findOne({ slug }).lean();
     if (!product) return null;
+    if (REMOVED_CATEGORIES.includes((product.category || '').toLowerCase())) return null;
     return convertToPlainObject(product);
   } catch (error) {
     console.error('Error fetching product:', error);
@@ -66,10 +70,10 @@ export async function generateMetadata({ params }) {
   const product = await getProduct(slug);
 
   if (!product) {
-    return { title: 'Product Not Found | K2LiquidStore' };
+    return { title: 'Product Not Found | 5fadb5cladba' };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
   const minPrice =
     product.price && product.price > 0
       ? product.price
@@ -80,13 +84,13 @@ export async function generateMetadata({ params }) {
 
   return {
     metadataBase: new URL(baseUrl),
-    title: `${product.name} | K2LiquidStore`,
+    title: `${product.name} | 5fadb5cladba`,
     description:
       product.description?.slice(0, 155) ||
-      `Buy ${product.name} online at K2LiquidStore. Discreet worldwide shipping.`,
+      `Buy ${product.name} online at 5fadb5cladba. Discreet worldwide shipping.`,
     alternates: { canonical: `/products/${slug}` },
     openGraph: {
-      title: `${product.name} | K2LiquidStore`,
+      title: `${product.name} | 5fadb5cladba`,
       description: product.description?.slice(0, 155) || `Buy ${product.name} online.`,
       url: `/products/${slug}`,
       type: 'website',

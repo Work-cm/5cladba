@@ -1,19 +1,17 @@
 // Primary keywords — matches actual products listed on the site
 export const primaryKeywords = [
-  'k2 paper sheets', 'k2 paper', 'k2 infused paper', 'k2 spice paper', 'k2 paper for sale',
-  'k2 liquid spray', 'k2 spray', 'k2 liquid', 'liquid k2 on paper', 'k2 spray for sale',
-  'k2 powder', 'cannabinoids k2 powder', 'k2 cannabinoid powder', 'buy k2 powder',
+  'synthetic cannabinoids', 'cannabinoid powder', 'buy cannabinoids online', 'cannabinoids for sale',
   'etomidate', 'etomidate powder', 'etomidate crystal', 'buy etomidate', 'etomidate for sale',
+  'etomidate vape', 'etomidate pods', 'k-pods', 'buy etomidate vape',
 ];
 
 export const secondaryKeywords = [
-  'buy k2 online',
-  'k2 for sale',
-  'k2 spice',
-  'synthetic cannabinoids',
   'research chemicals',
-  'k2liquidstore',
-  'k2liquidstore.com',
+  'buy research chemicals online',
+  'lab grade chemicals',
+  'research chemicals for sale',
+  '5fadb5cladba',
+  '5fadb5cladba.com',
 ];
 
 export const allKeywords = [...primaryKeywords, ...secondaryKeywords];
@@ -21,14 +19,14 @@ export const allKeywords = [...primaryKeywords, ...secondaryKeywords];
 // Schema.org structured data for better SEO
 export const getProductSchema = (product) => {
   const startingPrice = product.priceVariants?.[0]?.price ?? product.price;
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
     description: product.description,
     image: product.images?.[0] || `${BASE_URL}/images/logo.png`,
-    brand: { '@type': 'Brand', name: 'K2LiquidStore' },
+    brand: { '@type': 'Brand', name: '5fadb5cladba' },
     offers: {
       '@type': 'Offer',
       price: startingPrice ?? 0,
@@ -46,15 +44,15 @@ export const getProductSchema = (product) => {
 
 // Get base URL for schemas
 const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+  return process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
 };
 
 // Organization schema
 export const getOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'K2LiquidStore',
-  description: 'Premium K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and research-grade etomidate with discreet worldwide shipping.',
+  name: '5fadb5cladba',
+  description: 'Premium cannabinoids, etomidate, etomidate vapes and research-grade chemicals with discreet worldwide shipping.',
   url: getBaseUrl(),
   logo: {
     '@type': 'ImageObject',
@@ -63,7 +61,7 @@ export const getOrganizationSchema = () => ({
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'order@k2liquidstore.com',
+    email: 'order@5fadb5cladba.com',
     availableLanguage: 'English',
   },
   sameAs: [],
@@ -73,8 +71,8 @@ export const getOrganizationSchema = () => ({
 export const getWebsiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'K2LiquidStore',
-  description: 'K2 paper sheets, K2 liquid spray, K2 powder and etomidate for sale online.',
+  name: '5fadb5cladba',
+  description: 'Cannabinoids, etomidate, vapes and research chemicals for sale online.',
   url: getBaseUrl(),
   potentialAction: {
     '@type': 'SearchAction',

@@ -3,19 +3,16 @@ export const size = { width: 32, height: 32 };
 
 export default function Icon() {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32" fill="none">
-  <defs>
-    <clipPath id="f"><path d="M27 6h10v15l11.4 26.2A6 6 0 0 1 43 56.5H21a6 6 0 0 1-5.4-9.3L27 21V6Z"/></clipPath>
-  </defs>
-  <circle cx="32" cy="32" r="30" fill="#0f3229"/>
-  <circle cx="32" cy="32" r="30" fill="none" stroke="#c98f12" stroke-width="2"/>
-  <path d="M27 6h10v15l11.4 26.2A6 6 0 0 1 43 56.5H21a6 6 0 0 1-5.4-9.3L27 21V6Z" fill="#e0efe8"/>
-  <g clip-path="url(#f)">
-    <rect x="8" y="34" width="48" height="30" fill="#c98f12"/>
-    <circle cx="27" cy="42" r="2.4" fill="#fdf8ec" opacity="0.75"/>
-    <circle cx="36" cy="46" r="1.7" fill="#fdf8ec" opacity="0.6"/>
-    <circle cx="32" cy="51" r="2.8" fill="#fdf8ec" opacity="0.5"/>
-  </g>
-  <rect x="23" y="4" width="18" height="4" rx="2" fill="#e0efe8"/>
+  <polygon points="32,4 56.2,18 56.2,46 32,60 7.8,46 7.8,18" fill="#431329"/>
+  <polygon points="32,4 56.2,18 56.2,46 32,60 7.8,46 7.8,18" fill="none" stroke="#f089ac" stroke-width="2"/>
+  <polygon points="32,15 46.7,23.5 46.7,40.5 32,49 17.3,40.5 17.3,23.5" fill="none" stroke="#fcebf2" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="8.5" fill="none" stroke="#fcebf2" stroke-width="2"/>
+  <circle cx="32" cy="4" r="3" fill="#f089ac"/>
+  <circle cx="7.8" cy="46" r="3" fill="#f089ac"/>
+  <circle cx="56.2" cy="46" r="3" fill="#f089ac"/>
+  <line x1="32" y1="15" x2="32" y2="7.5" stroke="#fcebf2" stroke-width="2"/>
+  <line x1="17.3" y1="40.5" x2="9.5" y2="45" stroke="#fcebf2" stroke-width="2"/>
+  <line x1="46.7" y1="40.5" x2="54.5" y2="45" stroke="#fcebf2" stroke-width="2"/>
 </svg>`;
   return new Response(svg, {
     headers: { 'Content-Type': 'image/svg+xml' },

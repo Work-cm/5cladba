@@ -11,32 +11,32 @@ export async function generateMetadata({ searchParams }) {
   const category = params?.category || '';
   
   // Always use /products as canonical to avoid duplicate content from query params
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
   const catLabel = categoryMeta[category.toLowerCase()]?.label || category;
   
   const categoryKeywords = catLabel
     ? `${catLabel.toLowerCase()}, ${catLabel.toLowerCase()} for sale, buy ${catLabel.toLowerCase()}`
-    : 'k2 paper sheets, k2 liquid spray, k2 powder, etomidate, etomidate powder, buy etomidate, buy k2 online, k2 spice paper, k2 spray for sale';
+    : 'cannabinoids, cannabinoid powder, buy cannabinoids, etomidate, etomidate powder, etomidate vapes, k-pods, research chemicals';
 
   return {
     metadataBase: new URL(baseUrl),
     title: catLabel
-      ? `Buy ${catLabel} Online | K2LiquidStore`
-      : 'K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate for Sale | K2LiquidStore',
+      ? `Buy ${catLabel} Online | 5fadb5cladba`
+      : 'Cannabinoids, Etomidate & Vapes for Sale | 5fadb5cladba',
     description: catLabel
-      ? `Buy premium ${catLabel.toLowerCase()} online at K2LiquidStore. Strong, consistent quality with discreet worldwide shipping.`
-      : 'Buy K2 paper sheets, K2 liquid spray, K2 powder and etomidate online. Premium quality, discreet packaging and fast worldwide delivery from K2LiquidStore.',
-    keywords: `${categoryKeywords}, k2 paper, k2 spray, k2 liquid, k2 powder, k2 spice, cannabinoids k2, etomidate, etomidate powder, k2liquidstore`,
+      ? `Browse premium ${catLabel.toLowerCase()} at 5fadb5cladba. Discreet worldwide shipping.`
+      : 'Browse cannabinoids, etomidate and research chemicals. Premium quality with discreet worldwide shipping.',
+    keywords: `${categoryKeywords}, cannabinoids, cannabinoid powder, etomidate, etomidate powder, etomidate vape, research chemicals, 5fadb5cladba`,
     alternates: {
       canonical: '/products', // Always point to /products to avoid duplicate content from query params
     },
     openGraph: {
       title: catLabel
-        ? `Buy ${catLabel} Online | K2LiquidStore`
-        : 'K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate for Sale | K2LiquidStore',
+        ? `Buy ${catLabel} Online | 5fadb5cladba`
+        : 'Cannabinoids, Etomidate & Vapes for Sale | 5fadb5cladba',
       description: catLabel
-        ? `Browse premium ${catLabel.toLowerCase()} at K2LiquidStore. Discreet worldwide shipping.`
-        : 'Browse K2 paper sheets, K2 liquid spray, K2 powder and etomidate. Premium quality with discreet worldwide shipping.',
+        ? `Browse premium ${catLabel.toLowerCase()} at 5fadb5cladba. Discreet worldwide shipping.`
+        : 'Browse cannabinoids, etomidate and research chemicals. Premium quality with discreet worldwide shipping.',
       url: '/products',
       type: 'website',
     },
@@ -70,6 +70,9 @@ function convertToPlainObject(doc) {
   return plainObject;
 }
 
+// Categories removed from the catalog — never returned by any listing
+const REMOVED_CATEGORIES = ['k2-paper-sheets', 'k2-liquid-spray', 'k2-powder', 'opioids', 'nitazenes'];
+
 // This function fetches products on the server
 async function getProducts(searchParams) {
   await dbConnect();
@@ -79,12 +82,17 @@ async function getProducts(searchParams) {
   
   // Now safely extract values
   const category = params?.category || null;
+  
+  // Removed categories return nothing
+  if (category && REMOVED_CATEGORIES.includes(category.toLowerCase())) {
+    return [];
+  }
   const search = params?.search || null;
   const sort = params?.sort || 'createdAt';
   const order = params?.order || 'desc';
   
   // Build query based on parameters
-  let query = {};
+  let query = { category: { $nin: REMOVED_CATEGORIES } };
   
   if (category) {
     console.log('Filtering by category:', category);
@@ -145,18 +153,6 @@ function ProductsLoading() {
 }
 
 const categoryMeta = {
-  'k2-paper-sheets': {
-    label: 'K2 Paper Sheets',
-    desc: 'Premium K2 infused paper sheets. Evenly coated, strong and consistent — shipped discreetly worldwide.',
-  },
-  'k2-liquid-spray': {
-    label: 'K2 Liquid Spray',
-    desc: 'High-strength K2 liquid spray in sealed bottles. Easy to apply, long-lasting and reliably potent.',
-  },
-  'k2-powder': {
-    label: 'K2 Powder',
-    desc: 'Pure cannabinoid K2 powder for making your own paper, spray or blends. Lab-tested purity.',
-  },
   'etomidate': {
     label: 'Etomidate',
     desc: 'High-purity etomidate powders and crystals for research use. Lab-tested, COA included, discreet worldwide shipping.',
@@ -164,6 +160,14 @@ const categoryMeta = {
   'vapes-kpods': {
     label: 'Etomidate Vapes / K-Pods',
     desc: 'Pre-filled etomidate vape pods, disposables and starter kits. Medical-grade hardware, sealed for freshness, discreet worldwide shipping.',
+  },
+  'cannabinoids': {
+    label: 'Cannabinoids',
+    desc: 'Synthetic cannabinoid powders and precursors. Lab-tested purity, sealed for freshness, discreet worldwide shipping.',
+  },
+  'research chemicals': {
+    label: 'Research Chemicals',
+    desc: 'Lab-grade research chemicals. Consistent quality, COA available, discreet worldwide shipping.',
   },
 };
 
@@ -176,7 +180,7 @@ export default async function ProductsPage({ searchParams }) {
   const catInfo = categoryMeta[catKey] || null;
   const displayLabel = catInfo?.label || selectedCategory || 'All Products';
   const displayDesc = catInfo?.desc ||
-    'Browse our K2 paper sheets, K2 liquid spray, K2 powder and etomidate products — premium quality, discreet packaging and fast delivery.';
+    'Browse our cannabinoids, etomidate and research chemicals — premium quality, discreet packaging and fast delivery.';
 
   return (
     <div className="min-h-screen bg-white">
@@ -208,12 +212,11 @@ export default async function ProductsPage({ searchParams }) {
           {/* Category tabs */}
           <div className="flex flex-wrap gap-2 mt-7">
             {[
-              { href: '/products?category=etomidate', label: 'Etomidate', key: 'etomidate' },
               { href: '/products', label: 'All' },
-              { href: '/products?category=k2-paper-sheets', label: 'K2 Paper Sheets', key: 'k2-paper-sheets' },
-              { href: '/products?category=k2-liquid-spray', label: 'K2 Liquid Spray', key: 'k2-liquid-spray' },
-              { href: '/products?category=k2-powder', label: 'K2 Powder', key: 'k2-powder' },
+              { href: '/products?category=cannabinoids', label: 'Cannabinoids', key: 'cannabinoids' },
+              { href: '/products?category=etomidate', label: 'Etomidate', key: 'etomidate' },
               { href: '/products?category=vapes-kpods', label: 'Vapes / K-Pods', key: 'vapes-kpods' },
+              { href: '/products?category=research%20chemicals', label: 'Research Chemicals', key: 'research chemicals' },
             ].map(({ href, label, key }) => {
               const active = label === 'All' ? !selectedCategory : catKey === key;
               return (

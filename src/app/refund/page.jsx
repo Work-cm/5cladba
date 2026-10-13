@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com'),
-  title: 'Return & Refund Policy | K2LiquidStore',
-  description: 'Read the K2LiquidStore return and refund policy for K2 paper, spray, powder and etomidate. Learn how to request returns for defective, damaged or incorrect products within 48 hours.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com'),
+  title: 'Return & Refund Policy | 5fadb5cladba',
+  description: 'Read the 5fadb5cladba return and refund policy for cannabinoids, etomidate and research chemicals. Learn how to request returns for defective, damaged or incorrect products within 48 hours.',
   keywords: [
-    'return policy', 'refund policy', 'k2 product returns',
-    'defective products', 'K2LiquidStore refund',
+    'return policy', 'refund policy', 'product returns',
+    'defective products', '5fadb5cladba refund',
   ],
   alternates: { canonical: '/refund' },
 };

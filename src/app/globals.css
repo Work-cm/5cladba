@@ -8,19 +8,19 @@
 
 :root {
 
-  --foreground-rgb: 21, 32, 25;
+  --foreground-rgb: 37, 17, 25;
 
-  --background-start-rgb: 250, 248, 242;
+  --background-start-rgb: 253, 246, 249;
 
-  --background-end-rgb: 244, 240, 230;
+  --background-end-rgb: 248, 233, 240;
 
-  --brand: #1f5744;
+  --brand: #7f1f4b;
 
-  --brand-deep: #164538;
+  --brand-deep: #601a3b;
 
-  --aqua: #c98f12;
+  --aqua: #f089ac;
 
-  --ink: #152019;
+  --ink: #251119;
 
 }
 
@@ -184,7 +184,7 @@ select:focus-visible {
 
 ::selection {
 
-  background: rgba(31, 87, 68, 0.25);
+  background: rgba(127, 31, 75, 0.25);
 
   color: var(--ink);
 
@@ -196,7 +196,7 @@ select:focus-visible {
 
 .text-gray-400 {
 
-  color: #9ca3af !important; /* Ensures minimum 4.5:1 contrast ratio */
+  color: #bda2b0 !important; /* Ensures minimum 4.5:1 contrast ratio */
 
 }
 
@@ -204,7 +204,7 @@ select:focus-visible {
 
 .text-gray-500 {
 
-  color: #6b7280 !important;
+  color: #85616e !important;
 
 }
 
@@ -286,15 +286,15 @@ a:not([class]) {
 
   .bg-mesh {
 
-    background-color: #faf8f2;
+    background-color: #fdf6f9;
 
     background-image:
 
-      radial-gradient(at 15% 10%, rgba(31, 87, 68, 0.10) 0px, transparent 50%),
+      radial-gradient(at 15% 10%, rgba(127, 31, 75, 0.10) 0px, transparent 50%),
 
-      radial-gradient(at 85% 20%, rgba(201, 143, 18, 0.12) 0px, transparent 50%),
+      radial-gradient(at 85% 20%, rgba(240, 137, 172, 0.14) 0px, transparent 50%),
 
-      radial-gradient(at 60% 90%, rgba(63, 138, 108, 0.10) 0px, transparent 50%);
+      radial-gradient(at 60% 90%, rgba(184, 64, 122, 0.10) 0px, transparent 50%);
 
   }
 
@@ -302,9 +302,9 @@ a:not([class]) {
 
     background-image:
 
-      linear-gradient(rgba(21, 32, 25, 0.045) 1px, transparent 1px),
+      linear-gradient(rgba(37, 17, 25, 0.045) 1px, transparent 1px),
 
-      linear-gradient(90deg, rgba(21, 32, 25, 0.045) 1px, transparent 1px);
+      linear-gradient(90deg, rgba(37, 17, 25, 0.045) 1px, transparent 1px);
 
     background-size: 44px 44px;
 

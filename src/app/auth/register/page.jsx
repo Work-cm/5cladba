@@ -59,7 +59,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-extrabold text-gray-900 mt-3">Create an account</h1>
-          <p className="text-gray-900 text-sm mt-1">Join K2LiquidStore for premium K2 paper, spray and powder</p>
+          <p className="text-gray-900 text-sm mt-1">Join 5fadb5cladba for premium cannabinoids, etomidate and research chemicals</p>
         </div>
 
         <div className="bg-gray-50/70 border border-gray-700/50 rounded-2xl p-8 shadow-xl">

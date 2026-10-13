@@ -6,18 +6,16 @@ import { getOrganizationSchema, getWebsiteSchema } from '@/components/seo/SEOKey
 
 export const dynamic = 'force-dynamic';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
 
 export const metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'Buy K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate Online | K2LiquidStore',
-  description: 'Buy K2 paper sheets, K2 liquid spray, cannabinoid K2 powder and research-grade etomidate online at K2LiquidStore.com. Premium quality, discreet packaging and fast worldwide shipping.',
+  title: 'Buy Cannabinoids, Etomidate & Vapes Online | 5fadb5cladba',
+  description: 'Buy cannabinoids, etomidate, etomidate vapes and research-grade chemicals online at 5fadb5cladba.com. Premium quality, discreet packaging and fast worldwide shipping.',
   keywords: [
-    'k2 paper sheets', 'k2 paper', 'k2 infused paper', 'k2 spice paper',
-    'k2 liquid spray', 'k2 spray', 'liquid k2', 'k2 spice',
-    'k2 powder', 'cannabinoids k2 powder',
-    'etomidate', 'etomidate powder', 'etomidate crystal', 'buy etomidate',
-    'buy k2 online', 'k2 for sale', 'k2liquidstore',
+    'cannabinoids', 'cannabinoid powder', 'buy cannabinoids', 'etomidate',
+    'etomidate powder', 'etomidate crystal', 'etomidate vape', 'k-pods',
+    'research chemicals', 'buy research chemicals online', '5fadb5cladba',
   ],
   alternates: {
     canonical: BASE_URL,
@@ -26,22 +24,22 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: 'K2LiquidStore',
-    title: 'Buy K2 Paper Sheets, K2 Liquid Spray, K2 Powder & Etomidate Online | K2LiquidStore',
-    description: 'Premium K2 paper sheets, K2 liquid spray, K2 powder and research-grade etomidate. Worldwide discreet shipping. Shop K2LiquidStore today.',
+    siteName: '5fadb5cladba',
+    title: 'Buy Cannabinoids, Etomidate & Vapes Online | 5fadb5cladba',
+    description: 'Premium cannabinoids, etomidate, vapes and research-grade chemicals. Worldwide discreet shipping. Shop 5fadb5cladba today.',
     images: [
       {
         url: `${BASE_URL}/images/logo.png`,
         width: 1200,
         height: 630,
-        alt: 'K2LiquidStore — K2 Paper, Spray & Powder',
+        alt: '5fadb5cladba — Cannabinoids, Etomidate & Vapes',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Buy K2 Online | K2LiquidStore',
-    description: 'Premium K2 paper sheets, K2 liquid spray and K2 powder. Worldwide discreet shipping.',
+    title: 'Buy Research Chemicals Online | 5fadb5cladba',
+    description: 'Premium cannabinoids, etomidate and research chemicals. Worldwide discreet shipping.',
     images: [`${BASE_URL}/images/logo.png`],
   },
 };
@@ -49,7 +47,7 @@ export const metadata = {
 async function getFeaturedProducts() {
   await dbConnect();
   try {
-    const products = await Product.find({ featured: true })
+    const products = await Product.find({ featured: true, category: { $nin: ['k2-paper-sheets', 'k2-liquid-spray', 'k2-powder', 'opioids', 'nitazenes'] } })
       .limit(12)
       .select('-reviews')
       .lean();

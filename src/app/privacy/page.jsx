@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com'),
-  title: 'Privacy Policy | K2LiquidStore',
-  description: 'Read the K2LiquidStore Privacy Policy. Learn how we collect, use and protect your personal information when ordering K2 paper, spray, powder and etomidate online.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com'),
+  title: 'Privacy Policy | 5fadb5cladba',
+  description: 'Read the 5fadb5cladba Privacy Policy. Learn how we collect, use and protect your personal information when ordering cannabinoids, etomidate and research chemicals online.',
   keywords: [
-    'privacy policy', 'K2LiquidStore privacy', 'k2 paper privacy',
+    'privacy policy', '5fadb5cladba privacy', 'store privacy',
     'personal information', 'data protection',
   ],
   alternates: { canonical: '/privacy' },
@@ -40,8 +40,8 @@ export default function PrivacyPolicyPage() {
 
         <section>
           <h2 className="text-2xl font-black tracking-tight mb-4">1. Introduction</h2>
-          <p className="mb-4">Welcome to K2LiquidStore. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
-          <p>By accessing or using K2LiquidStore, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our services.</p>
+          <p className="mb-4">Welcome to 5fadb5cladba. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+          <p>By accessing or using 5fadb5cladba, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our services.</p>
         </section>
 
         <section>
@@ -158,7 +158,7 @@ export default function PrivacyPolicyPage() {
 
         <section className="bg-gray-50 border border-gray-100 rounded-xl p-6 text-sm">
           <h2 className="text-lg font-black mb-3">Your Consent</h2>
-          <p>By using K2LiquidStore, you consent to our Privacy Policy and agree to its terms. If you do not agree, please discontinue use of our services immediately.</p>
+          <p>By using 5fadb5cladba, you consent to our Privacy Policy and agree to its terms. If you do not agree, please discontinue use of our services immediately.</p>
         </section>
       </article>
 

@@ -9,10 +9,10 @@ import Logo, { LogoMark } from '@/components/common/Logo';
 const footerLinks = {
   Shop: [
     { href: '/products', label: 'All Products' },
-    { href: '/products?category=k2-paper-sheets', label: 'K2 Paper Sheets' },
-    { href: '/products?category=k2-liquid-spray', label: 'K2 Liquid Spray' },
-    { href: '/products?category=k2-powder', label: 'K2 Powder' },
+    { href: '/products?category=cannabinoids', label: 'Cannabinoids' },
     { href: '/products?category=etomidate', label: 'Etomidate' },
+    { href: '/products?category=vapes-kpods', label: 'Vapes / K-Pods' },
+    { href: '/products?category=research%20chemicals', label: 'Research Chems' },
   ],
   Company: [
     { href: '/about', label: 'About Us' },
@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="container mx-auto px-6 pt-14 pb-8 flex flex-col items-center text-center">
           <LogoMark size={56} />
           <p className="font-display font-black tracking-tight mt-5 leading-none" style={{ fontSize: 'clamp(2.2rem,6vw,4.2rem)' }}>
-            K2 <span className="text-sky-400">Liquid</span><span className="text-cyan-400">Store</span>
+            5FADB<span className="text-cyan-400">5CLADBA</span>
           </p>
           <p className="text-white/35 text-xs tracking-[0.3em] uppercase font-semibold mt-3">Lab standard &middot; Discreet &middot; Worldwide</p>
         </div>
@@ -123,7 +123,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10 bg-ink-deep">
         <div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/30 text-xs">&copy; {new Date().getFullYear()} K2LiquidStore.com. All rights reserved.</p>
+          <p className="text-white/30 text-xs">&copy; {new Date().getFullYear()} 5fadb5cladba.com. All rights reserved.</p>
           <div className="flex items-center gap-5 text-xs text-white/30">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>

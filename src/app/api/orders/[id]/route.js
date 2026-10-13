@@ -93,7 +93,7 @@ export async function POST(request) {
       <tr><td colspan="3" style="padding:8px 10px;text-align:right;color:#666;font-size:14px;">Subtotal</td><td style="padding:8px 10px;text-align:right;font-size:14px;color:#111;">${money(totals.subtotal)}</td></tr>
       <tr><td colspan="3" style="padding:8px 10px;text-align:right;color:#666;font-size:14px;">Shipping</td><td style="padding:8px 10px;text-align:right;font-size:14px;color:#111;">${totals.shipping > 0 ? money(totals.shipping) : 'Free'}</td></tr>
       <tr><td colspan="3" style="padding:8px 10px;text-align:right;color:#666;font-size:14px;">Tax</td><td style="padding:8px 10px;text-align:right;font-size:14px;color:#111;">${money(totals.tax)}</td></tr>
-      <tr><td colspan="3" style="padding:12px 10px;text-align:right;font-weight:700;color:#111;font-size:15px;border-top:2px solid #eee;">Total</td><td style="padding:12px 10px;text-align:right;font-weight:700;color:#0284c7;font-size:17px;border-top:2px solid #eee;">${money(totals.total)}</td></tr>`;
+      <tr><td colspan="3" style="padding:12px 10px;text-align:right;font-weight:700;color:#111;font-size:15px;border-top:2px solid #eee;">Total</td><td style="padding:12px 10px;text-align:right;font-weight:700;color:#b8407a;font-size:17px;border-top:2px solid #eee;">${money(totals.total)}</td></tr>`;
 
     const detailsText = `
 Reference: ${reference}
@@ -117,7 +117,7 @@ Total: ${money(totals.total)}
 
     // 1. Notify the store
     const notification = await transporter.sendMail({
-      from: `"K2LiquidStore Orders" <${FROM_EMAIL}>`,
+      from: `"5fadb5cladba Orders" <${FROM_EMAIL}>`,
       to: STORE_EMAIL,
       replyTo: email,
       subject: `New Order Request ${reference} - ${money(totals.total)}`,
@@ -128,7 +128,7 @@ Total: ${money(totals.total)}
 <head><meta charset="UTF-8"></head>
 <body style="margin:0;padding:0;background:#f4f4f4;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
   <div style="max-width:640px;margin:20px auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,.1);">
-    <div style="background:linear-gradient(135deg,#0f172a 0%,#0284c7 100%);color:#fff;padding:28px 20px;text-align:center;">
+    <div style="background:linear-gradient(135deg,#251119 0%,#b8407a 100%);color:#fff;padding:28px 20px;text-align:center;">
       <h1 style="margin:0;font-size:22px;">New Order Request</h1>
       <p style="margin:6px 0 0;font-size:13px;opacity:.9;">Reference ${reference}</p>
     </div>
@@ -137,9 +137,9 @@ Total: ${money(totals.total)}
         <strong>Received:</strong> ${escapeHtml(timestamp)}
       </div>
 
-      <div style="background:#f8f9fa;border-left:4px solid #0284c7;padding:15px 20px;border-radius:5px;margin-bottom:22px;font-size:14px;color:#333;line-height:1.8;">
+      <div style="background:#f8f9fa;border-left:4px solid #b8407a;padding:15px 20px;border-radius:5px;margin-bottom:22px;font-size:14px;color:#333;line-height:1.8;">
         <div><strong>Name:</strong> ${escapeHtml(name)}</div>
-        <div><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}" style="color:#0284c7;text-decoration:none;">${escapeHtml(email)}</a></div>
+        <div><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}" style="color:#b8407a;text-decoration:none;">${escapeHtml(email)}</a></div>
         <div><strong>Phone:</strong> ${escapeHtml(phone)}</div>
         <div><strong>Shipping Address:</strong> ${escapeHtml(address)}</div>
         ${notes ? `<div><strong>Message:</strong> ${escapeHtml(notes)}</div>` : ''}
@@ -159,13 +159,13 @@ Total: ${money(totals.total)}
 
       <center>
         <a href="mailto:${escapeHtml(email)}?subject=Re: Order ${reference}"
-          style="display:inline-block;background:#0284c7;color:#fff;text-decoration:none;padding:12px 30px;border-radius:6px;font-weight:600;margin-top:24px;">
+          style="display:inline-block;background:#b8407a;color:#fff;text-decoration:none;padding:12px 30px;border-radius:6px;font-weight:600;margin-top:24px;">
           Reply to ${escapeHtml(name)}
         </a>
       </center>
     </div>
     <div style="background:#f8f9fa;padding:18px;text-align:center;border-top:1px solid #e9ecef;">
-      <p style="margin:4px 0;color:#6c757d;font-size:12px;"><strong>K2LiquidStore</strong> - Order request from website checkout</p>
+      <p style="margin:4px 0;color:#6c757d;font-size:12px;"><strong>5fadb5cladba</strong> - Order request from website checkout</p>
     </div>
   </div>
 </body>
@@ -176,27 +176,27 @@ Total: ${money(totals.total)}
     let confirmation = { messageId: 'not-sent', status: 'skipped' };
     try {
       confirmation = await transporter.sendMail({
-        from: `"K2LiquidStore" <${FROM_EMAIL}>`,
+        from: `"5fadb5cladba" <${FROM_EMAIL}>`,
         to: email,
         replyTo: STORE_EMAIL,
-        subject: `Order request received (${reference}) - K2LiquidStore`,
+        subject: `Order request received (${reference}) - 5fadb5cladba`,
         text: `Dear ${name},
 
-Thank you for your order request with K2LiquidStore.
+Thank you for your order request with 5fadb5cladba.
 
 We have received your request and will reply within 24 hours with secure payment instructions.
 ${detailsText}
 If you have any questions, reply to this email or contact ${STORE_EMAIL}.
 
 Best regards,
-The K2LiquidStore Team`,
+The 5fadb5cladba Team`,
         html: `
 <!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"></head>
 <body style="margin:0;padding:0;background:#f4f4f4;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
   <div style="max-width:640px;margin:20px auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,.1);">
-    <div style="background:linear-gradient(135deg,#0f172a 0%,#0284c7 100%);color:#fff;padding:34px 20px;text-align:center;">
+    <div style="background:linear-gradient(135deg,#251119 0%,#b8407a 100%);color:#fff;padding:34px 20px;text-align:center;">
       <h1 style="margin:0;font-size:24px;">Order Request Received</h1>
       <p style="margin:8px 0 0;font-size:13px;opacity:.9;">Reference ${reference}</p>
     </div>
@@ -222,7 +222,7 @@ The K2LiquidStore Team`,
         <tbody>${itemsHtml}${totalsHtml}</tbody>
       </table>
 
-      <div style="background:#f8f9fa;border-left:4px solid #0284c7;padding:15px 20px;border-radius:5px;margin-top:22px;font-size:14px;color:#333;line-height:1.8;">
+      <div style="background:#f8f9fa;border-left:4px solid #b8407a;padding:15px 20px;border-radius:5px;margin-top:22px;font-size:14px;color:#333;line-height:1.8;">
         <div><strong>Phone:</strong> ${escapeHtml(phone)}</div>
         <div><strong>Shipping Address:</strong> ${escapeHtml(address)}</div>
         ${notes ? `<div><strong>Your message:</strong> ${escapeHtml(notes)}</div>` : ''}
@@ -230,14 +230,14 @@ The K2LiquidStore Team`,
 
       <p style="color:#555;line-height:1.6;margin-top:22px;">
         Questions? Reply to this email or contact
-        <a href="mailto:${STORE_EMAIL}" style="color:#0284c7;text-decoration:none;">${STORE_EMAIL}</a>.
+        <a href="mailto:${STORE_EMAIL}" style="color:#b8407a;text-decoration:none;">${STORE_EMAIL}</a>.
       </p>
-      <p style="color:#555;margin-top:18px;">Best regards,<br><strong>The K2LiquidStore Team</strong></p>
+      <p style="color:#555;margin-top:18px;">Best regards,<br><strong>The 5fadb5cladba Team</strong></p>
     </div>
     <div style="background:#f8f9fa;padding:22px;text-align:center;border-top:1px solid #e9ecef;">
-      <div style="font-size:19px;font-weight:700;color:#1f5744;margin-bottom:8px;">K2LiquidStore</div>
-      <p style="margin:4px 0;color:#6c757d;font-size:12px;">K2 Paper Sheets • K2 Liquid Spray • K2 Powder</p>
-      <p style="margin-top:12px;font-size:11px;color:#999;">&copy; ${new Date().getFullYear()} K2LiquidStore. All rights reserved.</p>
+      <div style="font-size:19px;font-weight:700;color:#7f1f4b;margin-bottom:8px;">5fadb5cladba</div>
+      <p style="margin:4px 0;color:#6c757d;font-size:12px;">Cannabinoids | Etomidate | Vapes / K-Pods | Research Chemicals</p>
+      <p style="margin-top:12px;font-size:11px;color:#999;">&copy; ${new Date().getFullYear()} 5fadb5cladba. All rights reserved.</p>
     </div>
   </div>
 </body>

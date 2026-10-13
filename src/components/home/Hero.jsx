@@ -17,7 +17,7 @@ const chips = [
 
 const words = [
   { text: 'Premium', cls: '' },
-  { text: 'K2,', cls: 'italic text-cyan-300' },
+  { text: 'Cannabinoids,', cls: 'italic text-cyan-300' },
   { text: 'Lab', cls: '' },
   { text: 'Standard.', cls: 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-sky-300' },
 ];
@@ -46,8 +46,8 @@ export default function Hero() {
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-lab.jpg"
-          alt="Laboratory grade K2 products"
+          src="/images/GettyImages-563374209.png"
+          alt="Laboratory scientists analyzing samples"
           fill
           priority
           sizes="100vw"
@@ -66,7 +66,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2.5 border border-white/15 bg-white/[0.07] backdrop-blur-md rounded-full pl-2 pr-5 py-2 mb-10"
         >
           <LogoMark size={22} />
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/70">K2LiquidStore.com</span>
+          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/70">5fadb5cladba.com</span>
         </motion.div>
 
         {/* Word-by-word masked headline */}
@@ -90,7 +90,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.65 }}
           className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mx-auto mt-6"
         >
-          K2 paper sheets, liquid spray and cannabinoid powder — lab-checked, sealed fresh and shipped in plain packaging to 50+ countries.
+          Cannabinoids first — plus etomidate, vapes and research chemicals. Lab-checked, sealed fresh and shipped in plain packaging to 50+ countries.
         </motion.p>
 
         {/* Inline search */}
@@ -108,7 +108,7 @@ export default function Hero() {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search paper sheets, sprays, powders..."
+            placeholder="Search cannabinoids, etomidate, vapes..."
             className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/40 min-w-0"
           />
           <button
@@ -152,7 +152,7 @@ export default function Hero() {
       {/* Bottom edge curve into page */}
       <div className="relative h-14 overflow-hidden">
         <svg viewBox="0 0 1440 56" className="absolute bottom-0 w-full h-full" preserveAspectRatio="none" aria-hidden>
-          <path d="M0 56 C360 0 1080 0 1440 56 L1440 56 L0 56 Z" fill="#faf8f2" />
+          <path d="M0 56 C360 0 1080 0 1440 56 L1440 56 L0 56 Z" fill="#fdf6f9" />
         </svg>
       </div>
     </section>

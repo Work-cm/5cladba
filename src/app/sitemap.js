@@ -2,7 +2,7 @@ import dbConnect from '@/lib/utils/db';
 import Product from '@/models/Product';
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://k2liquidstore.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://5fadb5cladba.com';
 
   // ── Static pages (only URLs that actually exist in the app) ──
   const staticPages = [
@@ -66,7 +66,7 @@ export default async function sitemap() {
   let productPages = [];
   try {
     await dbConnect();
-    const products = await Product.find({}).select('slug updatedAt').lean();
+    const products = await Product.find({ category: { $nin: ['k2-paper-sheets', 'k2-liquid-spray', 'k2-powder', 'opioids', 'nitazenes'] } }).select('slug updatedAt').lean();
     
     productPages = products.map((product) => ({
       url: `${baseUrl}/products/${product.slug}`,

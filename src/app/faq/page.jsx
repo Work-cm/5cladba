@@ -79,7 +79,7 @@ export default function FAQPage() {
     {
       category: 'shipping',
       question: 'Is packaging discreet?',
-      answer: 'Yes, absolutely. All orders are shipped in plain, unmarked packaging with no mention of K2LiquidStore or product details. The sender name is generic for your privacy.'
+      answer: 'Yes, absolutely. All orders are shipped in plain, unmarked packaging with no mention of 5fadb5cladba or product details. The sender name is generic for your privacy.'
     },
     {
       category: 'shipping',
@@ -91,7 +91,7 @@ export default function FAQPage() {
     {
       category: 'products',
       question: 'Are your products legal?',
-      answer: 'Legality of K2 products varies by country and region. You are responsible for ensuring products are legal to purchase and possess in your jurisdiction before ordering.'
+      answer: 'Legality of these products varies by country and region. You are responsible for ensuring products are legal to purchase and possess in your jurisdiction before ordering.'
     },
     {
       category: 'products',
@@ -111,7 +111,7 @@ export default function FAQPage() {
     {
       category: 'products',
       question: 'Are your products for human consumption?',
-      answer: 'No. Our K2 paper sheets, K2 liquid spray and cannabinoid K2 powder are sold strictly as research/incense products. They are not intended for human consumption.'
+      answer: 'No. Our cannabinoids, etomidate vapes and research chemicals are sold strictly as research/incense products. They are not intended for human consumption.'
     },
     {
       category: 'products',

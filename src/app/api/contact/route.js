@@ -33,10 +33,10 @@ export async function POST(request) {
 
     // Send email using Gmail
     const emailResult = await transporter.sendMail({
-      from: `"K2LiquidStore Contact" <${CONTACT_FROM_EMAIL}>`,
+      from: `"5fadb5cladba Contact" <${CONTACT_FROM_EMAIL}>`,
       to: CONTACT_TO_EMAIL,
       replyTo: email, // Add Reply-To header with the sender's email
-      subject: `🔔 New Contact Form: ${subject}`,
+      subject: `ðŸ”” New Contact Form: ${subject}`,
       text: `
 NEW CONTACT FORM SUBMISSION
 ===========================
@@ -75,7 +75,7 @@ Reply directly to this email to respond to ${name}.
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .header {
-      background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%);
+      background: linear-gradient(135deg, #251119 0%, #601a3b 100%);
       color: #ffffff;
       padding: 30px 20px;
       text-align: center;
@@ -141,7 +141,7 @@ Reply directly to this email to respond to ${name}.
     }
     .action-button {
       display: inline-block;
-      background: linear-gradient(135deg, #dc2626 0%, #134e4a 100%);
+      background: linear-gradient(135deg, #dc2626 0%, #601a3b 100%);
       color: #ffffff;
       text-decoration: none;
       padding: 12px 30px;
@@ -186,54 +186,54 @@ Reply directly to this email to respond to ${name}.
   <div class="email-container">
     <!-- Header -->
     <div class="header">
-      <h1>🔔 New Contact Form Submission</h1>
-      <p>K2LiquidStore Contact Form</p>
+      <h1>ðŸ”” New Contact Form Submission</h1>
+      <p>5fadb5cladba Contact Form</p>
     </div>
 
     <!-- Content -->
     <div class="content">
       <!-- Timestamp -->
       <div class="timestamp">
-        ⏰ <strong>Received:</strong> ${timestamp}
+        â° <strong>Received:</strong> ${timestamp}
       </div>
 
       <!-- Contact Information -->
       <div class="info-box">
         <div class="info-row">
-          <span class="info-label">👤 Name:</span>
+          <span class="info-label">ðŸ‘¤ Name:</span>
           <span class="info-value"><strong>${name}</strong></span>
         </div>
         <div class="info-row">
-          <span class="info-label">📧 Email:</span>
+          <span class="info-label">ðŸ“§ Email:</span>
           <span class="info-value"><a href="mailto:${email}" style="color: #667eea; text-decoration: none;">${email}</a></span>
         </div>
         <div class="info-row">
-          <span class="info-label">📝 Subject:</span>
+          <span class="info-label">ðŸ“ Subject:</span>
           <span class="info-value"><strong>${subject}</strong></span>
         </div>
       </div>
 
       <!-- Message -->
       <div class="message-box">
-        <h3>💬 Message Content:</h3>
+        <h3>ðŸ’¬ Message Content:</h3>
         <div class="message-content">${message}</div>
       </div>
 
       <!-- Action Button -->
       <center>
         <a href="mailto:${email}?subject=Re: ${encodeURIComponent(subject)}" class="action-button">
-          ✉️ Reply to ${name}
+          âœ‰ï¸ Reply to ${name}
         </a>
       </center>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-      <p><strong>K2LiquidStore</strong> - K2 Paper, Spray & Powder</p>
+      <p><strong>5fadb5cladba</strong> - Cannabinoids, Etomidate & Vapes</p>
       <p>This email was sent from your website contact form</p>
       <p style="margin-top: 10px;">
-        <a href="https://k2liquidstore.com" style="color: #dc2626; text-decoration: none;">Visit Website</a> |
-        <a href="https://k2liquidstore.com/admin" style="color: #dc2626; text-decoration: none;">Admin Dashboard</a>
+        <a href="https://5fadb5cladba.com" style="color: #dc2626; text-decoration: none;">Visit Website</a> |
+        <a href="https://5fadb5cladba.com/admin" style="color: #dc2626; text-decoration: none;">Admin Dashboard</a>
       </p>
     </div>
   </div>
@@ -251,14 +251,14 @@ Reply directly to this email to respond to ${name}.
     if (true) {
       try {
         confirmationResult = await transporter.sendMail({
-            from: `"K2LiquidStore" <${CONTACT_FROM_EMAIL}>`,
+            from: `"5fadb5cladba" <${CONTACT_FROM_EMAIL}>`,
             to: email,
             replyTo: CONTACT_TO_EMAIL,
-            subject: '✅ We received your message - K2LiquidStore',
+            subject: 'âœ… We received your message - 5fadb5cladba',
             text: `
 Dear ${name},
 
-Thank you for contacting K2LiquidStore!
+Thank you for contacting 5fadb5cladba!
 
 We have successfully received your message and our team will review it shortly. You can expect a response within 24-48 hours.
 
@@ -270,11 +270,11 @@ Sent: ${timestamp}
 If you have any urgent questions, please don't hesitate to reach out to us directly at ${CONTACT_TO_EMAIL}.
 
 Best regards,
-The K2LiquidStore Team
+The 5fadb5cladba Team
 
 ---
-K2LiquidStore - K2 Paper, Spray & Powder
-Website: https://k2liquidstore.com
+5fadb5cladba - Cannabinoids, Etomidate & Vapes
+Website: https://5fadb5cladba.com
           `,
           html: `
 <!DOCTYPE html>
@@ -298,7 +298,7 @@ Website: https://k2liquidstore.com
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .header {
-      background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%);
+      background: linear-gradient(135deg, #251119 0%, #601a3b 100%);
       color: #ffffff;
       padding: 40px 20px;
       text-align: center;
@@ -415,7 +415,7 @@ Website: https://k2liquidstore.com
   <div class="email-container">
     <!-- Header -->
     <div class="header">
-      <div class="success-icon">✅</div>
+      <div class="success-icon">âœ…</div>
       <h1>Message Received!</h1>
       <p>We'll get back to you soon</p>
     </div>
@@ -425,17 +425,17 @@ Website: https://k2liquidstore.com
       <p class="greeting">Dear <strong>${name}</strong>,</p>
       
       <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-        Thank you for reaching out to <strong>K2LiquidStore</strong>! We have successfully received your message and our team is reviewing it.
+        Thank you for reaching out to <strong>5fadb5cladba</strong>! We have successfully received your message and our team is reviewing it.
       </p>
 
       <!-- Response Time -->
       <div class="response-time">
-        <p>⏱️ Expected Response Time: <strong>24-48 hours</strong></p>
+        <p>â±ï¸ Expected Response Time: <strong>24-48 hours</strong></p>
       </div>
 
       <!-- Message Summary -->
       <div class="message-summary">
-        <h3>📋 Your Message Summary</h3>
+        <h3>ðŸ“‹ Your Message Summary</h3>
         <div class="summary-item">
           <span class="summary-label">Subject:</span> ${subject}
         </div>
@@ -451,7 +451,7 @@ Website: https://k2liquidstore.com
       <!-- Info Box -->
       <div class="info-box">
         <p>
-          <strong>💡 Need urgent assistance?</strong><br>
+          <strong>ðŸ’¡ Need urgent assistance?</strong><br>
           Contact us directly at <a href="mailto:${CONTACT_TO_EMAIL}" style="color: #dc2626;">${CONTACT_TO_EMAIL}</a>
         </p>
       </div>
@@ -462,24 +462,24 @@ Website: https://k2liquidstore.com
 
       <p style="color: #555; margin-top: 20px;">
         Best regards,<br>
-        <strong>The K2LiquidStore Team</strong>
+        <strong>The 5fadb5cladba Team</strong>
       </p>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-      <div class="footer-logo" style="color: #dc2626;">K2LiquidStore</div>
-      <p><strong>K2 Paper, Spray & Powder</strong></p>
+      <div class="footer-logo" style="color: #dc2626;">5fadb5cladba</div>
+      <p><strong>Cannabinoids, Etomidate & Vapes</strong></p>
       <p style="margin-top: 10px;">This is an automated confirmation email.</p>
       
       <div class="footer-links">
-        <a href="https://k2liquidstore.com">Visit Website</a> |
-        <a href="https://k2liquidstore.com/products">Browse Products</a> |
-        <a href="https://k2liquidstore.com/about">About Us</a>
+        <a href="https://5fadb5cladba.com">Visit Website</a> |
+        <a href="https://5fadb5cladba.com/products">Browse Products</a> |
+        <a href="https://5fadb5cladba.com/about">About Us</a>
       </div>
 
       <p style="margin-top: 15px; font-size: 11px; color: #999;">
-        © ${new Date().getFullYear()} K2LiquidStore. All rights reserved.
+        Â© ${new Date().getFullYear()} 5fadb5cladba. All rights reserved.
       </p>
     </div>
   </div>

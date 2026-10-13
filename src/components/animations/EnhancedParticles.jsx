@@ -24,7 +24,7 @@ export default function EnhancedParticles({ className = '' }) {
     return (
       <div className={`absolute inset-0 z-0 ${className} bg-gradient-to-b from-gray-900/50 to-black/50`}>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-full h-full opacity-30 bg-[radial-gradient(ellipse_at_center,_rgba(138,43,226,0.3)_0%,_transparent_70%)]"></div>
+          <div className="w-full h-full opacity-30 bg-[radial-gradient(ellipse_at_center,_rgba(184,64,122,0.3)_0%,_transparent_70%)]"></div>
         </div>
       </div>
     );
@@ -49,7 +49,7 @@ export default function EnhancedParticles({ className = '' }) {
               }
             },
             color: {
-              value: ["#9333ea", "#a855f7", "#c084fc", "#e879f9", "#f0abfc", "#e11d48", "#06b6d4"]
+              value: ["#b8407a", "#e55d8d", "#f089ac", "#f6b3cb", "#fad5e3", "#b02a58", "#fcebf2"]
             },
             shape: {
               type: ["circle", "triangle", "polygon", "star"],
@@ -83,13 +83,13 @@ export default function EnhancedParticles({ className = '' }) {
             line_linked: {
               enable: true,
               distance: 150,
-              color: "#a855f7",
+              color: "#e55d8d",
               opacity: 0.4,
               width: 1.5,
               triangles: {
                 enable: true,
                 opacity: 0.1,
-                color: "#c084fc"
+                color: "#f089ac"
               }
             },
             move: {
@@ -109,7 +109,7 @@ export default function EnhancedParticles({ className = '' }) {
                 enable: true,
                 length: 10,
                 fill: {
-                  color: "#9333ea"
+                  color: "#b8407a"
                 }
               }
             },
@@ -130,7 +130,7 @@ export default function EnhancedParticles({ className = '' }) {
             },
             stroke: {
               width: 1,
-              color: "#a855f7"
+              color: "#e55d8d"
             }
           },
           interactivity: {
@@ -160,7 +160,7 @@ export default function EnhancedParticles({ className = '' }) {
                 opacity: 0.8,
                 speed: 3,
                 color: {
-                  value: ["#9333ea", "#e11d48", "#06b6d4"]
+                  value: ["#b8407a", "#b02a58", "#fcebf2"]
                 }
               },
               repulse: {
@@ -202,7 +202,7 @@ export default function EnhancedParticles({ className = '' }) {
               },
               particles: {
                 color: {
-                  value: ["#9333ea", "#e11d48", "#06b6d4"]
+                  value: ["#b8407a", "#b02a58", "#fcebf2"]
                 },
                 move: {
                   speed: 5

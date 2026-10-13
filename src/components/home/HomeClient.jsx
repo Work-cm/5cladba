@@ -370,7 +370,7 @@ function CTASlab() {
             <Link href="/products" className="group inline-flex items-center gap-2.5 bg-cyan-400 hover:bg-cyan-300 text-ink font-black px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
               Shop Now <HiArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
+            <a href="https://t.me/cannachem" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
               <FaTelegramPlane size={15} /> Telegram Us
             </a>
           </div>

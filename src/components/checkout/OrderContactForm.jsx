@@ -10,8 +10,8 @@ import {
   FaCommentDots,
 } from 'react-icons/fa';
 
-const WHATSAPP_NUMBER = '19062613088'; // +1 906-261-3088
-const TELEGRAM_NUMBER = '+19102279379'; // +1 910 227 9379
+const WHATSAPP_NUMBER = '15125922145'; // +1 512-592-2145
+const TELEGRAM_NUMBER = 'cannachem'; // @cannachem
 
 function buildMessage({ name, contact, address, notes }, cart, orderDetails) {
   const itemLines = cart
@@ -144,7 +144,7 @@ export default function OrderContactForm({ cart, orderDetails }) {
               required
               value={form.contact}
               onChange={handleChange}
-              placeholder={method === 'whatsapp' ? '+1 906-261-3088' : '@yourusername'}
+              placeholder={method === 'whatsapp' ? '+1 512-592-2145' : '@yourusername'}
               className={inputClass}
             />
           </div>

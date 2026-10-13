@@ -75,10 +75,10 @@ export default function Footer() {
             </form>
 
             <div className="space-y-2.5 pt-2">
-              <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-white/55 hover:text-white transition-colors">
-                <span className="w-8 h-8 rounded-full bg-white/[0.07] border border-white/10 flex items-center justify-center shrink-0"><FaTelegramPlane className="text-cyan-300 text-xs" /></span> Telegram &mdash; +1 910 227 9379
+              <a href="https://t.me/cannachem" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-white/55 hover:text-white transition-colors">
+                <span className="w-8 h-8 rounded-full bg-white/[0.07] border border-white/10 flex items-center justify-center shrink-0"><FaTelegramPlane className="text-cyan-300 text-xs" /></span> Telegram &mdash; @cannachem
               </a>
-              <a href="https://wa.me/19062613088" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-white/55 hover:text-white transition-colors">
+              <a href="https://wa.me/15125922145" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm text-white/55 hover:text-white transition-colors">
                 <span className="w-8 h-8 rounded-full bg-white/[0.07] border border-white/10 flex items-center justify-center shrink-0"><FaWhatsapp className="text-cyan-300 text-xs" /></span> WhatsApp Support
               </a>
             </div>

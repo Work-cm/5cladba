@@ -1,9 +1,9 @@
 import { FaWhatsapp, FaTelegramPlane } from 'react-icons/fa';
 
 export default function WhatsAppButton() {
-  const whatsappNumber = '19062613088'; // +1 906-261-3088
+  const whatsappNumber = '15125922145'; // +1 512-592-2145
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-  const telegramUrl = 'https://t.me/+19102279379'; // +1 910 227 9379
+  const telegramUrl = 'https://t.me/cannachem'; // @cannachem
 
   return (
     <>

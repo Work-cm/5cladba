@@ -11,7 +11,7 @@ import {
 } from 'react-icons/fa';
 
 const WHATSAPP_NUMBER = '15125922145'; // +1 512-592-2145
-const TELEGRAM_NUMBER = 'cannachem'; // @cannachem
+const TELEGRAM_NUMBER = '+19102279379'; // +1 910 227 9379
 
 function buildMessage({ name, contact, address, notes }, cart, orderDetails) {
   const itemLines = cart

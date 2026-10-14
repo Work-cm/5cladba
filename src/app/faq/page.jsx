@@ -324,7 +324,7 @@ export default function FAQPage() {
               className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-500 text-gray-900 font-semibold py-3 px-6 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-sky-800/30 text-sm">
               <FaWhatsapp /> WhatsApp Us
             </a>
-            <a href="https://t.me/cannachem" target="_blank" rel="noopener noreferrer"
+            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-700 border border-gray-700 text-gray-900 font-semibold py-3 px-6 rounded-xl transition-colors text-sm">
               <FaTelegramPlane /> Telegram Us
             </a>

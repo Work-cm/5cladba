@@ -114,7 +114,7 @@ export default function PrivacyPolicyPage() {
           <ul className="space-y-2 ml-1 mb-4">
             {['Right to know what personal information is collected','Right to know if personal information is sold or disclosed','Right to opt-out of sale of personal information','Right to non-discrimination for exercising your rights'].map(i=><li key={i} className="flex gap-3"><Dot /><span>{i}</span></li>)}
           </ul>
-          <p>To exercise your rights, contact us on <a href="https://wa.me/15125922145" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">WhatsApp</a> or <a href="https://t.me/cannachem" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">Telegram</a>.</p>
+          <p>To exercise your rights, contact us on <a href="https://wa.me/15125922145" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">WhatsApp</a> or <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">Telegram</a>.</p>
         </section>
 
         <section>
@@ -151,7 +151,7 @@ export default function PrivacyPolicyPage() {
           <p className="mb-5">Questions about this Privacy Policy? Contact us:</p>
           <div className="border border-gray-200 rounded-xl p-5 space-y-2 text-sm">
             <p><strong>WhatsApp:</strong> <a href="https://wa.me/15125922145" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 512-592-2145</a></p>
-            <p><strong>Telegram:</strong> <a href="https://t.me/cannachem" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">@cannachem</a></p>
+            <p><strong>Telegram:</strong> <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:underline">+1 910 227 9379</a></p>
             <p><strong>Response Time:</strong> We aim to respond within 48 hours</p>
           </div>
         </section>

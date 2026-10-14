@@ -89,7 +89,7 @@ function PromiseStrip() {
 
 /* ============ Categories — asymmetric editorial collage ============ */
 const collageCategories = [
-  { href: '/products?category=cannabinoids', img: '/images/k2-powder/5-fadb-powder.jpg', Icon: FaLeaf, n: '01', title: 'Cannabinoids', desc: 'Synthetic cannabinoid powders and precursor kits — lab-tested, batch-verified.', tall: true },
+  { href: '/products?category=cannabinoids', img: 'https://res.cloudinary.com/dnxyxgc1m/image/upload/v1790857084/k2paperliquid/products/ik7isg2fhtdtmmjz2xrk.jpg', Icon: FaLeaf, n: '01', title: 'Cannabinoids', desc: 'Synthetic cannabinoid powders and precursor kits — lab-tested, batch-verified.', tall: true },
   { href: '/products?category=etomidate', img: '/images/etomidate/etomidate-powder-pure.jpg', Icon: FaFlask, n: '02', title: 'Etomidate', desc: 'High-purity etomidate powders and crystals, COA included.' },
   { href: '/products?category=vapes-kpods', img: '/images/vapes/etomidate-vape-k-pod-classic.jpg', Icon: FaSprayCan, n: '03', title: 'Vapes / K-Pods', desc: 'Pre-filled etomidate vape pods, disposables and starter kits.' },
   { href: '/products?category=research%20chemicals', img: '/images/Laboratory-Science.jpg', Icon: FaVial, n: '04', title: 'Research Chemicals', desc: 'Lab-grade research chemicals, batch-tested for consistency.' },
@@ -375,7 +375,7 @@ function CTASlab() {
             <Link href="/products" className="group inline-flex items-center gap-2.5 bg-cyan-400 hover:bg-cyan-300 text-ink font-black px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
               Shop Now <HiArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <a href="https://t.me/cannachem" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
+            <a href="https://t.me/+19102279379" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-full transition-all hover:-translate-y-1 text-base">
               <FaTelegramPlane size={15} /> Telegram Us
             </a>
           </div>
